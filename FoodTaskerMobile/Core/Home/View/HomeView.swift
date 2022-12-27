@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @State private var animateMenuButtonStatus: MenuButtonView.Status = .burger
     @State private var currentCategory: MenuCell.Category = .restaurants
+    @Binding var isPresent: Bool
     
     var body: some View {
         ZStack {
@@ -29,7 +31,14 @@ struct HomeView: View {
                         color: Color.theme.accent.opacity(0.15),
                         radius: 10, x: 0, y: 0)
                     .offset(x: animateMenuButtonStatus == .cross(.leftMenu) ? (UIScreen.main.bounds.width / 1.5) : 0)
-            default: EmptyView()
+            case .delivery:
+                DeliveryView(animateMenuButtonStatus: $animateMenuButtonStatus)
+                    .shadow(
+                        color: Color.theme.accent.opacity(0.15),
+                        radius: 10, x: 0, y: 0)
+                    .offset(x: animateMenuButtonStatus == .cross(.leftMenu) ? (UIScreen.main.bounds.width / 1.5) : 0)
+            case .logout:
+                LoginView(appDelegate: appDelegate)
             }
         }
     }
@@ -37,6 +46,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(isPresent: .constant(false))
     }
 }

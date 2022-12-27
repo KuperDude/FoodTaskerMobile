@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E2294E1762002E9A66 /* DeliveryView.swift */; };
+		F81328E7294E198B002E9A66 /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E6294E198B002E9A66 /* DeliveryCell.swift */; };
+		F81328E9294E1F3E002E9A66 /* CourierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E8294E1F3E002E9A66 /* CourierView.swift */; };
+		F89EB139294DB36900D34B09 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB138294DB36900D34B09 /* Lottie */; };
+		F89EB13C294DB47200D34B09 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13B294DB47200D34B09 /* Stripe */; };
+		F89EB13E294DB47200D34B09 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13D294DB47200D34B09 /* StripeApplePay */; };
+		F89EB140294DB47200D34B09 /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13F294DB47200D34B09 /* StripeCardScan */; };
+		F89EB142294DB47200D34B09 /* StripeFinancialConnections in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB141294DB47200D34B09 /* StripeFinancialConnections */; };
+		F89EB144294DB47200D34B09 /* StripeIdentity in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB143294DB47200D34B09 /* StripeIdentity */; };
+		F89EB146294DB47200D34B09 /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB145294DB47200D34B09 /* StripePaymentSheet */; };
+		F89EB148294DB47200D34B09 /* StripePayments in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB147294DB47200D34B09 /* StripePayments */; };
+		F89EB14A294DB47200D34B09 /* StripePaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB149294DB47200D34B09 /* StripePaymentsUI */; };
+		F89EB14F294DC50400D34B09 /* PaymentCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89EB14E294DC50400D34B09 /* PaymentCardTextField.swift */; };
+		F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */; };
+		F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25429507DE5008AB0E5 /* AuthService.swift */; };
+		F8A5C25729507F04008AB0E5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25629507F04008AB0E5 /* NetworkService.swift */; };
+		F8A5C25929508029008AB0E5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25829508029008AB0E5 /* API.swift */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63300294B88070080DAE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632FF294B88070080DAE8 /* Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */; };
@@ -25,10 +42,36 @@
 		F8A6332E294B88480080DAE8 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6331F294B88480080DAE8 /* MenuView.swift */; };
 		F8A6332F294B88480080DAE8 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63322294B88480080DAE8 /* CartView.swift */; };
 		F8A63330294B88480080DAE8 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63323294B88480080DAE8 /* CartCell.swift */; };
+		F8B34184294CE4C300B2780B /* 99865-credit-card.json in Resources */ = {isa = PBXBuildFile; fileRef = F8B34183294CE4C200B2780B /* 99865-credit-card.json */; };
+		F8B34187294CE6B800B2780B /* CartPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34186294CE6B800B2780B /* CartPaymentView.swift */; };
+		F8B3418A294CEBDB00B2780B /* CreditCardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34189294CEBDB00B2780B /* CreditCardAnimationView.swift */; };
+		F8CF07C42958BB0F009424F6 /* vk-ios-sdk in Frameworks */ = {isa = PBXBuildFile; productRef = F8CF07C32958BB0F009424F6 /* vk-ios-sdk */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F8CF07BE2958A34F009424F6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F8A632EE294B87E70080DAE8 /* FoodTaskerMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTaskerMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTaskerMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81328E2294E1762002E9A66 /* DeliveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryView.swift; sourceTree = "<group>"; };
+		F81328E6294E198B002E9A66 /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
+		F81328E8294E1F3E002E9A66 /* CourierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourierView.swift; sourceTree = "<group>"; };
+		F89EB14E294DC50400D34B09 /* PaymentCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardTextField.swift; sourceTree = "<group>"; };
+		F8A0921C294F5C95008960B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F8A5C25429507DE5008AB0E5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F8A5C25629507F04008AB0E5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F8A5C25829508029008AB0E5 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A632FF294B88070080DAE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../FoodTaskerMobileApp/FoodTaskerMobileApp/Assets.xcassets; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileApp.swift; sourceTree = "<group>"; };
@@ -47,6 +90,9 @@
 		F8A6331F294B88480080DAE8 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		F8A63322294B88480080DAE8 /* CartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		F8A63323294B88480080DAE8 /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		F8B34183294CE4C200B2780B /* 99865-credit-card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "99865-credit-card.json"; sourceTree = "<group>"; };
+		F8B34186294CE6B800B2780B /* CartPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPaymentView.swift; sourceTree = "<group>"; };
+		F8B34189294CEBDB00B2780B /* CreditCardAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,35 +100,76 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89EB148294DB47200D34B09 /* StripePayments in Frameworks */,
+				F8CF07C42958BB0F009424F6 /* vk-ios-sdk in Frameworks */,
+				F89EB146294DB47200D34B09 /* StripePaymentSheet in Frameworks */,
+				F89EB142294DB47200D34B09 /* StripeFinancialConnections in Frameworks */,
+				F89EB13E294DB47200D34B09 /* StripeApplePay in Frameworks */,
+				F89EB144294DB47200D34B09 /* StripeIdentity in Frameworks */,
+				F89EB139294DB36900D34B09 /* Lottie in Frameworks */,
+				F89EB140294DB47200D34B09 /* StripeCardScan in Frameworks */,
+				F89EB14A294DB47200D34B09 /* StripePaymentsUI in Frameworks */,
+				F89EB13C294DB47200D34B09 /* Stripe in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F81328E0294E1656002E9A66 /* Delivery */ = {
+			isa = PBXGroup;
+			children = (
+				F81328E1294E1674002E9A66 /* View */,
+			);
+			path = Delivery;
+			sourceTree = "<group>";
+		};
+		F81328E1294E1674002E9A66 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F81328E2294E1762002E9A66 /* DeliveryView.swift */,
+				F81328E6294E198B002E9A66 /* DeliveryCell.swift */,
+				F81328E8294E1F3E002E9A66 /* CourierView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8A134F9295B2BCD0023D65D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F8A5C25329507DCF008AB0E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5C25429507DE5008AB0E5 /* AuthService.swift */,
+				F8A5C25629507F04008AB0E5 /* NetworkService.swift */,
+				F8A5C25829508029008AB0E5 /* API.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F8A632E5294B87E70080DAE8 = {
 			isa = PBXGroup;
 			children = (
 				F8A632F0294B87E70080DAE8 /* FoodTaskerMobile */,
-				F8A632EF294B87E70080DAE8 /* Products */,
+				F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */,
 			);
-			sourceTree = "<group>";
-		};
-		F8A632EF294B87E70080DAE8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F8A632EE294B87E70080DAE8 /* FoodTaskerMobile.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F8A632F0294B87E70080DAE8 /* FoodTaskerMobile */ = {
 			isa = PBXGroup;
 			children = (
+				F8A0921C294F5C95008960B1 /* Info.plist */,
 				F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */,
+				F8A5C25329507DCF008AB0E5 /* Services */,
 				F8A63303294B88400080DAE8 /* Extensions */,
 				F8A63308294B88480080DAE8 /* Core */,
 				F8A632FF294B88070080DAE8 /* Assets.xcassets */,
+				F8B34185294CE50000B2780B /* Animation */,
 				F8A632F7294B87E80080DAE8 /* Preview Content */,
 			);
 			path = FoodTaskerMobile;
@@ -114,6 +201,7 @@
 				F8A63319294B88480080DAE8 /* Register */,
 				F8A6331C294B88480080DAE8 /* Menu */,
 				F8A63320294B88480080DAE8 /* Cart */,
+				F81328E0294E1656002E9A66 /* Delivery */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -190,6 +278,7 @@
 		F8A63319294B88480080DAE8 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				F8A134F9295B2BCD0023D65D /* ViewModel */,
 				F8A6331A294B88480080DAE8 /* View */,
 			);
 			path = Register;
@@ -223,6 +312,7 @@
 		F8A63320294B88480080DAE8 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				F8B34188294CEBC100B2780B /* Animation */,
 				F8A63321294B88480080DAE8 /* View */,
 			);
 			path = Cart;
@@ -233,8 +323,26 @@
 			children = (
 				F8A63322294B88480080DAE8 /* CartView.swift */,
 				F8A63323294B88480080DAE8 /* CartCell.swift */,
+				F8B34186294CE6B800B2780B /* CartPaymentView.swift */,
+				F89EB14E294DC50400D34B09 /* PaymentCardTextField.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F8B34185294CE50000B2780B /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				F8B34183294CE4C200B2780B /* 99865-credit-card.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		F8B34188294CEBC100B2780B /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				F8B34189294CEBDB00B2780B /* CreditCardAnimationView.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,14 +355,27 @@
 				F8A632EA294B87E70080DAE8 /* Sources */,
 				F8A632EB294B87E70080DAE8 /* Frameworks */,
 				F8A632EC294B87E70080DAE8 /* Resources */,
+				F8CF07BE2958A34F009424F6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FoodTaskerMobile;
+			packageProductDependencies = (
+				F89EB138294DB36900D34B09 /* Lottie */,
+				F89EB13B294DB47200D34B09 /* Stripe */,
+				F89EB13D294DB47200D34B09 /* StripeApplePay */,
+				F89EB13F294DB47200D34B09 /* StripeCardScan */,
+				F89EB141294DB47200D34B09 /* StripeFinancialConnections */,
+				F89EB143294DB47200D34B09 /* StripeIdentity */,
+				F89EB145294DB47200D34B09 /* StripePaymentSheet */,
+				F89EB147294DB47200D34B09 /* StripePayments */,
+				F89EB149294DB47200D34B09 /* StripePaymentsUI */,
+				F8CF07C32958BB0F009424F6 /* vk-ios-sdk */,
+			);
 			productName = FoodTaskerMobile;
-			productReference = F8A632EE294B87E70080DAE8 /* FoodTaskerMobile.app */;
+			productReference = F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,7 +402,12 @@
 				Base,
 			);
 			mainGroup = F8A632E5294B87E70080DAE8;
-			productRefGroup = F8A632EF294B87E70080DAE8 /* Products */;
+			packageReferences = (
+				F89EB137294DB36900D34B09 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
+				F8CF07C22958BB0F009424F6 /* XCRemoteSwiftPackageReference "vk-ios-sdk" */,
+			);
+			productRefGroup = F8A632E5294B87E70080DAE8;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -296,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */,
+				F8B34184294CE4C300B2780B /* 99865-credit-card.json in Resources */,
 				F8A63300294B88070080DAE8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,12 +436,22 @@
 			files = (
 				F8A6332F294B88480080DAE8 /* CartView.swift in Sources */,
 				F8A6332B294B88480080DAE8 /* MenuButtonView.swift in Sources */,
+				F8B34187294CE6B800B2780B /* CartPaymentView.swift in Sources */,
 				F8A63328294B88480080DAE8 /* RestaurantCell.swift in Sources */,
+				F89EB14F294DC50400D34B09 /* PaymentCardTextField.swift in Sources */,
+				F8A5C25729507F04008AB0E5 /* NetworkService.swift in Sources */,
+				F8B3418A294CEBDB00B2780B /* CreditCardAnimationView.swift in Sources */,
+				F81328E9294E1F3E002E9A66 /* CourierView.swift in Sources */,
+				F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */,
+				F8A5C25929508029008AB0E5 /* API.swift in Sources */,
 				F8A63330294B88480080DAE8 /* CartCell.swift in Sources */,
 				F8A63329294B88480080DAE8 /* SearchBarView.swift in Sources */,
+				F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */,
 				F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */,
 				F8A63325294B88480080DAE8 /* RestaurantMealDetails.swift in Sources */,
+				F81328E7294E198B002E9A66 /* DeliveryCell.swift in Sources */,
 				F8A63324294B88480080DAE8 /* HomeView.swift in Sources */,
+				F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */,
 				F8A6332C294B88480080DAE8 /* LoginView.swift in Sources */,
 				F8A6332E294B88480080DAE8 /* MenuView.swift in Sources */,
 				F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */,
@@ -453,7 +590,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FoodTaskerMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = GLVZ4657KM;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -482,7 +624,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FoodTaskerMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = GLVZ4657KM;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -523,6 +670,86 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F89EB137294DB36900D34B09 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
+		F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
+			requirement = {
+				kind = exactVersion;
+				version = 23.3.1;
+			};
+		};
+		F8CF07C22958BB0F009424F6 /* XCRemoteSwiftPackageReference "vk-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qe0/vk-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F89EB138294DB36900D34B09 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB137294DB36900D34B09 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		F89EB13B294DB47200D34B09 /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = Stripe;
+		};
+		F89EB13D294DB47200D34B09 /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeApplePay;
+		};
+		F89EB13F294DB47200D34B09 /* StripeCardScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeCardScan;
+		};
+		F89EB141294DB47200D34B09 /* StripeFinancialConnections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeFinancialConnections;
+		};
+		F89EB143294DB47200D34B09 /* StripeIdentity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeIdentity;
+		};
+		F89EB145294DB47200D34B09 /* StripePaymentSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePaymentSheet;
+		};
+		F89EB147294DB47200D34B09 /* StripePayments */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePayments;
+		};
+		F89EB149294DB47200D34B09 /* StripePaymentsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePaymentsUI;
+		};
+		F8CF07C32958BB0F009424F6 /* vk-ios-sdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8CF07C22958BB0F009424F6 /* XCRemoteSwiftPackageReference "vk-ios-sdk" */;
+			productName = "vk-ios-sdk";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8A632E6294B87E70080DAE8 /* Project object */;
 }

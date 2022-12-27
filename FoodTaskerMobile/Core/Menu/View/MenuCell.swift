@@ -48,7 +48,7 @@ extension MenuCell {
         case restaurants
         case cart
         case delivery
-        case logout
+        case logout 
         
         var id: Int {
             self.rawValue

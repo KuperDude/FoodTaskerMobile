@@ -6,12 +6,46 @@
 //
 
 import SwiftUI
+import vk_ios_sdk
 
 @main
 struct FoodTaskerMobileApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            LoginView(appDelegate: appDelegate)
+        }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
+    
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+          let sceneConfig: UISceneConfiguration = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+          sceneConfig.delegateClass = SceneDelegate.self
+          return sceneConfig
+      }
+
+}
+
+class SceneDelegate: NSObject, UIWindowSceneDelegate {
+    
+    var window: UIWindow?
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let _ = (scene as? UIWindowScene) else { return }
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            VKSdk.processOpen(url, fromApplication: nil)
         }
     }
 }

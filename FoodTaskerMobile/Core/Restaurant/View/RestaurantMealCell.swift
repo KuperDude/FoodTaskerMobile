@@ -59,11 +59,12 @@ struct RestaurantMealCell: View {
     }
 }
 
-//struct RestaurantMenuCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RestaurantMealCell(isShowDetails: .constant(false))
-//    }
-//}
+struct RestaurantMenuCell_Previews: PreviewProvider {
+    @Namespace static var namespace
+    static var previews: some View {
+        RestaurantMealCell(namespace: namespace, id: 1)
+    }
+}
 
 extension RestaurantMealCell {
     enum MatchedGeometryId: String, Identifiable {

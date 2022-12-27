@@ -44,7 +44,7 @@ struct MenuButtonView: View {
             }
             action()
         }
-        .scaleEffect(0.5)
+        .scaleEffect(0.6)
     }
     
 }

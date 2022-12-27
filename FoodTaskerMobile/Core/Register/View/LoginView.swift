@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-
 struct LoginView: View {
+    @ObservedObject var vm: LoginViewModel
     
-    @State private var isPresent = false
     @State private var selectedRole = 1
+    
+    init(appDelegate: AppDelegate) {
+        self.vm = LoginViewModel(appDelegate: appDelegate)
+    }
     
     var body: some View {
         // content
@@ -31,15 +34,17 @@ struct LoginView: View {
             // background
             backgroundImage
         }
-        .fullScreenCover(isPresented: $isPresent) {
-            HomeView()
+        .fullScreenCover(isPresented: $vm.isLoggin) {
+            HomeView(isPresent: $vm.isLoggin)
         }
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) static var appDelegate
+    
     static var previews: some View {
-        LoginView()
+        LoginView(appDelegate: appDelegate)
     }
 }
 
@@ -70,7 +75,8 @@ extension LoginView {
     
     var loginButton: some View {
         Button {
-            isPresent.toggle()
+            let authService = vm.authService
+            authService.wakeUpSession()
         } label: {
             Text("Login with VK")
                 .font(.system(size: 17))

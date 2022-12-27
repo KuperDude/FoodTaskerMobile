@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import vk_ios_sdk
 
 struct MenuView: View {
     @Binding var currentCategory: MenuCell.Category
@@ -40,6 +41,7 @@ extension MenuView {
             Image("background_img")
                 .resizable()
                 .frame(width: 70, height: 70)
+                .clipShape(Circle())
             
             Text("Greg Fields")
                 .foregroundColor(.theme.accent)
@@ -57,6 +59,10 @@ extension MenuView {
             Divider()
             MenuCell(category: category)
                 .onTapGesture {
+                    if category == .logout {
+                        VKSdk.forceLogout()
+                        AuthService.instance.isLoggin = false
+                    }
                     currentCategory = category
                 }
         }
