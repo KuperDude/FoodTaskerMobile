@@ -9,12 +9,13 @@ import SwiftUI
 
 struct DeliveryCell: View {
     var text: String = "<<EMPTY TEXT>>"
-    
+    var check: Bool
     var body: some View {
         HStack(spacing: 20) {
             Image(systemName: "checkmark.circle.fill")
                 .resizable()
                 .frame(width: 30, height: 30)
+                .foregroundColor(check ? .theme.green : .black)
             
             Text(text)
                 .font(.system(size: 18, weight: .semibold))
@@ -28,6 +29,6 @@ struct DeliveryCell: View {
 
 struct DeliveryCell_Previews: PreviewProvider {
     static var previews: some View {
-        DeliveryCell()
+        DeliveryCell(check: false)
     }
 }

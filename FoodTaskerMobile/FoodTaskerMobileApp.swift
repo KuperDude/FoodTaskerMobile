@@ -7,14 +7,18 @@
 
 import SwiftUI
 import vk_ios_sdk
+import Stripe
 
 @main
 struct FoodTaskerMobileApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var mainVM = MainViewModel()
     
     var body: some Scene {
         WindowGroup {
-            LoginView(appDelegate: appDelegate)
+            ZStack {
+                LoginView(mainVM: mainVM)
+            }
         }
     }
 }
@@ -23,7 +27,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {  
         return true
     }
     

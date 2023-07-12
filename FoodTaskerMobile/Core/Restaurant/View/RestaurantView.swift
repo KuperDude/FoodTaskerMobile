@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct RestaurantView: View {
+    @ObservedObject var mainVM: MainViewModel
     
-    @State private var text: String = ""
-    @Binding var animateMenuButtonStatus: MenuButtonView.Status
-    @Binding var currentCategory: MenuCell.Category
+    @State private var pickerSection = 0
+    
+    @StateObject var vm = RestaurantViewModel()
+
     @Namespace var namespace
     
-    typealias MatchedGeometryId = RestaurantMealCell.MatchedGeometryId
+    typealias MatchedGeometryId = MealCell.MatchedGeometryId
     
     var body: some View {
         ZStack {
@@ -26,16 +28,23 @@ struct RestaurantView: View {
             VStack {
                 topSector
                 
-                if animateMenuButtonStatus.getCrossIdOrMinusOne == -1 {
-                    SearchBarView(searchText: $text)
+                if mainVM.animateStatus.getCrossIdOrMinusOne == -1 {
+                    SearchBarView(searchText: $vm.searchText)
                 }
                 
-                if animateMenuButtonStatus == .chevron || animateMenuButtonStatus.getCrossIdOrMinusOne != -1 {
+                if mainVM.animateStatus.getCrossIdOrMinusOne != -1 {
+                    if let meal = vm.getMeal(at: mainVM.animateStatus.getCrossIdOrMinusOne) {
+                        MealDetail(meal: meal, mainVM: mainVM, namespace: namespace)
+                            .transition(.move(edge: .trailing))
+                    }
+                } else {
+                    HPicker(data: $vm.sections, selected: $vm.selectedSection)
+                        .frame(height: 40)
+                }
+                
+                if mainVM.animateStatus == .burger || mainVM.animateStatus == .cross {
+//                    restaurants
                     mealsAndMealDetail
-                }
-                
-                if animateMenuButtonStatus == .burger || animateMenuButtonStatus == .cross(.leftMenu) {
-                    restaurants
                 }
                 
                 Spacer()
@@ -46,62 +55,129 @@ struct RestaurantView: View {
 }
 
 struct RestaurantView_Previews: PreviewProvider {
+//    static var mainVM = MainViewModel()
+    @StateObject static var mainVM = MainViewModel()
     static var previews: some View {
-        RestaurantView(animateMenuButtonStatus: .constant(.burger), currentCategory: .constant(.restaurants))
+        RestaurantView(mainVM: mainVM)
+//            .environmentObject(mainVM)
     }
 }
 
 extension RestaurantView {
     var topSector: some View {
         HStack {
-            MenuButtonView(animateStatus: $animateMenuButtonStatus) {}
+            MenuButtonView(mainVM: mainVM) {
+//                if mainVM.animateStatus == .chevron {
+//                    vm.selectedRestaurantId = nil
+//                }
+            }
             
             Spacer()
             
-            if animateMenuButtonStatus.getCrossIdOrMinusOne != -1 {
+            if mainVM.animateStatus.getCrossIdOrMinusOne != -1 {
                 title
             }
             
+            
             iconCart
+                .overlay(content: {
+                    Badge(count: mainVM.order.quantity())
+                })
                 .onTapGesture {
-                    animateMenuButtonStatus = .burger
-                    currentCategory = .cart
+                    mainVM.animateStatus = .burger
+                    mainVM.currentCategory = .cart
                 }
         }
+        .frame(height: 50)
     }
     
     var mealsAndMealDetail: some View {
         ScrollViewReader { geometry in
             ScrollView(showsIndicators: false) {
-                ForEach(0..<3) { index in
-                    if index != animateMenuButtonStatus.getCrossIdOrMinusOne {
-                        RestaurantMealCell(namespace: namespace, id: index)
-                            .onTapGesture {
-                                withAnimation(.easeIn) {
-                                    animateMenuButtonStatus = .cross(.mealDetails(id: index))
-                                    geometry.scrollTo(index, anchor: .top)
-                                }
+                if !vm.mealsIsLoading {
+                    ForEach(vm.sections, id: \.self) { section in
+                        Text(section)
+                            .font(.title)
+                            .fontWidth(.condensed)
+                            .id(section)
+                            .frame(alignment: .leading)
+                        
+                        ForEach(vm.getMeals(at: section)) { meal in
+                            if meal.id != mainVM.animateStatus.getCrossIdOrMinusOne {
+                                MealCell(namespace: namespace, meal: meal)
+                                    .onTapGesture {
+                                        withAnimation(.easeIn) {
+                                            mainVM.animateStatus = .chevron(.mealDetails(id: meal.id))
+                                            geometry.scrollTo(meal.id, anchor: .top)
+                                        }
+                                    }
+                                    .padding(15)
+                                    .padding(.bottom, 5)
+                                    .id(meal.id)
+                            } else {
+//                                MealDetails(mainVM: mainVM, namespace: namespace, meal: meal)
+//                                    .id(meal.id)
                             }
-                            .padding(15)
-                            .padding(.bottom, 5)
-                            .id(index)
-                    } else {
-                        RestaurantMealDetails(namespace: namespace, id: animateMenuButtonStatus.getCrossIdOrMinusOne)
-                            .id(index)
+                        }
+                    }
+//                    ForEach(vm.meals) { meal in
+//                        Text(meal.category.name)
+//                            .font(.title)
+//                            .fontWidth(.condensed)
+//                            .id(meal.category.name)
+//
+//                        if meal.id != mainVM.animateStatus.getCrossIdOrMinusOne {
+//                            MealCell(namespace: namespace, meal: meal)
+//                                .onTapGesture {
+//                                    withAnimation(.easeIn) {
+//                                        mainVM.animateStatus = .cross(.mealDetails(id: meal.id))
+//                                        geometry.scrollTo(meal.id, anchor: .top)
+//                                    }
+//                                }
+//                                .padding(15)
+//                                .padding(.bottom, 5)
+//                                .id(meal.id)
+//                        } else {
+//                            MealDetails(mainVM: mainVM, namespace: namespace, meal: meal)
+//                                .id(meal.id)
+//                        }
+//                    }
+                } else {
+                    ForEach(0..<6) { _ in
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.theme.background)
+                                .shadow(
+                                    color: Color.theme.accent.opacity(0.15),
+                                    radius: 5, x: 0, y: 0)
+                            
+                            ProgressView()
+                                
+                        }
+                        .frame(height: 160)
+                        .padding(15)
+                        .padding(.bottom, 5)
                     }
                 }
             }
+            .onChange(of: vm.selectedSection) { selected in
+                withAnimation {
+                    geometry.scrollTo(selected, anchor: .top)
+                }
+            }
         }
-        .transition(.move(edge: .trailing))
+        .transition(.move(edge: .leading))
     }
     
     var restaurants: some View {
         ScrollView(showsIndicators: false) {
-            ForEach(0..<3) { _ in
-                RestaurantCell()
+            ForEach(vm.restaurants) { restaurant in
+                RestaurantCell(restaurant: restaurant)
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            animateMenuButtonStatus = .chevron
+                            mainVM.selectedRestaurantId = restaurant.id
+                            vm.selectedRestaurantId = restaurant.id
+                            //mainVM.animateStatus = .chevron
                         }
                     }
                     .padding(5)
@@ -112,12 +188,11 @@ extension RestaurantView {
     }
     
     var title: some View {
-        Text("Meal" + String(animateMenuButtonStatus.getCrossIdOrMinusOne))
+        Text(vm.getRestaurantName())
             .frame(maxWidth: .infinity, alignment: .center)
             .font(.system(size: 30))
             .fontWeight(.semibold)
             .foregroundColor(.theme.accent)
-            .matchedGeometryEffect(id: MatchedGeometryId.title.rawValue + String(animateMenuButtonStatus.getCrossIdOrMinusOne), in: namespace)
     }
     
     var iconCart: some View {

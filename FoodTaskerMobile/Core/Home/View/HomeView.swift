@@ -9,43 +9,42 @@ import SwiftUI
 
 struct HomeView: View {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    @State private var animateMenuButtonStatus: MenuButtonView.Status = .burger
-    @State private var currentCategory: MenuCell.Category = .restaurants
-    @Binding var isPresent: Bool
+    @ObservedObject var mainVM: MainViewModel
     
     var body: some View {
         ZStack {
-            MenuView(currentCategory: $currentCategory)
+            MenuView(mainVM: mainVM)
             
-            switch currentCategory {
-            case .restaurants:
-                RestaurantView(animateMenuButtonStatus: $animateMenuButtonStatus, currentCategory: $currentCategory)
+            switch mainVM.currentCategory {
+            case .menu:
+                RestaurantView(mainVM: mainVM)
                     .shadow(
                         color: Color.theme.accent.opacity(0.15),
                         radius: 10, x: 0, y: 0)
-                    .offset(x: animateMenuButtonStatus == .cross(.leftMenu) ? (UIScreen.main.bounds.width / 1.5) : 0)
+                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
             case .cart:
-                CartView(animateMenuButtonStatus: $animateMenuButtonStatus)
+                CartView(mainVM: mainVM)
                     .shadow(
                         color: Color.theme.accent.opacity(0.15),
                         radius: 10, x: 0, y: 0)
-                    .offset(x: animateMenuButtonStatus == .cross(.leftMenu) ? (UIScreen.main.bounds.width / 1.5) : 0)
+                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
             case .delivery:
-                DeliveryView(animateMenuButtonStatus: $animateMenuButtonStatus)
+                DeliveryView(mainVM: mainVM)
                     .shadow(
                         color: Color.theme.accent.opacity(0.15),
                         radius: 10, x: 0, y: 0)
-                    .offset(x: animateMenuButtonStatus == .cross(.leftMenu) ? (UIScreen.main.bounds.width / 1.5) : 0)
+                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
             case .logout:
-                LoginView(appDelegate: appDelegate)
+                LoginView(mainVM: mainVM)
             }
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
+    @StateObject static var mainVM = MainViewModel()
     static var previews: some View {
-        HomeView(isPresent: .constant(false))
+        HomeView(mainVM: mainVM)
+//            .environmentObject(mainVM)
     }
 }

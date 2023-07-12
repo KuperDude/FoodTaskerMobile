@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuCell: View {
     
-    var category: Category
+    var category: MainViewModel.Category
     
     var body: some View {
 
@@ -34,42 +34,9 @@ struct MenuCell: View {
 struct MenuCell_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ForEach(MenuCell.Category.allCases) { category in
+            ForEach(MainViewModel.Category.allCases) { category in
                 Divider()
                 MenuCell(category: category)
-            }
-        }
-    }
-}
-
-// MARK: - Category
-extension MenuCell {
-    enum Category: Int, CaseIterable, Identifiable {
-        case restaurants
-        case cart
-        case delivery
-        case logout 
-        
-        var id: Int {
-            self.rawValue
-        }
-        
-        var iconName: String {
-            switch self {
-            case .restaurants: return "icon_restaurants"
-            case .cart: return "icon_cart"
-            case .delivery: return "icon_delivery"
-            case .logout: return "icon_logout"
-            }
-            
-        }
-        
-        var text: String {
-            switch self {
-            case .restaurants: return "RESTAURANTS"
-            case .cart: return "CART"
-            case .delivery: return "DELIVERY"
-            case .logout: return "LOGOUT"
             }
         }
     }

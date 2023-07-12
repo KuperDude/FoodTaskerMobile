@@ -9,8 +9,10 @@ import SwiftUI
 import MapKit
 
 struct DeliveryView: View {
-    @Binding var animateMenuButtonStatus: MenuButtonView.Status
-    var deliveryStatus = ["Order accepted", "Food ready", "Courier is on the way"]
+    @ObservedObject var mainVM: MainViewModel
+    
+    @StateObject var vm = DeliveryViewModel()
+    var deliveryStatus: [DeliveryViewModel.Status] = [.accepted, .ready, .onTheWay]
     var body: some View {
         ZStack {
             //background
@@ -20,14 +22,14 @@ struct DeliveryView: View {
             //content
             VStack {
                 HStack {
-                    MenuButtonView(animateStatus: $animateMenuButtonStatus) {}
+                    MenuButtonView(mainVM: mainVM) {}
 
                     Spacer()
                 }
 
                 VStack {
-                    ForEach(deliveryStatus, id: \.self) { text in
-                        DeliveryCell(text: text)
+                    ForEach(deliveryStatus, id: \.self) { status in
+                        DeliveryCell(text: status.rawValue, check: vm.isCheck(status))
                     }
                 }
                 .padding()
@@ -35,7 +37,7 @@ struct DeliveryView: View {
                 
                 ZStack {
                     // background
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))), interactionModes: [])
+                    DeliveryMapView()
                         .ignoresSafeArea()
                     
                     //content
@@ -56,6 +58,6 @@ struct DeliveryView: View {
 
 struct DeliveryView_Previews: PreviewProvider {
     static var previews: some View {
-        DeliveryView(animateMenuButtonStatus: .constant(.burger))
+        DeliveryView(mainVM: MainViewModel())
     }
 }

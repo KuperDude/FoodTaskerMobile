@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var vm: LoginViewModel
+    @ObservedObject var mainVM: MainViewModel
     
+    @ObservedObject var vm: LoginViewModel
     @State private var selectedRole = 1
     
-    init(appDelegate: AppDelegate) {
-        self.vm = LoginViewModel(appDelegate: appDelegate)
+    init(mainVM: MainViewModel) {
+        self._mainVM = ObservedObject(initialValue: mainVM)
+        self.vm = LoginViewModel(user: mainVM.user)
     }
     
-    var body: some View {
+    var body: some View {        
         // content
         VStack(spacing: 20) {
             nameApp
@@ -34,17 +36,20 @@ struct LoginView: View {
             // background
             backgroundImage
         }
-        .fullScreenCover(isPresented: $vm.isLoggin) {
-            HomeView(isPresent: $vm.isLoggin)
-        }
+        .onChange(of: vm.user, perform: { user in
+            mainVM.user = user
+        })
+        .fullScreenCover(item: $vm.user, content: { user in
+            HomeView(mainVM: mainVM)
+        })
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) static var appDelegate
-    
+//    static var mainVM = MainViewModel()
     static var previews: some View {
-        LoginView(appDelegate: appDelegate)
+        LoginView(mainVM: MainViewModel())
+//            .environmentObject(mainVM)
     }
 }
 
@@ -75,10 +80,10 @@ extension LoginView {
     
     var loginButton: some View {
         Button {
-            let authService = vm.authService
-            authService.wakeUpSession()
+            vm.wakeUpSession()
         } label: {
-            Text("Login with VK")
+            Text(vm.getButtonTitle())
+                .minimumScaleFactor(0.5)
                 .font(.system(size: 17))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
