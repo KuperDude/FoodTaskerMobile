@@ -29,20 +29,30 @@ struct CompositionCell: View {
                     radius: 5, x: 0, y: 0)
             
             HStack {
-                if let image = vm.image {
-                    Image(uiImage: image)
+                Image(uiImage: vm.image ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .overlay(content: {
+                            if vm.isLoading {
+                                ProgressView()
+                            }
+                        })
                         .frame(width: 60, height: 60)
-                } else if vm.isLoading {
-                    ProgressView()
-                        .frame(width: 60, height: 60)
-                } else {
-                    Image("blank_food")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 60)
-                }
+                        .scaledToFill()
+                
+//                if let image = vm.image {
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 60, height: 60)
+//                } else if vm.isLoading {
+//                    ProgressView()
+//                        .frame(width: 60, height: 60)
+//                } else {
+//                    Image("blank_food")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 60, height: 60)
+//                }
                 
                 
                 Text(ingredient.name)

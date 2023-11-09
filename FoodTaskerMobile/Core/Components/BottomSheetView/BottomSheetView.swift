@@ -11,16 +11,23 @@ struct BottomSheetView<Content: View>: View {
     @Binding var isOpen: Bool
 
     let maxHeight: CGFloat
+    let minHeight: CGFloat
     let content: Content
 
-    init(isOpen: Binding<Bool>, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
+    init(isOpen: Binding<Bool>, maxHeight: CGFloat, minHeight: CGFloat?, @ViewBuilder content: () -> Content) {
         self.maxHeight = maxHeight
+        if let minHeight = minHeight {
+            self.minHeight = minHeight
+        } else {
+            self.minHeight = 0
+        }
         self.content = content()
         self._isOpen = isOpen
     }
     
     private var offset: CGFloat {
-        isOpen ? 0 : maxHeight
+        print(minHeight)
+        return isOpen ? minHeight : maxHeight
     }
 
     private var indicator: some View {
@@ -64,7 +71,7 @@ struct BottomSheetView<Content: View>: View {
 
 struct BottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(isOpen: .constant(true), maxHeight: 200, content: {
+        BottomSheetView(isOpen: .constant(true), maxHeight: 200, minHeight: 0, content: {
             Text("hi hi hi")
         })
     }

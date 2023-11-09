@@ -12,13 +12,13 @@ class PaymentViewModel: ObservableObject {
 
     @Published var isShowAlert: Bool = false
     
-    var address: String
+    var address: Address?
     var items: [OrderDetails]
     var restaurantId: Int
     
 //    var paymentIntentClientSecret: String?
     
-    init(address: String, items: [OrderDetails], restaurantId: Int) {
+    init(address: Address?, items: [OrderDetails], restaurantId: Int) {
         self.address = address
         self.items = items
         self.restaurantId = restaurantId
@@ -38,7 +38,7 @@ class PaymentViewModel: ObservableObject {
     private var orderSubscription: AnyCancellable?
     
     func createOrder() async {
-        let (url, data) = APIManager.instance.createOrder(address: address, restaurantId: restaurantId, items: items)
+        let (url, data) = APIManager.instance.createOrder(address: address?.convertToString() ?? "", restaurantId: restaurantId, items: items)
         guard let url = url, let data = data else { return }
         await NetworkingManager.send(url: url, data: data)
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var mainVM: MainViewModel
     
     var body: some View {
@@ -35,7 +36,12 @@ struct HomeView: View {
                         radius: 10, x: 0, y: 0)
                     .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
             case .logout:
-                LoginView(mainVM: mainVM)
+                EmptyView()
+//                    .onAppear {
+//                        mainVM.user = nil
+//                        
+//                    }
+//                LoginView(mainVM: mainVM)
             }
         }
     }

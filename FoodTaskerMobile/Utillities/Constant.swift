@@ -7,7 +7,8 @@
 
 import Foundation
 
-let BASE_URL = "http://192.168.1.236:8000/"
+let BASE_URL = "http://192.168.0.101:8000/"
+//"http://192.168.1.236:8000/"
 let CLIENT_ID = "fIJ0FhOHz6GLA3SG04INvaKkUyTDXst4r4U0tixS"
 
 let USERTYPE_CUSTOMER = "customer"
@@ -18,3 +19,5 @@ let PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqBiorLS9OrFPezixO5
 
 // vk 
 let VK_APP_ID = "51506708"
+
+//{"type":"FeatureCollection","metadata":{"name":"Без названия","creator":"Yandex Map Constructor"},"features":[{"type":"Feature","id":0,"geometry":{"type":"Polygon","coordinates":[[[49.26764216126677,53.55744376155383],[49.249789378063674,53.50016602309297],[49.299227854626146,53.49443396796596],[49.30884089173551,53.51408348713235],[49.38231196107145,53.546812351890814],[49.26764216126677,53.55744376155383]]]},"properties":{"fill":"#ed4543","fill-opacity":0.6,"stroke":"#ed4543","stroke-width":"5","stroke-opacity":0.9}}]}

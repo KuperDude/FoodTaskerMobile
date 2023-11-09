@@ -13,7 +13,7 @@ class MainViewModel: ObservableObject {
     @Published var order = [OrderDetails]()
     @Published var animateStatus: Status = .burger
     @Published var currentCategory: Category = .menu
-    @Published var address = String()
+    @Published var address: Address = Address()
     @Published var selectedRestaurantId = -1
 }
 
@@ -113,6 +113,7 @@ extension MainViewModel {
         
         enum ChevronStatus: Equatable {
             case mealDetails(id: Int)
+            case addressDetails
             case none
         }
         
@@ -135,6 +136,7 @@ extension MainViewModel {
             case .chevron(.mealDetails(id: _)): self = .burger
             case .cross:                        self = .burger
             case .chevron(.none):               self = .burger
+            case .chevron(.addressDetails):     self = .burger
             }
         }
     }

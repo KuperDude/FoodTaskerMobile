@@ -16,6 +16,8 @@ struct CartView: View {
     
     @State private var orderDetailsIdToCompositionView: UUID?
     @State private var presentCompositionView: Bool = false
+    @State private var presentAddressesView: Bool = false
+    @State private var mapTapped: Bool = false
     
     var body: some View {
         ZStack {
@@ -31,7 +33,7 @@ struct CartView: View {
                     Spacer()
                     
                     Button("Go to payment") {
-                        if mainVM.address == "" {
+                        if mainVM.address.isEmpty() {
                             showAlert = true
                         } else {
                             withAnimation(.spring()) {
@@ -52,6 +54,17 @@ struct CartView: View {
                                 }
                                 Divider()
                             }
+                            
+                            
+                            CDeliveryCell(onTap: {
+                                presentAddressesView = true
+                            }) {
+                                withAnimation {
+                                    mainVM.animateStatus = .chevron(.addressDetails)
+                                }
+                            }
+                            Divider()
+                            
                             HStack {
                                 Text("Total:")
                                     .foregroundColor(.theme.accent)
@@ -63,22 +76,14 @@ struct CartView: View {
                                     .padding()
                             }
                             
-                            HStack {
-                                Text("Address:")
-                                    .foregroundColor(.theme.accent)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                TextField("Enter your address...", text: $mainVM.address)
-                                    .focused($focused)
-                            }
                         }
                         .padding()
-                        
-                        CartMapView(address: $mainVM.address)
-                        //MapView()
-                            .ignoresSafeArea()
+                        Spacer()
                     }
                     .transition(.move(edge: .leading))
+                } else if mainVM.animateStatus == .chevron(.addressDetails) {
+                    EditMapView(mainVM: mainVM)
+                        .transition(.move(edge: .trailing))
                 } else if mainVM.animateStatus == .chevron(.none) {
                     CartPaymentView(mainVM: mainVM)
                         .transition(.move(edge: .trailing))
@@ -100,10 +105,12 @@ struct CartView: View {
             }
         }
         
-        if presentCompositionView {
+//        if presentCompositionView {
             CompositionView(mainVM: mainVM, mealId: mainVM.order.first(where: { $0.id == orderDetailsIdToCompositionView})?.meal.id ?? -1, orderDetailsId: orderDetailsIdToCompositionView)
                 .presentAsBottomSheet($presentCompositionView)
-        }
+//        }
+        AddressesView()
+            .presentAsBottomSheet($presentAddressesView)
     }
 }
 

@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import Lottie
-import TinkoffASDKUI
-import TinkoffASDKCore
+//import Lottie
+//import TinkoffASDKUI
+//import TinkoffASDKCore
 
 struct CartPaymentView: View {
     @ObservedObject var mainVM: MainViewModel

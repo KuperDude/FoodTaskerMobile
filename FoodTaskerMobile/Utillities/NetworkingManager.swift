@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-import Alamofire
+//import Alamofire
 
 actor NetworkingManager {
     

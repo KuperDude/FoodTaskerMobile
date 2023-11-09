@@ -10,26 +10,22 @@
 		F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E2294E1762002E9A66 /* DeliveryView.swift */; };
 		F81328E7294E198B002E9A66 /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E6294E198B002E9A66 /* DeliveryCell.swift */; };
 		F81328E9294E1F3E002E9A66 /* CourierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E8294E1F3E002E9A66 /* CourierView.swift */; };
+		F814A84B2A77B36E00F81BB9 /* EditMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814A84A2A77B36E00F81BB9 /* EditMapView.swift */; };
+		F814A84D2A77BA9900F81BB9 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814A84C2A77BA9900F81BB9 /* Address.swift */; };
 		F838FF6E295DFA3500E87420 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF6D295DFA3500E87420 /* Restaurant.swift */; };
 		F838FF70295DFE1D00E87420 /* RestaurantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF6F295DFE1D00E87420 /* RestaurantService.swift */; };
 		F838FF72295E077B00E87420 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF71295E077B00E87420 /* RestaurantViewModel.swift */; };
 		F838FF75295F56AE00E87420 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF74295F56AE00E87420 /* View.swift */; };
 		F8904090297194BC009AFF99 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F890408F297194BC009AFF99 /* PaymentViewModel.swift */; };
 		F89EB139294DB36900D34B09 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB138294DB36900D34B09 /* Lottie */; };
-		F89EB13C294DB47200D34B09 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13B294DB47200D34B09 /* Stripe */; };
-		F89EB13E294DB47200D34B09 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13D294DB47200D34B09 /* StripeApplePay */; };
-		F89EB140294DB47200D34B09 /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB13F294DB47200D34B09 /* StripeCardScan */; };
-		F89EB142294DB47200D34B09 /* StripeFinancialConnections in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB141294DB47200D34B09 /* StripeFinancialConnections */; };
-		F89EB144294DB47200D34B09 /* StripeIdentity in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB143294DB47200D34B09 /* StripeIdentity */; };
-		F89EB146294DB47200D34B09 /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB145294DB47200D34B09 /* StripePaymentSheet */; };
-		F89EB148294DB47200D34B09 /* StripePayments in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB147294DB47200D34B09 /* StripePayments */; };
-		F89EB14A294DB47200D34B09 /* StripePaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = F89EB149294DB47200D34B09 /* StripePaymentsUI */; };
 		F89EB14F294DC50400D34B09 /* PaymentCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89EB14E294DC50400D34B09 /* PaymentCardTextField.swift */; };
 		F8A0653C2967261100ECF9C0 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0653B2967261100ECF9C0 /* OrderDetails.swift */; };
 		F8A0653F29672FE500ECF9C0 /* CartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0653E29672FE500ECF9C0 /* CartCellViewModel.swift */; };
 		F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */; };
 		F8A1678A2962DD380007E522 /* MealImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A167892962DD380007E522 /* MealImageService.swift */; };
 		F8A1678C2962F9850007E522 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1678B2962F9850007E522 /* Float.swift */; };
+		F8A1C99C2ACDFA43000A279F /* EditMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */; };
+		F8A285AE2AD2DCEC00F8FE93 /* AddressInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */; };
 		F8A2F9E8295DB33700B37C4A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F8A2F9E7295DB33700B37C4A /* Alamofire */; };
 		F8A2F9EB295DB3C500B37C4A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F8A2F9EA295DB3C500B37C4A /* SwiftyJSON */; };
 		F8A333612961F38A0073521A /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A333602961F38A0073521A /* Meal.swift */; };
@@ -37,10 +33,14 @@
 		F8A333682961F8160073521A /* MealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A333672961F8160073521A /* MealService.swift */; };
 		F8A3ACEC29A2259A009886FB /* OrderDetailsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3ACEB29A2259A009886FB /* OrderDetailsSerializer.swift */; };
 		F8A3ACEE29A227FE009886FB /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3ACED29A227FE009886FB /* Order.swift */; };
+		F8A3FD602AD1CF9400BF6FC5 /* ButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3FD5F2AD1CF9400BF6FC5 /* ButtonWithImage.swift */; };
+		F8A3FD622AD2129F00BF6FC5 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A3FD612AD2129F00BF6FC5 /* AddressView.swift */; };
 		F8A440942984278000AAE117 /* DeliveryMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A440932984278000AAE117 /* DeliveryMapView.swift */; };
+		F8A5033A2A6A756D00A6EC51 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A503392A6A756D00A6EC51 /* UIColor.swift */; };
 		F8A5AA5C297FF74F007FBD0F /* BankCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5AA5B297FF74F007FBD0F /* BankCardsView.swift */; };
 		F8A5AA5F2980316B007FBD0F /* DeliveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5AA5E2980316B007FBD0F /* DeliveryViewModel.swift */; };
 		F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25429507DE5008AB0E5 /* AuthService.swift */; };
+		F8A62AD72A640D930038375E /* YandexMapPackageWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = F8A62AD62A640D930038375E /* YandexMapPackageWrapper */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63300294B88070080DAE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632FF294B88070080DAE8 /* Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */; };
@@ -60,11 +60,18 @@
 		F8A63330294B88480080DAE8 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63323294B88480080DAE8 /* CartCell.swift */; };
 		F8A6BC642A34A04300BF74AD /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6BC632A34A04300BF74AD /* ButtonStyle.swift */; };
 		F8A6BC672A34C4A400BF74AD /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6BC662A34C4A400BF74AD /* CheckButton.swift */; };
+		F8A6CCA82A6E4FAC00C8AD55 /* CDeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6CCA72A6E4FAC00C8AD55 /* CDeliveryCell.swift */; };
+		F8A6CCAA2A6E566100C8AD55 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6CCA92A6E566100C8AD55 /* AddressCell.swift */; };
+		F8A6CCAE2A6EA81500C8AD55 /* AddNewAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6CCAD2A6EA81500C8AD55 /* AddNewAddressButton.swift */; };
 		F8A6F4B529E451BE0085031F /* CompositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6F4B429E451BE0085031F /* CompositionCell.swift */; };
 		F8A6F4B729E4557D0085031F /* CompositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6F4B629E4557D0085031F /* CompositionView.swift */; };
 		F8A6F4B929E458480085031F /* MealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6F4B829E458480085031F /* MealDetail.swift */; };
 		F8A706332A1F755700B9EE51 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A706322A1F755700B9EE51 /* Ingredient.swift */; };
 		F8A706352A1F77F700B9EE51 /* CompositionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A706342A1F77F700B9EE51 /* CompositionViewModel.swift */; };
+		F8A743B02A62DCD300361D8E /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A743AF2A62DCD300361D8E /* MapViewModel.swift */; };
+		F8A743B22A62DDBF00361D8E /* YandexMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A743B12A62DDBE00361D8E /* YandexMapView.swift */; };
+		F8A74C2C2A614C0D0041BA74 /* MKPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A74C2B2A614C0D0041BA74 /* MKPolygon.swift */; };
+		F8A7EC472A6C1D22007ED275 /* AddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A7EC462A6C1D22007ED275 /* AddressesView.swift */; };
 		F8A842502A1A209B0097828A /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A8424F2A1A209B0097828A /* BottomSheetView.swift */; };
 		F8A8581F2A35ED8400AC518C /* IngredientsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A8581E2A35ED8400AC518C /* IngredientsService.swift */; };
 		F8AA7DAE2A0EA321009917ED /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AA7DAD2A0EA321009917ED /* MapView.swift */; };
@@ -77,6 +84,7 @@
 		F8B34EAF296C392B0066CC42 /* CartMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EAE296C392B0066CC42 /* CartMapView.swift */; };
 		F8B34EB1296C675B0066CC42 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB0296C675B0066CC42 /* Constant.swift */; };
 		F8B34EB3296C69AD0066CC42 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */; };
+		F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BB40772A5ECC3F0016D5B6 /* map.json */; };
 		F8BCA90229D8327C0076AD46 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCA90129D8327C0076AD46 /* APIManager.swift */; };
 		F8C4CFBD29855E7D00D3D225 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFBC29855E7D00D3D225 /* Badge.swift */; };
 		F8C4CFBF2985687C00D3D225 /* LastOrderStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */; };
@@ -112,6 +120,8 @@
 		F81328E2294E1762002E9A66 /* DeliveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryView.swift; sourceTree = "<group>"; };
 		F81328E6294E198B002E9A66 /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
 		F81328E8294E1F3E002E9A66 /* CourierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourierView.swift; sourceTree = "<group>"; };
+		F814A84A2A77B36E00F81BB9 /* EditMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapView.swift; sourceTree = "<group>"; };
+		F814A84C2A77BA9900F81BB9 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		F838FF6D295DFA3500E87420 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		F838FF6F295DFE1D00E87420 /* RestaurantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantService.swift; sourceTree = "<group>"; };
 		F838FF71295E077B00E87420 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
@@ -124,12 +134,17 @@
 		F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F8A167892962DD380007E522 /* MealImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImageService.swift; sourceTree = "<group>"; };
 		F8A1678B2962F9850007E522 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapViewModel.swift; sourceTree = "<group>"; };
+		F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputCell.swift; sourceTree = "<group>"; };
 		F8A333602961F38A0073521A /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		F8A333652961F66B0073521A /* MealCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCellViewModel.swift; sourceTree = "<group>"; };
 		F8A333672961F8160073521A /* MealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealService.swift; sourceTree = "<group>"; };
 		F8A3ACEB29A2259A009886FB /* OrderDetailsSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsSerializer.swift; sourceTree = "<group>"; };
 		F8A3ACED29A227FE009886FB /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		F8A3FD5F2AD1CF9400BF6FC5 /* ButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImage.swift; sourceTree = "<group>"; };
+		F8A3FD612AD2129F00BF6FC5 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		F8A440932984278000AAE117 /* DeliveryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMapView.swift; sourceTree = "<group>"; };
+		F8A503392A6A756D00A6EC51 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8A5AA5B297FF74F007FBD0F /* BankCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCardsView.swift; sourceTree = "<group>"; };
 		F8A5AA5E2980316B007FBD0F /* DeliveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewModel.swift; sourceTree = "<group>"; };
 		F8A5C25429507DE5008AB0E5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -152,11 +167,19 @@
 		F8A63323294B88480080DAE8 /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		F8A6BC632A34A04300BF74AD /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		F8A6BC662A34C4A400BF74AD /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		F8A6CCA72A6E4FAC00C8AD55 /* CDeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDeliveryCell.swift; sourceTree = "<group>"; };
+		F8A6CCA92A6E566100C8AD55 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		F8A6CCAC2A6E69F400C8AD55 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F8A6CCAD2A6EA81500C8AD55 /* AddNewAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressButton.swift; sourceTree = "<group>"; };
 		F8A6F4B429E451BE0085031F /* CompositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionCell.swift; sourceTree = "<group>"; };
 		F8A6F4B629E4557D0085031F /* CompositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionView.swift; sourceTree = "<group>"; };
 		F8A6F4B829E458480085031F /* MealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetail.swift; sourceTree = "<group>"; };
 		F8A706322A1F755700B9EE51 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		F8A706342A1F77F700B9EE51 /* CompositionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionViewModel.swift; sourceTree = "<group>"; };
+		F8A743AF2A62DCD300361D8E /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		F8A743B12A62DDBE00361D8E /* YandexMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexMapView.swift; sourceTree = "<group>"; };
+		F8A74C2B2A614C0D0041BA74 /* MKPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPolygon.swift; sourceTree = "<group>"; };
+		F8A7EC462A6C1D22007ED275 /* AddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesView.swift; sourceTree = "<group>"; };
 		F8A8424F2A1A209B0097828A /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		F8A8581E2A35ED8400AC518C /* IngredientsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsService.swift; sourceTree = "<group>"; };
 		F8AA7DAD2A0EA321009917ED /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -169,6 +192,7 @@
 		F8B34EAE296C392B0066CC42 /* CartMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartMapView.swift; sourceTree = "<group>"; };
 		F8B34EB0296C675B0066CC42 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		F8BB40772A5ECC3F0016D5B6 /* map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		F8BCA90129D8327C0076AD46 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = "../../../../../Desktop/some-1 2/APIManager.swift"; sourceTree = "<group>"; };
 		F8C4CFBC29855E7D00D3D225 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderStatusService.swift; sourceTree = "<group>"; };
@@ -188,20 +212,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F89EB148294DB47200D34B09 /* StripePayments in Frameworks */,
 				F8C7A6BB297D3EE400718CBF /* TinkoffASDKUI in Frameworks */,
 				F8CF07C42958BB0F009424F6 /* vk-ios-sdk in Frameworks */,
-				F89EB146294DB47200D34B09 /* StripePaymentSheet in Frameworks */,
-				F89EB142294DB47200D34B09 /* StripeFinancialConnections in Frameworks */,
-				F89EB13E294DB47200D34B09 /* StripeApplePay in Frameworks */,
 				F8C7A6B9297D3EE400718CBF /* TinkoffASDKCore in Frameworks */,
 				F8A2F9E8295DB33700B37C4A /* Alamofire in Frameworks */,
 				F8A2F9EB295DB3C500B37C4A /* SwiftyJSON in Frameworks */,
-				F89EB144294DB47200D34B09 /* StripeIdentity in Frameworks */,
+				F8A62AD72A640D930038375E /* YandexMapPackageWrapper in Frameworks */,
 				F89EB139294DB36900D34B09 /* Lottie in Frameworks */,
-				F89EB140294DB47200D34B09 /* StripeCardScan in Frameworks */,
-				F89EB14A294DB47200D34B09 /* StripePaymentsUI in Frameworks */,
-				F89EB13C294DB47200D34B09 /* Stripe in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				F8A0653E29672FE500ECF9C0 /* CartCellViewModel.swift */,
+				F8A743AF2A62DCD300361D8E /* MapViewModel.swift */,
+				F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,6 +351,14 @@
 			path = Serializers;
 			sourceTree = "<group>";
 		};
+		F8A3FD5E2AD1CF1600BF6FC5 /* ButtonWithImage */ = {
+			isa = PBXGroup;
+			children = (
+				F8A3FD5F2AD1CF9400BF6FC5 /* ButtonWithImage.swift */,
+			);
+			path = ButtonWithImage;
+			sourceTree = "<group>";
+		};
 		F8A5AA5D2980314E007FBD0F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +389,7 @@
 			children = (
 				F8A632F0294B87E70080DAE8 /* FoodTaskerMobile */,
 				F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */,
+				F8A6CCAB2A6E69F400C8AD55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -399,6 +427,8 @@
 				F838FF74295F56AE00E87420 /* View.swift */,
 				F8A1678B2962F9850007E522 /* Float.swift */,
 				F8A6BC632A34A04300BF74AD /* ButtonStyle.swift */,
+				F8A74C2B2A614C0D0041BA74 /* MKPolygon.swift */,
+				F8A503392A6A756D00A6EC51 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,6 +487,7 @@
 		F8A63312294B88480080DAE8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F8A3FD5E2AD1CF1600BF6FC5 /* ButtonWithImage */,
 				F8A6BC652A34C48600BF74AD /* CheckButton */,
 				F8A8424E2A1A20880097828A /* BottomSheetView */,
 				F8CA8AC929E16ABB00515637 /* HorizontalPicker */,
@@ -531,8 +562,16 @@
 			children = (
 				F8A63322294B88480080DAE8 /* CartView.swift */,
 				F8A63323294B88480080DAE8 /* CartCell.swift */,
+				F8A6CCA72A6E4FAC00C8AD55 /* CDeliveryCell.swift */,
 				F8B34EAE296C392B0066CC42 /* CartMapView.swift */,
 				F8AA7DAD2A0EA321009917ED /* MapView.swift */,
+				F8A743B12A62DDBE00361D8E /* YandexMapView.swift */,
+				F8A7EC462A6C1D22007ED275 /* AddressesView.swift */,
+				F8A6CCAD2A6EA81500C8AD55 /* AddNewAddressButton.swift */,
+				F8A6CCA92A6E566100C8AD55 /* AddressCell.swift */,
+				F814A84A2A77B36E00F81BB9 /* EditMapView.swift */,
+				F8A3FD612AD2129F00BF6FC5 /* AddressView.swift */,
+				F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -543,6 +582,14 @@
 				F8A6BC662A34C4A400BF74AD /* CheckButton.swift */,
 			);
 			path = CheckButton;
+			sourceTree = "<group>";
+		};
+		F8A6CCAB2A6E69F400C8AD55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8A6CCAC2A6E69F400C8AD55 /* libc++.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F8A8424E2A1A20880097828A /* BottomSheetView */ = {
@@ -563,6 +610,8 @@
 				F8A3ACED29A227FE009886FB /* Order.swift */,
 				F8CA8ACF29E19C8E00515637 /* Category.swift */,
 				F8A706322A1F755700B9EE51 /* Ingredient.swift */,
+				F8BB40772A5ECC3F0016D5B6 /* map.json */,
+				F814A84C2A77BA9900F81BB9 /* Address.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -618,19 +667,12 @@
 			name = FoodTaskerMobile;
 			packageProductDependencies = (
 				F89EB138294DB36900D34B09 /* Lottie */,
-				F89EB13B294DB47200D34B09 /* Stripe */,
-				F89EB13D294DB47200D34B09 /* StripeApplePay */,
-				F89EB13F294DB47200D34B09 /* StripeCardScan */,
-				F89EB141294DB47200D34B09 /* StripeFinancialConnections */,
-				F89EB143294DB47200D34B09 /* StripeIdentity */,
-				F89EB145294DB47200D34B09 /* StripePaymentSheet */,
-				F89EB147294DB47200D34B09 /* StripePayments */,
-				F89EB149294DB47200D34B09 /* StripePaymentsUI */,
 				F8CF07C32958BB0F009424F6 /* vk-ios-sdk */,
 				F8A2F9E7295DB33700B37C4A /* Alamofire */,
 				F8A2F9EA295DB3C500B37C4A /* SwiftyJSON */,
 				F8C7A6B8297D3EE400718CBF /* TinkoffASDKCore */,
 				F8C7A6BA297D3EE400718CBF /* TinkoffASDKUI */,
+				F8A62AD62A640D930038375E /* YandexMapPackageWrapper */,
 			);
 			productName = FoodTaskerMobile;
 			productReference = F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */;
@@ -662,11 +704,11 @@
 			mainGroup = F8A632E5294B87E70080DAE8;
 			packageReferences = (
 				F89EB137294DB36900D34B09 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
 				F8CF07C22958BB0F009424F6 /* XCRemoteSwiftPackageReference "vk-ios-sdk" */,
 				F8A2F9E6295DB33600B37C4A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F8A2F9E9295DB3C500B37C4A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				F8C7A6B7297D3EE400718CBF /* XCRemoteSwiftPackageReference "AcquiringSdk_IOS" */,
+				F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */,
 			);
 			productRefGroup = F8A632E5294B87E70080DAE8;
 			projectDirPath = "";
@@ -684,6 +726,7 @@
 			files = (
 				F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */,
 				F8B34184294CE4C300B2780B /* 99865-credit-card.json in Resources */,
+				F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */,
 				F8A63300294B88070080DAE8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F838FF75295F56AE00E87420 /* View.swift in Sources */,
+				F8A74C2C2A614C0D0041BA74 /* MKPolygon.swift in Sources */,
 				F8C4CFBD29855E7D00D3D225 /* Badge.swift in Sources */,
 				F838FF6E295DFA3500E87420 /* Restaurant.swift in Sources */,
 				F8B34EB1296C675B0066CC42 /* Constant.swift in Sources */,
@@ -703,10 +747,13 @@
 				F8A6332B294B88480080DAE8 /* MenuButtonView.swift in Sources */,
 				F8A333612961F38A0073521A /* Meal.swift in Sources */,
 				F8A6F4B529E451BE0085031F /* CompositionCell.swift in Sources */,
+				F8A285AE2AD2DCEC00F8FE93 /* AddressInputCell.swift in Sources */,
 				F8B34187294CE6B800B2780B /* CartPaymentView.swift in Sources */,
 				F8A63328294B88480080DAE8 /* RestaurantCell.swift in Sources */,
 				F8A333662961F66B0073521A /* MealCellViewModel.swift in Sources */,
+				F8A1C99C2ACDFA43000A279F /* EditMapViewModel.swift in Sources */,
 				F89EB14F294DC50400D34B09 /* PaymentCardTextField.swift in Sources */,
+				F8A5033A2A6A756D00A6EC51 /* UIColor.swift in Sources */,
 				F8A0653F29672FE500ECF9C0 /* CartCellViewModel.swift in Sources */,
 				F8A3ACEE29A227FE009886FB /* Order.swift in Sources */,
 				F8A706332A1F755700B9EE51 /* Ingredient.swift in Sources */,
@@ -726,13 +773,16 @@
 				F8D1C16F2960511400ED18DA /* RestaurantImageService.swift in Sources */,
 				F8C4CFC129856F5900D3D225 /* LastOrderService.swift in Sources */,
 				F8A63324294B88480080DAE8 /* HomeView.swift in Sources */,
+				F8A743B22A62DDBF00361D8E /* YandexMapView.swift in Sources */,
 				F8B34EAF296C392B0066CC42 /* CartMapView.swift in Sources */,
 				F8A6F4B929E458480085031F /* MealDetail.swift in Sources */,
 				F8ABE33F2A3872A6003A0F13 /* CompositionCellViewModel.swift in Sources */,
 				F8A6BC672A34C4A400BF74AD /* CheckButton.swift in Sources */,
 				F8D1C1712960532D00ED18DA /* LocalFileManager.swift in Sources */,
 				F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */,
+				F8A7EC472A6C1D22007ED275 /* AddressesView.swift in Sources */,
 				F8EF2C5B2993A7FC009C45D1 /* MainViewModel.swift in Sources */,
+				F8A3FD602AD1CF9400BF6FC5 /* ButtonWithImage.swift in Sources */,
 				F8C4CFBF2985687C00D3D225 /* LastOrderStatusService.swift in Sources */,
 				F8A6F4B729E4557D0085031F /* CompositionView.swift in Sources */,
 				F8AA7DAE2A0EA321009917ED /* MapView.swift in Sources */,
@@ -740,13 +790,17 @@
 				F8A440942984278000AAE117 /* DeliveryMapView.swift in Sources */,
 				F8A333682961F8160073521A /* MealService.swift in Sources */,
 				F8A6332C294B88480080DAE8 /* LoginView.swift in Sources */,
+				F8A743B02A62DCD300361D8E /* MapViewModel.swift in Sources */,
 				F8BCA90229D8327C0076AD46 /* APIManager.swift in Sources */,
 				F8A3ACEC29A2259A009886FB /* OrderDetailsSerializer.swift in Sources */,
 				F8A1678A2962DD380007E522 /* MealImageService.swift in Sources */,
 				F8A5AA5C297FF74F007FBD0F /* BankCardsView.swift in Sources */,
+				F814A84D2A77BA9900F81BB9 /* Address.swift in Sources */,
 				F8A6332E294B88480080DAE8 /* MenuView.swift in Sources */,
 				F8C4CFC329856FEC00D3D225 /* DeliveryMapViewModel.swift in Sources */,
+				F8A6CCAE2A6EA81500C8AD55 /* AddNewAddressButton.swift in Sources */,
 				F8A8581F2A35ED8400AC518C /* IngredientsService.swift in Sources */,
+				F8A6CCA82A6E4FAC00C8AD55 /* CDeliveryCell.swift in Sources */,
 				F8A0653C2967261100ECF9C0 /* OrderDetails.swift in Sources */,
 				F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */,
 				F8A63307294B88400080DAE8 /* Color.swift in Sources */,
@@ -762,7 +816,10 @@
 				F8904090297194BC009AFF99 /* PaymentViewModel.swift in Sources */,
 				F8ABE33D2A3871A7003A0F13 /* IngredientImageService.swift in Sources */,
 				F838FF72295E077B00E87420 /* RestaurantViewModel.swift in Sources */,
+				F8A3FD622AD2129F00BF6FC5 /* AddressView.swift in Sources */,
+				F814A84B2A77B36E00F81BB9 /* EditMapView.swift in Sources */,
 				F8CA8AD029E19C8E00515637 /* Category.swift in Sources */,
+				F8A6CCAA2A6E566100C8AD55 /* AddressCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +882,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -878,6 +936,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -899,11 +958,13 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -933,11 +994,13 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -983,14 +1046,6 @@
 				version = 4.0.1;
 			};
 		};
-		F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
-			requirement = {
-				kind = exactVersion;
-				version = 23.3.1;
-			};
-		};
 		F8A2F9E6295DB33600B37C4A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1005,6 +1060,14 @@
 			requirement = {
 				kind = exactVersion;
 				version = 5.0.1;
+			};
+		};
+		F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vladimirgoncharov/YandexMapPackageWrapper";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		F8C7A6B7297D3EE400718CBF /* XCRemoteSwiftPackageReference "AcquiringSdk_IOS" */ = {
@@ -1031,46 +1094,6 @@
 			package = F89EB137294DB36900D34B09 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		F89EB13B294DB47200D34B09 /* Stripe */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = Stripe;
-		};
-		F89EB13D294DB47200D34B09 /* StripeApplePay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripeApplePay;
-		};
-		F89EB13F294DB47200D34B09 /* StripeCardScan */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripeCardScan;
-		};
-		F89EB141294DB47200D34B09 /* StripeFinancialConnections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripeFinancialConnections;
-		};
-		F89EB143294DB47200D34B09 /* StripeIdentity */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripeIdentity;
-		};
-		F89EB145294DB47200D34B09 /* StripePaymentSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripePaymentSheet;
-		};
-		F89EB147294DB47200D34B09 /* StripePayments */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripePayments;
-		};
-		F89EB149294DB47200D34B09 /* StripePaymentsUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F89EB13A294DB47200D34B09 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripePaymentsUI;
-		};
 		F8A2F9E7295DB33700B37C4A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F8A2F9E6295DB33600B37C4A /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -1080,6 +1103,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F8A2F9E9295DB3C500B37C4A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		F8A62AD62A640D930038375E /* YandexMapPackageWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */;
+			productName = YandexMapPackageWrapper;
 		};
 		F8C7A6B8297D3EE400718CBF /* TinkoffASDKCore */ = {
 			isa = XCSwiftPackageProductDependency;

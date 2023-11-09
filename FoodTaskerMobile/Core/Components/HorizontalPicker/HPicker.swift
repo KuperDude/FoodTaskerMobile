@@ -20,12 +20,16 @@ struct HPicker: View {
                     ForEach($data, id: \.self) { value in
                         VStack(spacing: 0) {
                             Text(value.wrappedValue)
-                                .onTapGesture {
-                                    withAnimation {
-                                        selected = value.wrappedValue
-                                        geometry.scrollTo(value.wrappedValue)
-                                    }
-                                }
+                                .overlay(content: {
+                                    Rectangle()
+                                        .opacity(0.01)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                selected = value.wrappedValue
+                                                geometry.scrollTo(value.wrappedValue)
+                                            }
+                                        }
+                                })
                                 .font(.title)
                                 .fontWidth(.compressed)
                                 .id(value.wrappedValue)

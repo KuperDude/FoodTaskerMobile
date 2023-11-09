@@ -71,6 +71,10 @@ extension MenuView {
                         UserDefaults.standard.setValue(nil, forKey: "fullName")
                         AuthService.instance.user = nil
                         APIManager.instance.logout { _ in }
+                        mainVM.user = nil
+                        mainVM.currentCategory = .menu
+                        mainVM.animateStatus = .burger
+                        return
                     }
                     mainVM.currentCategory = category
                 }
