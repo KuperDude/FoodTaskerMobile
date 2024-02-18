@@ -1,20 +1,20 @@
 //
-//  ButtonWithImage.swift
+//  AnimatedCross.swift
 //  FoodTaskerMobile
 //
-//  Created by MyBook on 27.11.2023.
+//  Created by MyBook on 19.11.2023.
 //
 
 import SwiftUI
 
-struct ButtonWithImage: View {
+struct AnimatedCross: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct ButtonWithImage_Previews: PreviewProvider {
+struct AnimatedCross_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonWithImage()
+        AnimatedCross()
     }
 }
