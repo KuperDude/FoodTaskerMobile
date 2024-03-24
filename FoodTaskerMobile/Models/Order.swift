@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+struct Order: Codable {
+    var accessToken: String
+    var restaurantId: Int
+    var address: String
+    var orderDetails: [OrderDetailsSerializer]
+    
+    private enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case restaurantId = "restaurant_id"
+        case address
+        case orderDetails = "order_details"
+    }
+}

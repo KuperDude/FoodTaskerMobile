@@ -10,9 +10,8 @@ import MapKit
 
 struct DeliveryView: View {
     @ObservedObject var mainVM: MainViewModel
-    
     @StateObject var vm = DeliveryViewModel()
-    var deliveryStatus: [DeliveryViewModel.Status] = [.accepted, .ready, .onTheWay]
+    var deliveryStatus: [DeliveryViewModel.Status] = [.accepted, .ready, .onTheWay, .delivered]
     var body: some View {
         ZStack {
             //background
@@ -26,30 +25,69 @@ struct DeliveryView: View {
 
                     Spacer()
                 }
-
-                VStack {
+                
+                VStack(spacing: 0) {
                     ForEach(deliveryStatus, id: \.self) { status in
                         DeliveryCell(text: status.rawValue, check: vm.isCheck(status))
+                        
+                        if status != .delivered {
+                            DeliveryProgressAnimatedView(status: status, currentStatus: vm.status)
+                        }
                     }
                 }
+                
                 .padding()
                 .padding(.leading, 40)
                 
-                ZStack {
-                    // background
-                    DeliveryMapView()
-                        .ignoresSafeArea()
+                if vm.status == .accepted || vm.status == .ready {
+                    CookingAnimationView()
+                        .frame(width: 300, height: 300)
+                        .padding(.top, -100)
+                } else if vm.status == .onTheWay {
+                    DeliveryAnimationView()
+                        .frame(width: 300, height: 200)
+                        .padding(.top, -100)
+                }
+                    //.background(.red)
+                
+                Divider()
+                
+                if vm.ordersInfo.isEmpty {
+                    Text("Ваш список заказов пуст")
+                        .font(.headline)
+                        .fontWidth(.compressed)
+                        .foregroundStyle(Color.theme.secondaryText)
+                        .padding()
                     
-                    //content
-                    VStack {
-                        Spacer()
+                    SadSmileAnimationView()
+                        .frame(width: 200, height: 200)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], content: {
+                            Group {
+                                Text("Дата")
+                                Text("Статус")
+                                Text("Сумма")
+                            }
+                            .font(.title2)
+                            .fontWidth(.compressed)
+                        })
                         
-                        CourierView()
-                            .padding()
-                            .padding(.bottom, 20)
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], content: {
+                            ForEach(vm.ordersInfo) { orderInfo in
+                                Text(orderInfo.date.dateFromWebtoApp())
+                                Text(orderInfo.status)
+                                    .foregroundStyle(vm.statusColor(orderInfo.status))
+                                Text("\(orderInfo.total.asNumberString())₽")
+                            }
+                            .padding(.vertical, 5)
+                            .font(.callout)
+                            .fontWidth(.condensed)
+                        })
                     }
                 }
-
+                
+                Spacer()
             }
             .ignoresSafeArea(edges: .bottom)
         }

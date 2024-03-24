@@ -13,10 +13,15 @@ struct MealCell: View {
     
     @ObservedObject var vm: MealCellViewModel
     
-    init(namespace: Namespace.ID, meal: Meal) {
+    @ObservedObject var mainVM: MainViewModel
+    @State private var orderDetails: OrderDetails
+    
+    init(namespace: Namespace.ID, meal: Meal, mainVM: MainViewModel) {
         self.namespace = namespace
         self.meal = meal
         self._vm = ObservedObject(initialValue: MealCellViewModel(meal: meal))
+        self.mainVM = mainVM
+        self._orderDetails = State(initialValue: mainVM.order.first(where: { $0.meal.id == meal.id }) ?? OrderDetails(meal: meal, ingredients: [], quantity: 0, id: UUID())) 
     }
     
     var body: some View {
@@ -27,74 +32,85 @@ struct MealCell: View {
                     color: Color.theme.accent.opacity(0.15),
                     radius: 5, x: 0, y: 0)
             
-            HStack {
-                VStack {
+                VStack(alignment: .center) {
+                    Image(uiImage: vm.image ?? UIImage())
+                            .resizable()
+                            .padding()
+                            .overlay(content: {
+                                if vm.isLoading {
+                                    ProgressView()
+                                }
+                            })
+                            .frame(maxWidth: .infinity)
+                            .aspectRatio(1/1, contentMode: .fit)
+                            .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
+                    
+                    
                     Text(meal.name)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                         .foregroundColor(.theme.accent)
                         .matchedGeometryEffect(id: MatchedGeometryId.title.rawValue + String(meal.id), in: namespace)
-                        
-                    Text(meal.shortDescription)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 16))
-                        .fontWeight(.light)
-                        .foregroundColor(.theme.secondaryText)
-                        .padding(.vertical, 10)
-                        .matchedGeometryEffect(id: MatchedGeometryId.description.rawValue + String(meal.id), in: namespace)
                     
-                    Text("$\(meal.price.asNumberString())")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 18))
-                        .foregroundColor(.theme.green)
-                        .matchedGeometryEffect(id: MatchedGeometryId.cost.rawValue + String(meal.id), in: namespace)
+                    Spacer()
+                        
+                    if orderDetails.quantity == 0 {
+                        HStack {
+                            Text("\(meal.price.asNumberString())₽")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.system(size: 18))
+                                .foregroundColor(.theme.green)
+                                .matchedGeometryEffect(id: MatchedGeometryId.cost.rawValue + String(meal.id), in: namespace)
+                            
+                            Button {
+                                withAnimation(.linear) {
+                                    orderDetails.quantity += 1
+                                    mainVM.order.append(orderDetails)
+                                }
+                            } label: {
+                                Text("+")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.theme.accent)
+                                    .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(style: StrokeStyle(lineWidth: 3))
+                                            .frame(width: 35, height: 35)
+                                            .foregroundStyle(Color.accentColor)
+                                            .shadow(
+                                                color: Color.theme.accent.opacity(0.15),
+                                                radius: 5, x: 0, y: 0)
+                                            .padding(5)
+                                    }
+                                }
+                            }
+                            .padding()
+                    } else {
+                        VStack {
+                            Text("\(meal.price.asNumberString())₽")
+                                //.frame(maxWidth: .infinity)
+                                .font(.system(size: 12))
+                                .foregroundColor(.theme.secondaryText)
+                                .matchedGeometryEffect(id: MatchedGeometryId.cost.rawValue + String(meal.id), in: namespace)
+                            
+                            stepperQuantityView
+                                .padding()
+                        }
+                    }
                 }
                 
                 Spacer()
-                
-                Image(uiImage: vm.image ?? UIImage())
-                        .resizable()
-                        .padding()
-                        .overlay(content: {
-                            if vm.isLoading {
-                                ProgressView()
-                            }
-                        })
-                        .frame(width: 150, height: 150)
-                        .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
-                
-//                if let image = vm.image {
-//                    Image(uiImage: image)
-//                        .resizable()
-//                        .padding()
-//                        .frame(width: 150, height: 150)
-//                        .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
-//                } else if vm.isLoading {
-//                    ProgressView()
-//                        .frame(width: 150, height: 150)
-//                        .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
-//                } else {
-//                    Image("blank_food")
-//                        .resizable()
-//                        .padding()
-//                        .frame(width: 150, height: 150)
-//                        .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
-//                }
-                    
-            }
-            .padding()
         }
-        .frame(height: 160)
     }
 }
 
-//struct MealCell_Previews: PreviewProvider {
-//    @Namespace static var namespace
-//    static var previews: some View {
-//        MealCell(namespace: namespace, meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: "Food"))
-//    }
-//}
+struct MealCell_Previews: PreviewProvider {
+    @Namespace static var namespace
+    static var previews: some View {
+        MealCell(namespace: namespace, meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: .init(id: 1, name: "")), mainVM: MainViewModel())
+    }
+}
 
 extension MealCell {
     enum MatchedGeometryId: String, Identifiable {
@@ -106,6 +122,88 @@ extension MealCell {
         
         var id: String {
             self.rawValue
+        }
+    }
+}
+
+extension MealCell {
+    var stepperQuantityView: some View {
+        HStack {
+            Button {
+                withAnimation(.linear) {
+                    if orderDetails.quantity >= 2 {
+                        
+                        orderDetails.quantity -= 1
+                        
+                        if let index = mainVM.order.firstIndex(where: { $0 == orderDetails }) {
+                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity)
+                        }
+                    } else {
+                        orderDetails.quantity = 0
+                        
+                        guard let index = mainVM.order.firstIndex(where: { $0.id == orderDetails.id }) else { return }
+                        
+                        mainVM.order.remove(at: index)
+                    }
+                }
+            } label: {
+                Text("-")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.theme.accent)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(style: StrokeStyle(lineWidth: 3))
+                            .frame(width: 35, height: 35)
+                            .foregroundStyle(Color.accentColor)
+                            .shadow(
+                                color: Color.theme.accent.opacity(0.15),
+                                radius: 5, x: 0, y: 0)
+                            .padding(5)
+                    }
+            }
+            
+            Text("\(orderDetails.quantity)")
+                .frame(maxWidth: .infinity, alignment: .center)
+                .foregroundColor(.theme.accent)
+            
+            Button {
+                withAnimation(.linear) {
+                    if orderDetails.quantity < 99 {
+                        orderDetails.quantity += 1
+                        
+                        if let index = mainVM.order.firstIndex(where: { $0 == orderDetails }) {
+                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity)
+                        }
+                    }
+                }
+            } label: {
+                Text("+")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.theme.accent)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(style: StrokeStyle(lineWidth: 3))
+                            .frame(width: 35, height: 35)
+                            .foregroundStyle(Color.accentColor)
+                            .shadow(
+                                color: Color.theme.accent.opacity(0.15),
+                                radius: 5, x: 0, y: 0)
+                            .padding(5)
+                    }
+            }
+        }
+        .padding(.horizontal, 5)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.theme.background)
+                .shadow(
+                    color: Color.theme.accent.opacity(0.15),
+                    radius: 5, x: 0, y: 0)
+            
         }
     }
 }

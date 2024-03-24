@@ -82,7 +82,7 @@ struct CartCell: View {
                         
                         Spacer()
                         
-                        Text("$\(orderDetails.subTotal.asNumberString())")
+                        Text("\(orderDetails.subTotal.asNumberString())₽")
                             .font(.system(size: 18))
                             .foregroundColor(.theme.green)
                     }

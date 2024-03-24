@@ -14,7 +14,16 @@ class MainViewModel: ObservableObject {
     @Published var animateStatus: Status = .burger
     @Published var currentCategory: Category = .menu
     @Published var address: Address = Address()
-    @Published var selectedRestaurantId = -1
+    @Published var selectedRestaurantId = 3
+    
+    init(user: User? = nil, order: [OrderDetails] = [OrderDetails](), animateStatus: Status = .burger, currentCategory: Category = .menu, address: Address = Address(), selectedRestaurantId: Int = 3) {
+        self.user = user
+        self.order = order
+        self.animateStatus = animateStatus
+        self.currentCategory = currentCategory
+        self.address = address
+        self.selectedRestaurantId = selectedRestaurantId
+    }
 }
 
 // MARK: - User Intents
@@ -79,10 +88,10 @@ extension MainViewModel {
         
         var text: String {
             switch self {
-            case .menu: return "MENU"
-            case .cart: return "CART"
-            case .delivery: return "DELIVERY"
-            case .logout: return "LOGOUT"
+            case .menu: return "МЕНЮ"
+            case .cart: return "КОРЗИНА"
+            case .delivery: return "ДОСТАВКА"
+            case .logout: return "ВЫЙТИ"
             }
         }
     }
@@ -121,7 +130,7 @@ extension MainViewModel {
 //            case leftMenu
 //        }
         
-        var getCrossIdOrMinusOne: Int {
+        var getChevronIdOrMinusOne: Int {
             switch self {
             case .chevron(.mealDetails(id: let id)): return id
             default: return -1

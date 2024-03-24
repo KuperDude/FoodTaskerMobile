@@ -22,28 +22,29 @@ struct CartPaymentView: View {
     }
     
     var body: some View {
-        VStack {
-            CreditCardAnimationView()
-                .frame(height: 200)
-                .padding()
+//        VStack {
+//            CreditCardAnimationView()
+//                .frame(height: 200)
+//                .padding()
 //            PaymentCardTextField(cardParams: $vm.cardParams)
 //                .frame(height: 80)
 //                .padding(.horizontal)
             
-            Button {
-                isShow = true
-                //vm.placeOrder()                
-                Task {
-                    await vm.createOrder()
-                }
-            } label: {
-                Text("Continue")
-            }
-            BankCardsView(vm: vm, isShow: $isShow)
-
+//                Button {
+//                    isShow = true
+                    //vm.placeOrder()
+                    //                Task {
+                    //                    await vm.createOrder()
+                    //                }
+//                } label: {
+//                    Text("Continue")
+//                }
             
-            Spacer()
-        }
+//            BankCardsView(isShow: $isShow)
+
+            EmptyView()
+//            Spacer()
+//        }
         .alert("Already order?", isPresented: $vm.isShowAlert) {
             
             Button(role: .cancel) {
@@ -58,8 +59,6 @@ struct CartPaymentView: View {
                 Text("Go to order")
             }
             
-
-
         } message: {
             Text("Your current order is not completed")
         }

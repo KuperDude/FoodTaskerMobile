@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Address: Equatable {
+struct Address: Equatable, Identifiable {
+    var id: UUID = UUID()
     var street: String
     var house: String
     var floor: String
@@ -15,9 +16,22 @@ struct Address: Equatable {
     var intercom: String //домофон
     var entrance: String //подъезд
     var comment: String
+    var lastUpdateDate = Date.now
     
     var isStreetAndHouseFill: Bool {
         house != "" && street != ""
+    }
+    
+    init(entity: AddressEntity) {
+        self.id = entity.addressID ?? UUID()
+        self.street = entity.street ?? ""
+        self.house = entity.house ?? ""
+        self.floor = entity.floor ?? ""
+        self.apartmentNumber = entity.apartmentNumber ?? ""
+        self.intercom = entity.intercom ?? ""
+        self.entrance = entity.entrance ?? ""
+        self.comment = entity.comment ?? ""
+        self.lastUpdateDate = entity.lastUpdateDate ?? Date.now
     }
     
     init() {
@@ -30,25 +44,28 @@ struct Address: Equatable {
         self.comment = ""
     }
     
-    init(street: String, house: String, floor: String, apartamentNumber: String, intercom: String, entrance: String, comment: String) {
+    init(id: UUID = UUID(), street: String, house: String, floor: String, apartmentNumber: String, intercom: String, entrance: String, comment: String, lastUpdateDate: Date = Date.now) {
+//        self.id = id
         self.street = street
         self.house = house
         self.floor = floor
-        self.apartmentNumber = apartamentNumber
+        self.apartmentNumber = apartmentNumber
         self.intercom = intercom
         self.entrance = entrance
         self.comment = comment
+        self.lastUpdateDate = lastUpdateDate
     }
     
     func changeStreetAndHouse(street: String, house: String) -> Address {
-        Address(street: street, house: house, floor: self.floor, apartamentNumber: self.apartmentNumber, intercom: self.intercom, entrance: self.entrance, comment: self.comment)
+        Address(id: self.id, street: street, house: house, floor: self.floor, apartmentNumber: self.apartmentNumber, intercom: self.intercom, entrance: self.entrance, comment: self.comment, lastUpdateDate: self.lastUpdateDate)
     }
     
     func convertToString() -> String {
-        "\(street) \(house) \(floor) \(apartmentNumber)"
+        "\(street) \(house)"
     }
     
     func isEmpty() -> Bool {
         street.isEmpty || house.isEmpty
     }
 }
+

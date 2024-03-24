@@ -7,12 +7,23 @@
 
 import SwiftUI
 
-struct ForgotPasswordBottonButton: View {
+struct ForgotPasswordBottomButton: View {
+    var title: String
+    var action: ()->Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            action()
+        } label: {
+            Text(title)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical)
+                .background(in: RoundedRectangle(cornerRadius: 10))
+                .backgroundStyle(.blue)
+                .padding()
+        }
     }
 }
 
 #Preview {
-    ForgotPasswordBottonButton()
+    ForgotPasswordBottomButton(title: "", action: {})
 }

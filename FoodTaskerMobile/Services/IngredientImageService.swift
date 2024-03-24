@@ -43,6 +43,10 @@ class IngredientImageService {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             self.image = UIImage(data: data)
+            
+            guard let downloadImage = image else { return }
+                    
+            fileManager.saveImage(image: downloadImage, imageName: self.imageName, folderName: self.folderName)
         } catch {
             print(error.localizedDescription)
         }

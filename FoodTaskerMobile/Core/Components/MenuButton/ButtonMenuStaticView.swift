@@ -26,14 +26,11 @@ struct ButtonMenuStaticView: View {
                         radius: 5, x: 0, y: 0)
                 
                 MenuViewStatic(status: status)
-//                Image(systemName: imageNamed)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
                     .frame(width: height/2, height: height/2)
-//                    .foregroundColor(.theme.accent)
                 
             }
         }
+        .buttonStyle(NoAnim())
     }
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import vk_ios_sdk
+import GoogleSignIn
 
 struct MenuView: View {
     @ObservedObject var mainVM: MainViewModel
@@ -68,15 +69,23 @@ extension MenuView {
                 .onTapGesture {
                     if category == .logout {
                         VKSdk.forceLogout()
-                        UserDefaults.standard.setValue(nil, forKey: "fullName")
+                        GIDSignIn.sharedInstance.signOut()
                         AuthService.instance.user = nil
-                        APIManager.instance.logout { _ in }
+                        APIManager.instance.logout(.vk) { _ in }
+                        APIManager.instance.logout(.google) { _ in }
                         mainVM.user = nil
                         mainVM.currentCategory = .menu
                         mainVM.animateStatus = .burger
                         return
                     }
+                    
                     mainVM.currentCategory = category
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation {
+                            mainVM.animateStatus.newStatusOnTap()
+                        }
+                    }
                 }
         }
     }

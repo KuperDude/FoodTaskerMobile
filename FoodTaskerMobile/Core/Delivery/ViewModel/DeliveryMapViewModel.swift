@@ -6,10 +6,8 @@
 //
 
 import Foundation
-//import SwiftyJSON
 import Combine
 import SwiftUI
-//import MapKit
 
 class DeliveryMapViewModel: ObservableObject {
     @Published var addresses: [String] = []
@@ -25,8 +23,8 @@ class DeliveryMapViewModel: ObservableObject {
     
     func addPublishers() {
         lastOrderService.$addresses
-            .sink { addresses in
-                self.addresses = addresses
+            .sink { [weak self] addresses in
+                self?.addresses = addresses
             }
             .store(in: &cancellables)
     }

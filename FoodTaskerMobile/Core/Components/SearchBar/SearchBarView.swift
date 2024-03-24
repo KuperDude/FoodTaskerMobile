@@ -21,7 +21,7 @@ struct SearchBarView: View {
                         .theme.secondaryText : .theme.accent
                 )
             
-            TextField("Search by name...", text: $searchText)
+            TextField("Искать по названию...", text: $searchText)
                 .foregroundColor(.theme.accent)
                 .disableAutocorrection(true)
                 .keyboardType(.alphabet)

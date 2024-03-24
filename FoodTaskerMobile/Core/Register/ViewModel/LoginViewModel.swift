@@ -13,6 +13,12 @@ class LoginViewModel: ObservableObject {
     @Published var user: User?
     var cancellables = Set<AnyCancellable>()
     
+    @Published var login: String = ""
+    @Published var mail: String = ""
+    
+    @Published var password1: String = ""
+    @Published var password2: String = ""
+    
     init(user: User?) {
         self.user = user
         self.authService = AuthService.instance
@@ -23,24 +29,19 @@ class LoginViewModel: ObservableObject {
     private func addPublishers() {
         authService.$user
             .sink { [weak self] data in
-                if let user = data {
-                    UserDefaults.standard.set(user.fullName, forKey: "fullName")
+                if let user = data {                    
                     self?.user = user
                 }
             }
             .store(in: &cancellables)
     }
     
-    func getButtonTitle() -> String {
-        if let fullName = UserDefaults.standard.string(forKey: "fullName") {
-            return "Continue as \(fullName)"
-        } else {
-            return "Login with VK"
-        }
+    // MARK: - User Intents
+    func wakeUpSession(_ method: AuthService.RegistrationMethod) {
+        authService.wakeUpSession(method: method)
     }
     
-    // MARK: - User Intents
-    func wakeUpSession() {
-        authService.wakeUpSession()
+    func loginOnMail() {
+        authService.login(mail: mail)
     }
 }

@@ -11,14 +11,19 @@ import Combine
 import SwiftUI
 
 class DeliveryViewModel: ObservableObject {
-    @Published var status: Status = .processing
+    @Published var status: Status = .unknown
+    @Published var ordersInfo: [OrderInfo] = []
+    
+    private let ordersService: OrdersService
     
     private let lastOrderStatusService: LastOrderStatusService
     
     var cancellables = Set<AnyCancellable>()
     
+    
     init() {
         self.lastOrderStatusService = LastOrderStatusService()
+        self.ordersService = OrdersService()
         addPublishers()
     }
     
@@ -31,8 +36,18 @@ class DeliveryViewModel: ObservableObject {
             .store(in: &cancellables)
         
         lastOrderStatusService.$status
-            .sink { status in
-                self.status = status
+            .sink { [weak self] status in
+                self?.status = status
+                
+                if self?.ordersInfo.first != nil {
+                    self?.ordersInfo[0].status = status.rawValue
+                }
+            }
+            .store(in: &cancellables)
+        
+        ordersService.$orders
+            .sink { [weak self] orders in
+                self?.ordersInfo = orders
             }
             .store(in: &cancellables)
     }
@@ -41,30 +56,46 @@ class DeliveryViewModel: ObservableObject {
         cellStatus.priority <= status.priority
     }
     
-    enum Status: String {
-        case processing = "Processing"
-        case accepted = "Cooking"
-        case ready = "Ready"
-        case onTheWay = "On the way"
-        case delivered = "Delivered"
+    func isCheck(_ priority: Int) -> Bool {
+        priority <= status.priority
+    }
+    
+    func statusColor(_ strStatus: String) -> Color {
+        guard let status = Status(rawValue: strStatus) else { return .clear }
         
-//        "Order accepted"
-//        case ready = "Food ready"
-//        case onTheWay = "Courier is on the way"
-//        case delivered = "Delivered"
+        switch status {
+        case .delivered: return .theme.green
+        case .cancelled: return .theme.red
+        default: return .yellow
+        }
+    }
+    
+    enum Status: String {
+        case cancelled = "Отменен"
+        case processing = "В обработке"
+        case accepted = "Готовиться"
+        case ready = "Готов к отправке"
+        case onTheWay = "В пути"
+        case delivered = "Доставлен"
+        case unknown = "Неопределен"
+        
         
         var priority: Int {
             switch self {
-            case .processing:
+            case .cancelled:
                 return 0
-            case .accepted:
+            case .processing:
                 return 1
-            case .ready:
+            case .accepted:
                 return 2
-            case .onTheWay:
+            case .ready:
                 return 3
-            case .delivered:
+            case .onTheWay:
                 return 4
+            case .delivered:
+                return 5
+            case .unknown:
+                return -1
             }
         }
     }

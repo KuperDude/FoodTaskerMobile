@@ -11,21 +11,31 @@ struct EditMapView: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var vm: EditMapViewModel
-    @ObservedObject var mainVM: MainViewModel
-    @FocusState private var focused: Bool
-
-    @State private var isOn: Bool = false
+    @State var address = Address()
+    @State var bundleStatus: MapViewModel.BundleStatus = .scrolled
+    @State var refresh = true
     
-    init(mainVM: MainViewModel) {
-        self._vm = ObservedObject(initialValue: EditMapViewModel(mainVM: mainVM))
-        self.mainVM = mainVM
+    var onTapReady: (Address)->Void
+    
+    @State var buttonMinusFrame: CGRect = .zero
+    
+    let pub = NotificationCenter.default
+                .publisher(for: NSNotification.Name("OffsetYChange"))
+    let offsetYAddressView: CGFloat = 210
+                
+    @State var offsetOfAddressView: CGFloat = .zero
+    
+    init(address: Address, addressesVM: AddressesViewModel, onTapReady: @escaping (Address)->Void) {
+        self.onTapReady = onTapReady
+        self._vm = ObservedObject(initialValue: EditMapViewModel(address: address, addressesVM: addressesVM))
+        self._address = State(initialValue: address)
     }
     
     //@State private var data = ["Выбрать", "Новый адресс"]
     //@State private var selected: String? = "Выбрать"
     
 //    @State private var data1 = ["Квартира", "Дом", "Офис"]
-    @State private var presentAddressesView = false
+    @State private var presentAddressView = false
     
     var body: some View {
         ZStack {
@@ -38,18 +48,28 @@ struct EditMapView: View {
 //                AddressesView()
 //                    .transition(.move(edge: .leading))
 //            } else {
-                //CartMapView(address: $addre)
-            MapView(mapVM: vm.mapVM)
-                .ignoresSafeArea()
+                //CartMapView(address: $addres)
             
-            pinAndBundle
+            if refresh {
+                MapView(mapVM: vm.mapVM)
+                    .ignoresSafeArea()
+            } else {
+                MapView(mapVM: vm.mapVM)
+                    .ignoresSafeArea()
+            }
+            
+//            pinAndBundle
             
             tabBar
             
 //            Text(mainVM.address.convertToString())
-            AddressView(isOn: $isOn, address: $mainVM.address)
-                .presentAsBottomSheet($presentAddressesView)
-                .offset(y: presentAddressesView ? 0 : -180)
+            AddressView(address: $address)
+                .presentAsBottomSheet($presentAddressView, maxHeight: (UIScreen.main.bounds.height) - buttonMinusFrame.minY, offsetY: offsetYAddressView, isAllowPresent: bundleStatus == .allowed || address.isStreetAndHouseFill)
+                .offset(y: presentAddressView ? 0 : -offsetYAddressView)
+            
+            //if presentAddressView {
+                crossButton
+            //}
             
             readyBlock
                 
@@ -69,69 +89,77 @@ struct EditMapView: View {
             
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        .ignoresSafeArea()
+        .onReceive(pub) { offsetY in
+            guard 
+                let y = offsetY.object as? CGFloat,
+                vm.getBundleStatus() == .allowed
+            else { return }
+//            print(y)
+            offsetOfAddressView = y
+            
+        }
+        .onChange(of: presentAddressView, perform: { newValue in
+            if newValue {
+                vm.addAddress(address)
+            } else {
+                //vm.addAddress(address)
+                vm.mapVM = MapViewModel(address: address)
+                refresh.toggle()
+            }
+        })
+//        .sheet(isPresented: .constant(true), content: {
+//            AddressView(address: $address)
+//        })
+        .onReceive(vm.mapVM.$address, perform: { newAddress in
+            if !presentAddressView {
+                let id = self.address.id
+                var nAddress = newAddress
+                nAddress.id = id
+                self.address = nAddress
+            }
+        })
+        .onReceive(vm.mapVM.$bundleStatus, perform: { bundleStatus in
+            self.bundleStatus = bundleStatus
+        })
     }
 }
 
 struct EditMapView_Previews: PreviewProvider {
     static var previews: some View {
-        EditMapView(mainVM: MainViewModel())
+        EditMapView(address: Address(), addressesVM: AddressesViewModel(mainVM: MainViewModel()), onTapReady: {_ in })
     }
 }
 
 extension EditMapView {
     
-    var addressSection: some View {
-        VStack {
-            HStack {
-                Text("Улица:")
-                    .foregroundColor(.theme.accent)
-                    .font(.system(size: 18, weight: .semibold))
-                Spacer()
-                TextField("Enter your address...", text: $mainVM.address.street)
-                    .focused($focused)
-                
-                Text("Дом:")
-                    .foregroundColor(.theme.accent)
-                    .font(.system(size: 18, weight: .semibold))
-                Spacer()
-                TextField("Enter your address...", text: $mainVM.address.house)
-                    .focused($focused)
-            }
-            HStack {
-                Text("Этаж:")
-                    .foregroundColor(.theme.accent)
-                    .font(.system(size: 18, weight: .semibold))
-                Spacer()
-                TextField("Enter your address...", text: $mainVM.address.floor)
-                    .focused($focused)
-                
-                Text("Квартира:")
-                    .foregroundColor(.theme.accent)
-                    .font(.system(size: 18, weight: .semibold))
-                Spacer()
-                TextField("Enter your address...", text: $mainVM.address.apartmentNumber)
-                    .focused($focused)
-            }
-        }
-    }
-    
-    var pinAndBundle: some View {
-        ZStack {
-            //bundle
-            if vm.getBundleStatus() == .forbidden || vm.getBundleStatus() == .unknown {
-                Text(vm.getBundleStatus().rawValue)
-                    .fontWeight(.semibold)
-                    .padding(5)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(.orange)
-                    }
-                    .offset(y: -50)
-            }
-            //pin
-            Image("pin_customer")
-        }
-    }
+//    var pinAndBundle: some View {
+//        ZStack {
+//            //bundle
+//            if bundleStatus == .forbidden || bundleStatus == .unknown {
+//                Text(bundleStatus.rawValue)
+//                    .fontWeight(.semibold)
+//                    .padding(5)
+//                    .background {
+//                        RoundedRectangle(cornerRadius: 5)
+//                            .foregroundColor(.orange)
+//                    }
+//                    .offset(y: -75)
+//            }
+//            //pin
+//            ZStack {
+//                MapTrackingAnimationView(isScrolling: $bundleStatus)
+//                    .frame(width: 200, height: 200)
+//                    .allowsHitTesting(false)
+//                    .padding(.bottom, 50)
+//                Circle()
+//                    .frame(width: 5, height: 5)
+//                    .foregroundStyle(.red)
+//                    .opacity(bundleStatus == .scrolled ? 1.0 : 0.0)
+//            }
+//        }
+//        .ignoresSafeArea(.keyboard)
+//    }
     
     var tabBar: some View {
         VStack {
@@ -141,12 +169,23 @@ extension EditMapView {
             HStack {
                 Spacer()
                 VStack(spacing: 5) {
-                    ButtonWithImage(imageNamed: "plus", height: 50, action: {
+                    ButtonMenuStaticView(status: .plus, height: 50) {
                         vm.plusZoom()
-                    })
-                    ButtonWithImage(imageNamed: "minus", height: 50, action: {
-                        vm.minusZoom()
-                    })
+                    }
+//                    ButtonWithImage(imageNamed: "plus", height: 50, action: {
+//                        vm.plusZoom()
+//                    })
+                    
+                    GeometryReader { geo in
+                        ButtonMenuStaticView(status: .minus, height: 50) {
+                            vm.minusZoom()
+                        }
+                        .preference(key: FramePreferenceKey.self, value: geo.frame(in: .global))
+                    }
+                    .onPreferenceChange(FramePreferenceKey.self) { frame in
+                        buttonMinusFrame = frame
+                    }
+                    .frame(width: 50, height: 50)
                 }
             }
             .padding(.trailing, 5)
@@ -155,23 +194,48 @@ extension EditMapView {
             Spacer()
             
             HStack {
-                ButtonWithImage(imageNamed: "chevron.backward", height: 50, action: {
+                ButtonMenuStaticView(status: .chevron, height: 50) {
+                    vm.addAddress(address)
+                    onTapReady(address)
                     dismiss()
-                })
+                }
                 
                 Spacer()
                 
                 ButtonWithImage(imageNamed: "paperplane.fill", height: 50, action: {
                     vm.moveToUserLocation()
                 })
+//                ButtonMenuStaticView(status: .minus, height: 50, action: {
+//                    vm.moveToUserLocation()
+//                })
             }
             .padding(.horizontal, 5)
             .foregroundColor(.theme.background)
             
             Rectangle()
-                .frame(height: 180)
+                .frame(height: offsetYAddressView)
                 .opacity(0.001)
         }
+    }
+    
+    var crossButton: some View {
+        VStack {
+            HStack {
+                AnimatedCrossView(offsetY: $offsetOfAddressView, maxOffsetY: (UIScreen.main.bounds.height) - buttonMinusFrame.minY - offsetYAddressView, height: 50, action: {
+                    if presentAddressView {
+                        presentAddressView = false
+                        offsetOfAddressView = .zero
+                    } else {
+                        vm.plusZoom()
+                    }
+                })
+                //.animation(.spring(), value: presentAddressesView)
+                .offset(x: buttonMinusFrame.minX, y: buttonMinusFrame.minY - buttonMinusFrame.height - 5)
+                Spacer()
+            }
+            Spacer()
+        }
+        .ignoresSafeArea()
     }
     
     var readyBlock: some View {
@@ -195,11 +259,17 @@ extension EditMapView {
                     Text("Готово")
                         .padding(.bottom, 10)
                 }
-                .opacity(vm.getBundleStatus() == .allowed ? 1 : 0.7)
+                .opacity(vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill ? 1 : 0.7)
             }
             .onTapGesture {
-                if vm.getBundleStatus() == .allowed {
-                    
+                if vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill {
+//                    guard let address = address else {
+//                        dismiss()
+//                        return
+//                    }
+                    vm.addAddress(address)
+                    onTapReady(address)
+                    dismiss()
                 }
             }
         }

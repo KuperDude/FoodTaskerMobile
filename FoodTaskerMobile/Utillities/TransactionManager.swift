@@ -31,13 +31,16 @@ class TransactionManager {
         acquiringSDK = try? AcquiringUISDK(configuration: sdk)
     }
     
-    func placeOrder(on vc: UIViewController) {
+    func placeOrder(on vc: UIViewController, result: @escaping (Result<PaymentStatusResponse, any Error>) -> Void) {
         let paymentData: PaymentInitData = PaymentInitData(amount: 10.0, orderId: "1090", customerKey: "1")
         //print(acquiringSDK)
+        let configuration = AcquiringViewConfiguration()
+        configuration.popupStyle = .bottomSheet
+        if let startViewHeight = vc.view.window?.windowScene?.screen.bounds.height {
+            configuration.startViewHeight = startViewHeight / 2
+        }
 
-//        acquiringSDK?.presentCardList(on: vc, customerKey: "1", configuration: AcquiringViewConfiguration())
-        acquiringSDK?.presentPaymentView(on: vc, paymentData: paymentData, configuration: AcquiringViewConfiguration(), completionHandler: { result in
-            
-        })
+        acquiringSDK?.presentPaymentView(on: vc, paymentData: paymentData, configuration: configuration, completionHandler: result)
     }
+
 }

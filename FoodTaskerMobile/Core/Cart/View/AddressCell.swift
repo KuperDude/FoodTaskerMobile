@@ -8,24 +8,34 @@
 import SwiftUI
 
 struct AddressCell: View {
-    var number: Int
+    @Binding var mainAddress: Address
+    var address: Address
+    var settingsAction: ()->Void
     var body: some View {
         ZStack {
             VStack {
                 HStack {
-                    Image(systemName: number == 2 ? "checkmark.circle.fill" : "circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
+                    Group {
+                        Image(systemName: address.id == mainAddress.id ? "checkmark.circle.fill" : "circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
                         
-                    Text("ул 40 лет Победы, 17Д")
-                        .font(.title)
-                        .fontWidth(.compressed)
+                        Text(address.isStreetAndHouseFill ? address.street + ", " + address.house : "")
+                            .font(.title)
+                            .fontWidth(.compressed)
+                    }
+                    .onTapGesture {
+                        mainAddress = address
+                    }
                     
                     Spacer()
-                    Image(systemName: "slider.horizontal.3")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        
+                    Button {
+                        settingsAction()
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
                 }
                 .padding(.horizontal)
                 .frame(height: 50)
@@ -37,6 +47,6 @@ struct AddressCell: View {
 
 struct AdressCell_Previews: PreviewProvider {
     static var previews: some View {
-        AddressCell(number: 123)
+        AddressCell(mainAddress: .constant(Address()), address: Address(), settingsAction: {})
     }
 }

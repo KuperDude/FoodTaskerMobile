@@ -29,6 +29,7 @@ class CompositionCellViewModel: ObservableObject {
             .sink { [weak self] _ in
                 self?.isLoading = false
             } receiveValue: { [weak self] returnedImage in
+                self?.isLoading = false
                 self?.image = returnedImage
             }
             .store(in: &cancellables)

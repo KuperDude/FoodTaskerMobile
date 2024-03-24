@@ -47,7 +47,7 @@ struct YandexMapView: UIViewRepresentable {
     }
          
     func updateUIView(_ mapView: YMKMapView, context: Context) {
-        //mapVM.convertAddress()
+//        mapVM.convertAddress()
     }
     
     func makeCoordinator() -> Coordinator {

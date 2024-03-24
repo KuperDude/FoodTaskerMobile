@@ -8,13 +8,38 @@
 import SwiftUI
 
 struct ButtonWithImage: View {
+    var imageNamed: String
+    var height: CGFloat
+    var action: ()->Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            action()
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .aspectRatio(1/1, contentMode: .fit)
+                    .frame(height: height)
+                    .foregroundColor(.theme.background)
+                    .shadow(
+                        color: Color.theme.accent.opacity(0.15),
+                        radius: 5, x: 0, y: 0)
+                
+                Image(systemName: imageNamed)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: height/2, height: height/2)
+                    .foregroundColor(.theme.accent)
+                
+            }
+        }
     }
 }
 
 struct ButtonWithImage_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonWithImage()
+        ButtonWithImage(imageNamed: "paperplane.fill", height: 50, action: {
+            
+        })
     }
 }

@@ -23,12 +23,11 @@ struct DeliveryCell: View {
             
             Spacer()
         }
-        .frame(height: 60)
     }
 }
 
 struct DeliveryCell_Previews: PreviewProvider {
     static var previews: some View {
-        DeliveryCell(check: false)
+        DeliveryCell(check: true)
     }
 }

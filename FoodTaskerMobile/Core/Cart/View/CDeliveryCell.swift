@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct CDeliveryCell: View {
+    @ObservedObject var mainVM: MainViewModel
     var onTap: () -> Void
-    var onTapOnMap: () -> Void
-    
-    init(onTap: @escaping () -> Void, onTapOnMap: @escaping () -> Void) {
-        self.onTap = onTap
-        self.onTapOnMap = onTapOnMap
-    }
     
     var body: some View {
 
@@ -52,14 +47,14 @@ struct CDeliveryCell: View {
                         }
                     Spacer()
                     
-                    Text("ул. 40 лет Победы, 17Д")                    
+                    Text(mainVM.address.convertToString())
                     
                     Spacer()
                     HStack {
                         
                         Spacer()
                         
-                        Text("$150")
+                        Text("\(mainVM.order.deliveryPrice.asNumberString())₽")
                             .font(.system(size: 18))
                             .foregroundColor(.theme.green)
                     }
@@ -72,7 +67,7 @@ struct CDeliveryCell: View {
 
 struct CDeliveryCell_Previews: PreviewProvider {
     static var previews: some View {
-        CDeliveryCell(onTap: { }, onTapOnMap: {})
+        CDeliveryCell(mainVM: MainViewModel(), onTap: {})
     }
 }
 

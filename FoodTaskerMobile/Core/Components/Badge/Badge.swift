@@ -18,9 +18,7 @@ struct Badge: View {
                 .padding(5)
                 .background(Color.red)
                 .clipShape(Circle())
-                // custom positioning in the top-right corner
-                .alignmentGuide(.top) { $0[.bottom] }
-                .alignmentGuide(.trailing) { $0[.trailing] - $0.width * 0.5 }
+                
         }
     }
 }

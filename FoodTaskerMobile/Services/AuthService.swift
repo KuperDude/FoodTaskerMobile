@@ -8,6 +8,7 @@
 import Foundation
 import vk_ios_sdk
 import Combine
+import GoogleSignIn
 
 final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
     
@@ -19,12 +20,17 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
     
     private let vkSdk: VKSdk
     
-    var token: String? {
-        return VKSdk.accessToken()?.accessToken
+    func token(method: RegistrationMethod) -> String? {
+        return method == .vk ? VKSdk.accessToken()?.accessToken : GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString
     }
 
     var userID: String? {
         return VKSdk.accessToken()?.userId
+    }
+    
+    enum RegistrationMethod {
+        case vk
+        case google
     }
     
     override init() {
@@ -51,27 +57,86 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
             }
     }
     
-    func wakeUpSession() {
-        //photos
-        let scope = ["wall", "photos"]
+    func login(mail: String) {
+        APIManager.instance.login(mail: mail) { result in
+            switch result {
+            case .success(let code): print("---\(code)---")
+            case .failure(_): break
+            }
+        }
+    }
+    
+    func wakeUpSession(method: RegistrationMethod) {
+        
+        switch method {
+        case .vk:
+            //photos
+            let scope = ["wall", "photos"]
 
-        VKSdk.wakeUpSession(scope) { [weak self] (state, error) in
+            VKSdk.wakeUpSession(scope) { [weak self] (state, error) in
 
-            if state == .authorized {
-                print("VKAuthorizationState.authorized")
-                APIManager.instance.login(userType: USERTYPE_CUSTOMER) { error in
-                    if error == nil {
-                        self?.addSubscriber()
-                    } else {
-                        print(error)
+                if state == .authorized {
+                    print("VKAuthorizationState.authorized")
+                    APIManager.instance.login(method: .vk, userType: USERTYPE_CUSTOMER) { [weak self] error in
+                        if error == nil {
+                            self?.addSubscriber()
+                        } else {
+                            print(error)
+                        }
+                    }
+                } else if state == .initialized {
+                    print("VKAuthorizationState.initialized")
+                    VKSdk.authorize(scope)
+                } else {
+                    print("Error with auth")
+    //                delegate?.authServiceDidSignInFail()
+                }
+            }
+        case .google:
+            GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                if error != nil || user == nil {
+                    print("GoogleAuthorizationState.initialized")
+                    GIDSignIn.sharedInstance.signIn(withPresenting: (UIApplication.shared.firstKeyWindow?.rootViewController)!) { result, error in
+                        guard error == nil else { return }
+                        guard let result = result else { return }
+
+                        let user = result.user
+          
+                        APIManager.instance.login(method: .google, userType: USERTYPE_CUSTOMER) { [weak self] error in
+                            if error == nil {
+                                guard
+                                    let id = user.userID,
+                                    let profile = user.profile,
+                                    let imageURL = profile.imageURL(withDimension: 50)?.absoluteString
+                                else {
+                                    return
+                                }
+                                
+                                self?.user = User(id: 123, firstName: profile.name, lastName: "", imageURL: imageURL)
+                                
+                            } else {
+                                print(error)
+                            }
+                        }
+                    }
+                } else {
+                    print("GoogleAuthorizationState.authorized")
+                    APIManager.instance.login(method: .google, userType: USERTYPE_CUSTOMER) { [weak self] error in
+                        if error == nil {
+                            guard
+                                let id = user?.userID,
+                                let profile = user?.profile,
+                                let imageURL = profile.imageURL(withDimension: 50)?.absoluteString
+                            else {
+                                return
+                            }
+                            self?.user = User(id: 123, firstName: profile.name, lastName: "", imageURL: imageURL)
+                            
+                        } else {
+                            print(error)
+                        }
                     }
                 }
-            } else if state == .initialized {
-                print("VKAuthorizationState.initialized")
-                VKSdk.authorize(scope)
-            } else {
-                print("Error with auth")
-//                delegate?.authServiceDidSignInFail()
             }
         }
     }
@@ -81,7 +146,6 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
         request.execute { response in
             let string = response?.responseString
             if let data = string?.data(using: .utf8) {
-                UserDefaults.standard.set(data, forKey: "user")
                 return completion(.success(data))
             }
         } errorBlock: { error in
@@ -102,7 +166,7 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
     // MARK: - VKSdkDelegate
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         if result.token != nil && !result.token.isExpired() {
-            APIManager.instance.login(userType: USERTYPE_CUSTOMER) { error in
+            APIManager.instance.login(method: .vk, userType: USERTYPE_CUSTOMER) { error in
                 if error == nil {
                     self.addSubscriber()
                 } else {

@@ -9,31 +9,53 @@ import SwiftUI
 
 struct AddressesView: View {
     
-    @State private var tappedButton: Bool = false
-    @FocusState private var focused: Bool
-    @State private var address = ""
+    @ObservedObject var vm: AddressesViewModel
+    @Binding var presentAddressesView: Bool
+    
+    //@State private var tappedButton: Bool = false
+    //@FocusState private var focused: Bool
+    //@State private var address = ""
     
     @State private var isButtonPressed = false
+    @State private var address: Address?
+    @ObservedObject var mainVM: MainViewModel
+    
+    init(presentAddressesView: Binding<Bool>, mainVM: MainViewModel) {
+        self._vm = ObservedObject(initialValue: AddressesViewModel(mainVM: mainVM))
+        self._presentAddressesView = presentAddressesView
+        self.mainVM = mainVM
+    }
     
     var body: some View {
         VStack {
             VStack {
                 ScrollView {
-                    ForEach(0..<8) { num in
-                        AddressCell(number: num)
+                    ForEach(vm.addresses) { address in                        
+                        AddressCell(mainAddress: $mainVM.address, address: address, settingsAction: {
+                            self.address = address
+                        })
                     }
-                    AddNewAddressButton(onTap: {
-                        isButtonPressed = true
-                    })
                 }
+                
+                Spacer()
+                
+                AddNewAddressButton(onTap: {
+                    isButtonPressed = true
+                })
             }
-//            .background(content: {
-//                Color.red
-//            })
             .padding(.vertical)
-            .padding(.bottom, 10)
+            .padding(.bottom, 15)
+            .fullScreenCover(item: $address, content: { address in
+                EditMapView(address: address, addressesVM: vm) { newAddress in
+                    mainVM.address = newAddress
+                    presentAddressesView = false
+                }
+            })
             .fullScreenCover(isPresented: $isButtonPressed) {
-                EditMapView(mainVM: MainViewModel())
+                EditMapView(address: Address(), addressesVM: vm) { newAddress in
+                    mainVM.address = newAddress
+                    presentAddressesView = false
+                }
             }
         }
     }
@@ -41,6 +63,6 @@ struct AddressesView: View {
 
 struct AddressesView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressesView()
+        AddressesView(presentAddressesView: .constant(true), mainVM: MainViewModel())
     }
 }

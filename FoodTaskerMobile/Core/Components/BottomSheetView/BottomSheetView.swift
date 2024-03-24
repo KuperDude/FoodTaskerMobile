@@ -12,9 +12,11 @@ struct BottomSheetView<Content: View>: View {
 
     let maxHeight: CGFloat
     let minHeight: CGFloat
+    let offsetY: CGFloat
     let content: Content
+    let isAllowPresent: Bool
 
-    init(isOpen: Binding<Bool>, maxHeight: CGFloat, minHeight: CGFloat?, @ViewBuilder content: () -> Content) {
+    init(isOpen: Binding<Bool>, maxHeight: CGFloat, minHeight: CGFloat?, offsetY: CGFloat, isAllowPresent: Bool, @ViewBuilder content: () -> Content) {
         self.maxHeight = maxHeight
         if let minHeight = minHeight {
             self.minHeight = minHeight
@@ -23,10 +25,11 @@ struct BottomSheetView<Content: View>: View {
         }
         self.content = content()
         self._isOpen = isOpen
+        self.offsetY = offsetY
+        self.isAllowPresent = isAllowPresent
     }
     
     private var offset: CGFloat {
-        print(minHeight)
         return isOpen ? minHeight : maxHeight
     }
 
@@ -51,18 +54,32 @@ struct BottomSheetView<Content: View>: View {
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10)
             .frame(height: geometry.size.height, alignment: .bottom)
-            .offset(y: max(self.offset + self.translation, 0))
+            .offset(y: max(self.offset + self.translation, isOpen ? 0 : offsetY))
+//            .offset(y: isOpen ? 0 : 180)
             .animation(.interactiveSpring(), value: isOpen)
             .animation(.interactiveSpring(), value: translation)
             .gesture(
                 DragGesture().updating(self.$translation) { value, state, _ in
-                    state = value.translation.height
-                }.onEnded { value in
-                    let snapDistance = self.maxHeight * 0.3
-                    guard abs(value.translation.height) > snapDistance else {
-                        return
+                    if isAllowPresent {
+                        state = value.translation.height
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OffsetYChange"), object:
+                                                            CGFloat(isOpen ?
+                                                                    min(2*(maxHeight - offsetY), max(self.translation + maxHeight - offsetY, maxHeight - offsetY)) :
+                                                                        min(0, max(offsetY - maxHeight, self.translation))
+                                                                   )
+                        )
                     }
-                    self.isOpen = value.translation.height < 0
+                }.onEnded { value in
+                    if isAllowPresent {
+                        let snapDistance = self.maxHeight * 0.3
+                        guard abs(value.translation.height) > snapDistance else {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OffsetYChange"), object: CGFloat(isOpen ? maxHeight - offsetY : minHeight))
+                            return
+                        }
+                        self.isOpen = value.translation.height < 0
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OffsetYChange"), object: CGFloat(isOpen ? maxHeight - offsetY : minHeight))
+                    }
                 }
             )
         }
@@ -71,7 +88,7 @@ struct BottomSheetView<Content: View>: View {
 
 struct BottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(isOpen: .constant(true), maxHeight: 200, minHeight: 0, content: {
+        BottomSheetView(isOpen: .constant(true), maxHeight: 200, minHeight: 0, offsetY: .zero, isAllowPresent: true, content: {
             Text("hi hi hi")
         })
     }

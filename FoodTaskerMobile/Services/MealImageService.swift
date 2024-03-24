@@ -43,21 +43,14 @@ class MealImageService {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             self.image = UIImage(data: data)
+            
+            guard let downloadImage = image else { return }
+                    
+            fileManager.saveImage(image: downloadImage, imageName: self.imageName, folderName: self.folderName)
+            
         } catch {
             print(error.localizedDescription)
         }
-        
-//        imageSubscription = NetworkingManager.download(url: url)
-//            .tryMap({ data -> UIImage? in
-//                return UIImage(data: data)
-//            })
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveCompletion: NetworkingManager.handleCompletion) { [weak self] returnedImage in
-//                guard let self = self, let downloadImage = returnedImage else { return }
-//                self.image = downloadImage
-//                self.imageSubscription?.cancel()
-//                self.fileManager.saveImage(image: downloadImage, imageName: self.imageName, folderName: self.folderName)
-//            }
     }
 }
 

@@ -9,7 +9,16 @@ import SwiftUI
 
 struct SuccessPaymentView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image(systemName: "checkmark.circle.fill")
+                .resizable()
+                .frame(width: 200, height: 200)
+                .foregroundStyle(Color.theme.green)
+            Text("Оплата успешно прошла!")
+                .foregroundStyle(Color.theme.accent)
+                .font(.title)
+                .fontWidth(.compressed)
+        }
     }
 }
 

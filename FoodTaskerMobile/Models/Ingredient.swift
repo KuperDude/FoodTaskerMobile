@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct ResponseCode: Codable {
+    var code: Int
+}
+
 struct ResponseIngredient: Codable {
     var ingredients: [Ingredient]
 }

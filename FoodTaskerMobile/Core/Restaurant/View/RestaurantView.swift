@@ -10,7 +10,8 @@ import SwiftUI
 struct RestaurantView: View {
     @ObservedObject var mainVM: MainViewModel
     
-    @State private var pickerSection = 0
+    @State private var selectedIdMeal: Int?
+//    @State private var isNewSectionScroll: Bool = false
     
     @StateObject var vm = RestaurantViewModel()
 
@@ -28,12 +29,12 @@ struct RestaurantView: View {
             VStack {
                 topSector
                 
-                if mainVM.animateStatus.getCrossIdOrMinusOne == -1 {
+                if mainVM.animateStatus.getChevronIdOrMinusOne == -1 {
                     SearchBarView(searchText: $vm.searchText)
                 }
                 
-                if mainVM.animateStatus.getCrossIdOrMinusOne != -1 {
-                    if let meal = vm.getMeal(at: mainVM.animateStatus.getCrossIdOrMinusOne) {
+                if mainVM.animateStatus.getChevronIdOrMinusOne != -1 {
+                    if let meal = vm.getMeal(at: mainVM.animateStatus.getChevronIdOrMinusOne) {
                         MealDetail(meal: meal, mainVM: mainVM, namespace: namespace)
                             .transition(.move(edge: .trailing))
                     }
@@ -43,7 +44,6 @@ struct RestaurantView: View {
                 }
                 
                 if mainVM.animateStatus == .burger || mainVM.animateStatus == .cross {
-//                    restaurants
                     mealsAndMealDetail
                 }
                 
@@ -66,22 +66,19 @@ struct RestaurantView_Previews: PreviewProvider {
 extension RestaurantView {
     var topSector: some View {
         HStack {
-            MenuButtonView(mainVM: mainVM) {
-//                if mainVM.animateStatus == .chevron {
-//                    vm.selectedRestaurantId = nil
-//                }
-            }
+            MenuButtonView(mainVM: mainVM) {}
             
             Spacer()
             
-            if mainVM.animateStatus.getCrossIdOrMinusOne != -1 {
-                title
-            }
-            
+//            if mainVM.animateStatus.getChevronIdOrMinusOne != -1 {
+//                title
+//            }
             
             iconCart
                 .overlay(content: {
-                    Badge(count: mainVM.order.quantity())
+                    if  mainVM.order.quantity() > 0 {
+                        Badge(count: mainVM.order.quantity())
+                    }
                 })
                 .onTapGesture {
                     mainVM.animateStatus = .burger
@@ -92,107 +89,30 @@ extension RestaurantView {
     }
     
     var mealsAndMealDetail: some View {
-        ScrollViewReader { geometry in
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 if !vm.mealsIsLoading {
-                    ForEach(vm.sections, id: \.self) { section in
-                        Text(section)
-                            .font(.title)
-                            .fontWidth(.condensed)
-                            .id(section)
-                            .frame(alignment: .leading)
-                        
-                        ForEach(vm.getMeals(at: section)) { meal in
-                            if meal.id != mainVM.animateStatus.getCrossIdOrMinusOne {
-                                MealCell(namespace: namespace, meal: meal)
-                                    .onTapGesture {
-                                        withAnimation(.easeIn) {
-                                            mainVM.animateStatus = .chevron(.mealDetails(id: meal.id))
-                                            geometry.scrollTo(meal.id, anchor: .top)
-                                        }
-                                    }
-                                    .padding(15)
-                                    .padding(.bottom, 5)
-                                    .id(meal.id)
-                            } else {
-//                                MealDetails(mainVM: mainVM, namespace: namespace, meal: meal)
-//                                    .id(meal.id)
-                            }
-                        }
-                    }
-//                    ForEach(vm.meals) { meal in
-//                        Text(meal.category.name)
-//                            .font(.title)
-//                            .fontWidth(.condensed)
-//                            .id(meal.category.name)
-//
-//                        if meal.id != mainVM.animateStatus.getCrossIdOrMinusOne {
-//                            MealCell(namespace: namespace, meal: meal)
-//                                .onTapGesture {
-//                                    withAnimation(.easeIn) {
-//                                        mainVM.animateStatus = .cross(.mealDetails(id: meal.id))
-//                                        geometry.scrollTo(meal.id, anchor: .top)
-//                                    }
-//                                }
-//                                .padding(15)
-//                                .padding(.bottom, 5)
-//                                .id(meal.id)
-//                        } else {
-//                            MealDetails(mainVM: mainVM, namespace: namespace, meal: meal)
-//                                .id(meal.id)
-//                        }
-//                    }
+                    mealsContent
                 } else {
-                    ForEach(0..<6) { _ in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.theme.background)
-                                .shadow(
-                                    color: Color.theme.accent.opacity(0.15),
-                                    radius: 5, x: 0, y: 0)
-                            
-                            ProgressView()
-                                
-                        }
-                        .frame(height: 160)
-                        .padding(15)
-                        .padding(.bottom, 5)
-                    }
+                    loadingContent
                 }
             }
             .onChange(of: vm.selectedSection) { selected in
-                withAnimation {
-                    geometry.scrollTo(selected, anchor: .top)
-                }
-            }
-        }
-        .transition(.move(edge: .leading))
-    }
-    
-    var restaurants: some View {
-        ScrollView(showsIndicators: false) {
-            ForEach(vm.restaurants) { restaurant in
-                RestaurantCell(restaurant: restaurant)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            mainVM.selectedRestaurantId = restaurant.id
-                            vm.selectedRestaurantId = restaurant.id
-                            //mainVM.animateStatus = .chevron
-                        }
+//                if !isNewSectionScroll {
+                    withAnimation {
+                        proxy.scrollTo(selected, anchor: .top)
                     }
-                    .padding(5)
-                    .padding(.bottom, 5)
+//                }
+            }
+            .onAppear {
+                guard let selectedIdMeal = selectedIdMeal else { return }
+                
+                proxy.scrollTo(selectedIdMeal, anchor: .center)
+                
+                self.selectedIdMeal = nil
             }
         }
         .transition(.move(edge: .leading))
-    }
-    
-    var title: some View {
-        Text(vm.getRestaurantName())
-            .frame(maxWidth: .infinity, alignment: .center)
-            .font(.system(size: 30))
-            .fontWeight(.semibold)
-            .foregroundColor(.theme.accent)
     }
     
     var iconCart: some View {
@@ -202,5 +122,50 @@ extension RestaurantView {
             .foregroundColor(.theme.accent)
             .frame(width: 35, height: 35)
             .padding()
+    }
+    
+    var loadingContent: some View {
+        ForEach(0..<6) { _ in
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.theme.background)
+                    .shadow(
+                        color: Color.theme.accent.opacity(0.15),
+                        radius: 5, x: 0, y: 0)
+                
+                ProgressView()
+                    
+            }
+            .frame(height: 160)
+            .padding(15)
+            .padding(.bottom, 7.5)
+        }
+    }
+    
+    var mealsContent: some View {
+        ForEach(vm.sections, id: \.self) { section in
+            Text(section)
+                .frame(maxWidth: .infinity)
+                .fontWidth(.compressed)
+                .font(.title)
+                .fontWidth(.condensed)
+                .id(section)
+            
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 0, content: {
+                ForEach(vm.getMeals(at: section)) { meal in
+                        MealCell(namespace: namespace, meal: meal, mainVM: mainVM)
+                            .onTapGesture {
+                                withAnimation(.easeIn) {
+                                    mainVM.animateStatus = .chevron(.mealDetails(id: meal.id))
+                                    selectedIdMeal = meal.id
+                                }
+                            }
+                            .padding(.bottom, 5)
+                            .id(meal.id)
+                }
+            })
+            .padding(.horizontal, 5)
+            
+        }
     }
 }

@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct ForgotPasswordView: View {
+    
+    @StateObject var vm = ForgotPasswordViewModel()
+    @State private var isOpenKeyboard = false
+    @Binding var isOpen: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ForgotPasswordSegment(vm: vm)
+            .presentAsBottomSheet($isOpen, maxHeight: isOpenKeyboard ? 550 : 350)
+            .onChange(of: vm.state) { state in
+                isOpen = state != .closed ? true : false
+            }
+            .onChange(of: isOpen, perform: { isOpen in
+                if isOpen && vm.state == .closed {
+                    vm.changeState()
+                }
+                if !isOpen {
+                    vm.close()
+                }
+            })
+            .onKeyboardAppear { bool in
+                withAnimation(.spring) {
+                    isOpenKeyboard = bool
+                }
+            }
     }
 }
 
 #Preview {
-    ForgotPasswordView()
+    ForgotPasswordView(isOpen: .constant(true))
 }

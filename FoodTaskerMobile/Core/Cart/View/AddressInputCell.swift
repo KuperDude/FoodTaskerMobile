@@ -11,6 +11,7 @@ struct AddressInputCell: View {
     let title: String
     @Binding var text: String
     let lineLimit: Int?
+    @FocusState var focusedState
     
     init(title: String, lineLimit: Int? = nil, text: Binding<String>) {
         self.title = title
@@ -29,19 +30,21 @@ struct AddressInputCell: View {
                 Text(title)
                     .font(.caption)
                     .fontWidth(.compressed)
-                if let lineLimit = lineLimit {
-                    TextField("", text: $text, axis: .vertical)
-                        .lineLimit(lineLimit)
-                        .background(.clear)
-                } else {
-                    TextField("", text: $text)
-                        .background(.clear)
-                }
+              
+                TextField("", text: $text, axis: lineLimit == nil ? .horizontal : .vertical)
+                    .lineLimit(lineLimit == nil ? 1 : lineLimit!)
+                    .disableAutocorrection(true)
+                    .keyboardType(.alphabet)
+                    .focused($focusedState)
+                    .background(.clear)
                 
                 Spacer()
             }
             .padding(.horizontal, 5)
             .padding(.top, 5)
+        }
+        .onTapGesture {
+            focusedState.toggle()
         }
     }
 }

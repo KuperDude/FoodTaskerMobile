@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct DeliveryProgressAnimatedView: View {
+    
+    @State var animate: Bool = false
+    var status: DeliveryViewModel.Status
+    var currentStatus: DeliveryViewModel.Status
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Rectangle()
+                    .fill(Color.theme.green)
+                    .frame(height: calculateProgressHeihgt())
+                    .animation(Animation.easeOut(duration: 3).repeatForever(autoreverses: true), value: animate)
+                    .frame(width: 5)
+                    .padding(.leading, 13)
+                Spacer()
+            }
+            Spacer(minLength: 0)
+        }
+        .frame(height: 30)
+    }
+    
+    func calculateProgressHeihgt() -> CGFloat {
+        if currentStatus.priority > status.priority {
+            return 30
+        } else {
+            return 0
+        }
     }
 }
 
 #Preview {
-    DeliveryProgressAnimatedView()
+    DeliveryProgressAnimatedView(status: .delivered, currentStatus: .delivered)
 }

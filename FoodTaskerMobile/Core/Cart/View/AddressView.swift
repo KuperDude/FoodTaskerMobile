@@ -10,9 +10,12 @@ import SwiftUI
 struct AddressView: View {
     
     @State private var gridSize: CGSize = .zero
-    @Binding var isOn: Bool
+    @State var isOn: Bool = false
     @Binding var address: Address
     
+    init(address: Binding<Address>) {
+        self._address = address
+    }
     var body: some View {
         VStack(spacing: 15) {
             addressText
@@ -90,7 +93,7 @@ struct AddressView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressView(isOn: .constant(false), address: .constant(Address(street: "Ул. Ташкенская", house: "32/156 ст. 1", floor: "", apartamentNumber: "", intercom: "", entrance: "", comment: "")))
+        AddressView(address: .constant(Address(street: "Ул. Ташкенская", house: "32/156 ст. 1", floor: "", apartmentNumber: "", intercom: "", entrance: "", comment: "")))
     }
 }
 

@@ -1,0 +1,104 @@
+{
+  "pins" : [
+    {
+      "identity" : "acquiringsdk_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tinkoff/AcquiringSdk_IOS.git",
+      "state" : {
+        "revision" : "99cb8dab4daf05c3aa7b91cf1b189bf2e947c2c5",
+        "version" : "2.19.0"
+      }
+    },
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
+      }
+    },
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS.git",
+      "state" : {
+        "revision" : "71cde449f13d453227e687458144bde372d30fc7",
+        "version" : "1.6.2"
+      }
+    },
+    {
+      "identity" : "googlesignin-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleSignIn-iOS",
+      "state" : {
+        "revision" : "7932d33686c1dc4d7df7a919aae47361d1cdfda4",
+        "version" : "7.0.0"
+      }
+    },
+    {
+      "identity" : "gtm-session-fetcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/gtm-session-fetcher.git",
+      "state" : {
+        "revision" : "115f75e43851774934d695449a4836123c3246e1",
+        "version" : "3.2.0"
+      }
+    },
+    {
+      "identity" : "gtmappauth",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GTMAppAuth.git",
+      "state" : {
+        "revision" : "cee3c709307912d040bd1e06ca919875a92339c6",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "a4622b4d6fdbe76cc5487bc27e84029abaf07217",
+        "version" : "4.0.1"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    },
+    {
+      "identity" : "vk-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/qe0/vk-ios-sdk.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "d58c64b962e880a8ba003550a01a36fd60c255db"
+      }
+    },
+    {
+      "identity" : "yandexmappackagewrapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vladimirgoncharov/YandexMapPackageWrapper",
+      "state" : {
+        "branch" : "main",
+        "revision" : "cad36aca6b2f16bfbd6a7d4b6f4dea18f38b552f"
+      }
+    },
+    {
+      "identity" : "yandexmapsmobilelite",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/c-villain/YandexMapsMobileLite",
+      "state" : {
+        "revision" : "aa7305b98cfa3c9668ddf96a2ed850783d6ef151",
+        "version" : "4.3.1"
+      }
+    }
+  ],
+  "version" : 2
+}

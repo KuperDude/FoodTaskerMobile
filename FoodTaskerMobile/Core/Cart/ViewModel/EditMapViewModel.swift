@@ -7,12 +7,17 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class EditMapViewModel: ObservableObject {
     @ObservedObject var mapVM: MapViewModel
+    @ObservedObject var addressesVM: AddressesViewModel
     
-    init(mainVM: MainViewModel) {
-        self._mapVM = ObservedObject(initialValue: MapViewModel(mainVM: mainVM))
+    var cancellables = Set<AnyCancellable>()
+    
+    init(address: Address, addressesVM: AddressesViewModel) {
+        self._addressesVM = ObservedObject(initialValue: addressesVM)
+        self._mapVM = ObservedObject(initialValue: MapViewModel(address: address))
     }
     
     func getBundleStatus() -> MapViewModel.BundleStatus {
@@ -28,5 +33,9 @@ class EditMapViewModel: ObservableObject {
     
     func moveToUserLocation() {
         mapVM.moveToUserLocation()
+    }
+    
+    func addAddress(_ address: Address) {
+        addressesVM.add(address)
     }
 }

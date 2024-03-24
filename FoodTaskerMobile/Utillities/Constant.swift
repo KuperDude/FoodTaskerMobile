@@ -9,7 +9,8 @@ import Foundation
 
 let BASE_URL = "http://192.168.0.101:8000/"
 //"http://192.168.1.236:8000/"
-let CLIENT_ID = "fIJ0FhOHz6GLA3SG04INvaKkUyTDXst4r4U0tixS"
+let CLIENT_ID_VK = "fIJ0FhOHz6GLA3SG04INvaKkUyTDXst4r4U0tixS"
+let CLIENT_ID_GOOGLE = "jAOu3Bd8Tb2vSWFqIO2Xvw3hmmgcci3XyKgS9eTJ"
 
 let USERTYPE_CUSTOMER = "customer"
 let USERTYPE_DRIVER = "driver"

@@ -14,7 +14,6 @@ class LocalFileManager {
     private init() { }
     
     func saveImage(image: UIImage, imageName: String, folderName: String) {
-        
         //create folder
         createFolderIfNeeded(folderName: folderName)
         

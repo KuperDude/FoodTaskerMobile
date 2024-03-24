@@ -10,6 +10,7 @@ import vk_ios_sdk
 //import Stripe
 import YandexMapsMobile
 import CoreLocation
+import GoogleSignIn
 
 @main
 struct FoodTaskerMobileApp: App {
@@ -20,6 +21,9 @@ struct FoodTaskerMobileApp: App {
         WindowGroup {
             ZStack {
                 LoginView(mainVM: mainVM)
+                    .onOpenURL { url in
+                        GIDSignIn.sharedInstance.handle(url)
+                    }
             }
         }
     }
@@ -30,7 +34,24 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            
+//        }
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        var handled: Bool
+
+          handled = GIDSignIn.sharedInstance.handle(url)
+          if handled {
+            return true
+          }
+
+          // Handle other custom URL types.
+
+          // If not handled by this app, return false.
+          return false
     }
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

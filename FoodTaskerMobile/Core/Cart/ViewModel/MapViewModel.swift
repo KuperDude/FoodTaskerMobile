@@ -13,7 +13,7 @@ import MapKit
 import SwiftUI
 
 class MapViewModel: NSObject, ObservableObject {
-    @ObservedObject var mainVM: MainViewModel
+    @Published var address: Address
     @Published var bundleStatus: BundleStatus = .scrolled
     private var userLocation: CLLocationCoordinate2D?
     private let manager = CLLocationManager()
@@ -22,7 +22,6 @@ class MapViewModel: NSObject, ObservableObject {
     
     var mapView = YMKMapView()
 
-    
 //    @Published var lastUserLocation: CLLocation? = nil
 //    lazy var map: YMKMap = {
 //        return mapView.mapWindow.map
@@ -30,14 +29,16 @@ class MapViewModel: NSObject, ObservableObject {
     
     var polygon: MKPolygon?
     
-    init(mainVM: MainViewModel) {
-        self.mainVM = mainVM
+    init(address: Address) {
+        
+        self.address = address
         super.init()
-        if CLLocationManager.locationServicesEnabled() {
+        convertAddress()
+        
+        //if CLLocationManager.locationServicesEnabled() {
             self.manager.delegate = self
-            self.manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            self.manager.startUpdatingLocation()
-        }
+            
+        //}
         addPolygon()
         addTapListener()
         mapView.mapWindow.map.isNightModeEnabled = true
@@ -47,7 +48,9 @@ class MapViewModel: NSObject, ObservableObject {
     }
 
     func addPolygon() {
-        let geojsonString = "{\"type\":\"FeatureCollection\",\"metadata\":{\"name\":\"Без названия\",\"creator\":\"Yandex Map Constructor\"},\"features\":[{\"type\":\"Feature\",\"id\":0,\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[37.35016124111914,55.772907721982065],[37.41607920986913,55.62322098770122],[37.60971324307228,55.5617840978521],[37.77862803799413,55.575012851911914],[37.86651866299414,55.67059353235243],[37.861025498931646,55.82396391666571],[37.716143296783194,55.90427974347761],[37.54860179287696,55.92741678867818],[37.37831370693946,55.87649698223065],[37.35016124111914,55.772907721982065]]]},\"properties\":{\"fill\":\"#ed4543\",\"fill_opacity\":0.6,\"stroke\":\"#ed4543\",\"stroke_width\":\"5\",\"stroke_opacity\":0.9}}]}"
+        let geojsonString = "{\"type\":\"FeatureCollection\",\"metadata\":{\"name\":\"Москва\",\"creator\":\"Yandex Map Constructor\"},\"features\":[{\"type\":\"Feature\",\"id\":0,\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[37.63726687841793,55.89912334681131],[37.611860994628735,55.90394535172936],[37.58645511083969,55.910502312491666],[37.565169100097485,55.910502312491666],[37.54765963964828,55.90876675475085],[37.53427005224592,55.907031119004],[37.51950717382797,55.902595251017445],[37.49410129003889,55.89121395544032],[37.48002505712875,55.887162176707015],[37.46354556494125,55.88291700045728],[37.443632845214694,55.88253105222963],[37.40449405126937,55.867089962688546],[37.39144778662093,55.84855251449343],[37.397627596191256,55.83889407557883],[37.39076114111312,55.814930746683935],[37.37084842138656,55.78940510305528],[37.36810183935531,55.76773379996804],[37.37565493994129,55.73055483055526],[37.3866412680663,55.712727295675194],[37.40998721533191,55.69372810443015],[37.42028689794913,55.678987650728295],[37.43607974462882,55.65764289903481],[37.45942569189446,55.63900519561456],[37.493071321777265,55.61103193451983],[37.5116107504882,55.596648986179034],[37.53427005224602,55.591205408245486],[37.56379580908194,55.583427552681684],[37.59400821142569,55.57681515835585],[37.62696719580072,55.57487012363236],[37.65786624365228,55.57292499214824],[37.68052554541008,55.57292499214824],[37.694258455566334,55.578760096321346],[37.71691775732413,55.58770556479417],[37.73957705908196,55.5950937555855],[37.79519534521481,55.62502107135412],[37.82128787451169,55.64172374889476],[37.84051394873043,55.653372545483585],[37.83982730322262,55.663465354598465],[37.83364749365229,55.680927502942666],[37.82815432958981,55.69566722242853],[37.83364749365229,55.70497364415119],[37.839140657714815,55.722029637926035],[37.84188723974606,55.74643770204049],[37.84257388525387,55.77624896961986],[37.839140657714815,55.80565063890641],[37.838454012207,55.821116250887535],[37.827467684081995,55.83039265581516],[37.73271060400387,55.87789937287051],[37.69975161962887,55.8937219865791],[37.670912508300745,55.89449365570387],[37.63726687841793,55.89912334681131]]]},\"properties\":{\"fill\":\"#ed4543\",\"fill_opacity\":0.6,\"stroke\":\"#ed4543\",\"stroke_width\":\"5\",\"stroke_opacity\":0.9}}]}"
+        
+        // Декодируем GeoJSON-строку в структуру FeatureCollection
         // Декодируем GeoJSON-строку в структуру FeatureCollection
         guard let data = geojsonString.data(using: .utf8) else { return }
         let decoder = JSONDecoder()
@@ -68,10 +71,9 @@ class MapViewModel: NSObject, ObservableObject {
 
                 // Создаем полигон на карте
                 let mapPolygon = mapView.mapWindow.map.mapObjects.addPolygon(with: YMKPolygon(outerRing: YMKLinearRing(points: coordinates), innerRings: []))
-                mapPolygon.strokeColor = UIColor(hex: feature.properties.fill)
+                mapPolygon.fillColor = UIColor(_colorLiteralRed: 1, green: 0, blue: 0, alpha: 0.05)
                 mapPolygon.strokeColor = UIColor(hex: feature.properties.stroke)
                 mapPolygon.strokeWidth = Float(Double(feature.properties.stroke_width)!)
-
             }
         } catch {
             print("Ошибка при декодировании GeoJSON: \(error)")
@@ -149,7 +151,7 @@ class MapViewModel: NSObject, ObservableObject {
     }
     
     func convertAddress() {
-        let strAddress = mainVM.address.convertToString()
+        let strAddress = address.convertToString()
         if !strAddress.isEmpty {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(strAddress) { [weak self] placemarks, error in
@@ -159,35 +161,35 @@ class MapViewModel: NSObject, ObservableObject {
                 
                 if let placemark = placemarks?.first, let coordinates: CLLocationCoordinate2D = placemark.location?.coordinate {
                     self?.mapView.mapWindow.map.move(with:
-                        YMKCameraPosition(target: YMKPoint(latitude: coordinates.latitude, longitude: coordinates.longitude), zoom: 14, azimuth: 0, tilt: 0))
+                        YMKCameraPosition(target: YMKPoint(latitude: coordinates.latitude, longitude: coordinates.longitude), zoom: 17, azimuth: 0, tilt: 0))
                     
 //                    locationManager.stopUpdatingLocation()
                     
-                    if self?.polygon?.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)) ?? false {
-                        
-                        guard let mapObjects = self?.mapView.mapWindow.map.mapObjects else { return }
-                        
-                        let placemark = mapObjects.addPlacemark(with: YMKPoint(latitude: coordinates.latitude, longitude: coordinates.longitude))
-                        placemark.opacity = 1
-                        placemark.isDraggable = false
-                        placemark.setIconWith(UIImage(named: "pin_customer")!,
-                                               style: YMKIconStyle(
-                            anchor: CGPoint(x: 0, y: 0) as NSValue,
-                            rotationType: YMKRotationType.rotate.rawValue as NSNumber,
-                            zIndex: 0,
-                            flat: true,
-                            visible: true,
-                            scale: 1.5,
-                            tappableArea: nil))
+//                    if self?.polygon?.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)) ?? false {
+//                        
+//                        guard let mapObjects = self?.mapView.mapWindow.map.mapObjects else { return }
+//                        
+//                        let placemark = mapObjects.addPlacemark(with: YMKPoint(latitude: coordinates.latitude, longitude: coordinates.longitude))
+//                        placemark.opacity = 1
+//                        placemark.isDraggable = false
+//                        placemark.setIconWith(UIImage(named: "pin_customer")!,
+//                                               style: YMKIconStyle(
+//                            anchor: CGPoint(x: 0, y: 0) as NSValue,
+//                            rotationType: YMKRotationType.rotate.rawValue as NSNumber,
+//                            zIndex: 0,
+//                            flat: true,
+//                            visible: true,
+//                            scale: 1.5,
+//                            tappableArea: nil))
                         
 //                        let metadata = geoObj.metadataContainer.getItemOf(YMKGeoObjectSelectionMetadata.self)
 //                        if let selectionMetadata = metadata as? YMKGeoObjectSelectionMetadata {
 //                            mapView.mapWindow.map.selectGeoObject(withObjectId: selectionMetadata.id, layerId: selectionMetadata.layerId)
 ////                        }
-                        ///                        ///
-                    } else {
-                        print("NO ITS OUTSIDE OF POLYGON")
-                    }
+//                        /                        ///
+//                    } else {
+//                        print("NO ITS OUTSIDE OF POLYGON")
+//                    }
                 }
             }
         }
@@ -199,11 +201,15 @@ extension MapViewModel: CLLocationManagerDelegate {
         
         guard let coordinate = locations.last?.coordinate else { return }
         userLocation = coordinate
-        
         if mapView.mapWindow.map.cameraPosition.target.longitude == 0 && mapView.mapWindow.map.cameraPosition.target.latitude == 0 {
             mapView.mapWindow.map.move(with:
                 YMKCameraPosition(target: YMKPoint(latitude: coordinate.latitude, longitude: coordinate.longitude), zoom: 17, azimuth: 0, tilt: 0))
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        manager.startUpdatingLocation()
     }
 }
 
@@ -219,11 +225,14 @@ extension MapViewModel: YMKLayersGeoObjectTapListener {
                 complition(nil)
                 return
             }
+            
+            print(placemark)
                 
                 // Use the placemark to extract the address
-            let address = self.mainVM.address.changeStreetAndHouse(street: "\(placemark.thoroughfare ?? "")", house: "\(placemark.subThoroughfare ?? "")")
+            var address = self.address.changeStreetAndHouse(street: "\(placemark.thoroughfare ?? "")", house: "\(placemark.subThoroughfare ?? "")")
+//            address.id = self.address.id
                 
-            //self.address = address
+//            self.address = address
 //            print(address)
             complition(address)
         }
@@ -237,16 +246,7 @@ extension MapViewModel: YMKLayersGeoObjectTapListener {
         
         if polygon?.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: point.latitude, longitude: point.longitude)) ?? false {
             
-            let mapObjects = mapView.mapWindow.map.mapObjects
-            
-            mapView.mapWindow.map.move(
-                with: YMKCameraPosition(
-                    target: point,
-                    zoom: mapView.mapWindow.map.cameraPosition.zoom,
-                    azimuth: mapView.mapWindow.map.cameraPosition.azimuth,
-                    tilt: mapView.mapWindow.map.cameraPosition.tilt
-                ), animationType: YMKAnimation(type: .linear, duration: 0.3)
-            )
+            print(mapView.mapWindow.map.mapObjects)
             
 //            let placemark = mapObjects.addPlacemark(with: point)
 //            placemark.opacity = 1
@@ -260,17 +260,27 @@ extension MapViewModel: YMKLayersGeoObjectTapListener {
 //                visible: true,
 //                scale: 1.5,
 //                tappableArea: nil))
-            
             let metadata = geoObj.metadataContainer.getItemOf(YMKGeoObjectSelectionMetadata.self)
             if let selectionMetadata = metadata as? YMKGeoObjectSelectionMetadata {
-                print(selectionMetadata)
-                mapView.mapWindow.map.selectGeoObject(withObjectId: selectionMetadata.id, layerId: selectionMetadata.layerId)
+                print(selectionMetadata.id)
+                print(selectionMetadata.layerId)
+                if selectionMetadata.id.count > 6 {
+                    mapView.mapWindow.map.move(
+                        with: YMKCameraPosition(
+                            target: point,
+                            zoom: mapView.mapWindow.map.cameraPosition.zoom,
+                            azimuth: mapView.mapWindow.map.cameraPosition.azimuth,
+                            tilt: mapView.mapWindow.map.cameraPosition.tilt
+                        ), animationType: YMKAnimation(type: .linear, duration: 0.3)
+                    )
+                    mapView.mapWindow.map.selectGeoObject(withObjectId: selectionMetadata.id, layerId: selectionMetadata.layerId)
+                }
                 convertCoordinateToAdress(point) { [weak self] address in
                     guard let address = address else { return }
                     
                     self?.bundleStatus = address.isStreetAndHouseFill ? .allowed : .unknown
-                    
-                    self?.mainVM.address = address
+
+                    self?.address = address
                 }
                 
                 return true
@@ -315,24 +325,41 @@ extension MapViewModel: YMKLayersGeoObjectTapListener {
 }
 
 extension MapViewModel: YMKMapCameraListener {
-    func onCameraPositionChanged(with map: YMKMap, cameraPosition: YMKCameraPosition, cameraUpdateReason: YMKCameraUpdateReason, finished: Bool) {        
+    func onCameraPositionChanged(with map: YMKMap, cameraPosition: YMKCameraPosition, cameraUpdateReason: YMKCameraUpdateReason, finished: Bool) {
         if finished {
             let point = YMKPoint(latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude)
             convertCoordinateToAdress(point) { [weak self] address in
                 guard let address = address else { return }
                 
                 if self?.polygon?.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: point.latitude, longitude: point.longitude)) ?? false {
-                    self?.bundleStatus = address.isStreetAndHouseFill ? .allowed : .unknown
+                    if address.isStreetAndHouseFill {
+                        
+                        self?.bundleStatus = .allowed
+                        
+                        guard self?.address != address else { return }
+                        
+                        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                        print(address)
+                        
+                        self?.address = address
+                        
+                    } else {
+                        self?.bundleStatus = .unknown
+                        guard let address = self?.address.changeStreetAndHouse(street: "", house: "") else { return }
+                        self?.address = address
+                    }
                 } else {
-                    self?.bundleStatus = (cameraPosition.target.latitude == 0 && cameraPosition.target.longitude == 0) ? .scrolled : .forbidden
+                    self?.bundleStatus = address.isStreetAndHouseFill ? .forbidden : .unknown
+                    guard let address = self?.address.changeStreetAndHouse(street: "", house: "") else { return }
+                    self?.address = address
                 }
-                
-                guard self?.mainVM.address != address else { return }
-                
-                self?.mainVM.address = address
             }
         } else {
-            bundleStatus = .scrolled
+            
+            if self.bundleStatus != .scrolled {
+                self.bundleStatus = .scrolled
+                self.address = self.address.changeStreetAndHouse(street: "", house: "")
+            }
         }
     }
     
