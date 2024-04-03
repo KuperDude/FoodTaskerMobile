@@ -45,6 +45,14 @@ extension MenuView {
     var userData: some View {
         HStack(spacing: 20) {
             AsyncImage(url: URL(string: mainVM.user?.imageURL ?? ""))
+                .frame(width: 50, height: 50)
+                
+                .overlay {
+                    if mainVM.user?.imageURL == nil || mainVM.user?.imageURL == "" {
+                        Image(systemName: "person.fill")
+                            .resizable()
+                    }
+                }
                 .clipShape(Circle())
             
             Text((mainVM.user?.fullName ?? "<<ERROR>>"))
@@ -76,6 +84,7 @@ extension MenuView {
                         mainVM.user = nil
                         mainVM.currentCategory = .menu
                         mainVM.animateStatus = .burger
+                        mainVM.order = []
                         return
                     }
                     

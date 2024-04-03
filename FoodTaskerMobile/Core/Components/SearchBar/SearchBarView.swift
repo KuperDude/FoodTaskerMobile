@@ -24,7 +24,7 @@ struct SearchBarView: View {
             TextField("Искать по названию...", text: $searchText)
                 .foregroundColor(.theme.accent)
                 .disableAutocorrection(true)
-                .keyboardType(.alphabet)
+                .keyboardType(.default)
                 .focused($focusedState)
                 .overlay(
                     Image(systemName: "xmark.circle.fill")

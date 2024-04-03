@@ -12,7 +12,15 @@ struct SendCodeOnMailView: View {
     @State private var isOpenKeyboard = false
     
     @Binding var isOpen: Bool
-    @Binding var code: String
+    @Binding var code: Int?
+    
+    @State var internalCode: String = ""
+    
+    @State var noEqualCodeAlert = false
+    @State var noExistCodeAlert = false
+    
+    var resendCode: () -> Void
+    var completion: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,11 +37,21 @@ struct SendCodeOnMailView: View {
                 isOpenKeyboard = bool
             }
         }
+        .alert("Код не совпадает", isPresented: $noEqualCodeAlert) {
+            Button("OK", role: .cancel) {
+                noEqualCodeAlert = false
+            }
+        }
+        .alert("Проблемы с приходом кода", isPresented: $noExistCodeAlert) {
+            Button("OK", role: .cancel) {
+                noExistCodeAlert = false
+            }
+        }
     }
 }
 
 #Preview {
-    SendCodeOnMailView(isOpen: .constant(true), code: .constant(""))
+    SendCodeOnMailView(isOpen: .constant(true), code: .constant(123), resendCode: {}, completion: {})
 }
 
 
@@ -46,14 +64,29 @@ extension SendCodeOnMailView {
                     .padding(.leading)
                 Spacer()
             }
-            CodeTextFields(code: $code)
+            CodeTextFields(code: $internalCode)
             
-            TimerView(action: {})
+            TimerView(action: resendCode)
             
             Spacer()
             
             ForgotPasswordBottomButton(title: "Подтвердить") {
-                //vm.codeButtonAction()
+                guard 
+                    let code = code,
+                    let internalCode = Int(internalCode)
+                else {                    
+                    noExistCodeAlert = true
+                    return
+                }
+                
+                if code == internalCode {
+                    self.internalCode = ""
+                    self.code = nil
+                    completion()
+                } else {
+                    noEqualCodeAlert = true
+                }
+                
             }
         }
         .frame(height: 230)

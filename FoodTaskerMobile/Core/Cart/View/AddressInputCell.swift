@@ -34,7 +34,7 @@ struct AddressInputCell: View {
                 TextField("", text: $text, axis: lineLimit == nil ? .horizontal : .vertical)
                     .lineLimit(lineLimit == nil ? 1 : lineLimit!)
                     .disableAutocorrection(true)
-                    .keyboardType(.alphabet)
+                    .keyboardType(.default)
                     .focused($focusedState)
                     .background(.clear)
                 

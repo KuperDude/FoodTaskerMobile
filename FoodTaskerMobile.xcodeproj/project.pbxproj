@@ -69,7 +69,7 @@
 		F8A62AD72A640D930038375E /* YandexMapPackageWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = F8A62AD62A640D930038375E /* YandexMapPackageWrapper */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63300294B88070080DAE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632FF294B88070080DAE8 /* Assets.xcassets */; };
-		F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */; };
+		F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */; };
 		F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63304294B88400080DAE8 /* UIApplication.swift */; };
 		F8A63307294B88400080DAE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63305294B88400080DAE8 /* Color.swift */; };
 		F8A63324294B88480080DAE8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6330B294B88480080DAE8 /* HomeView.swift */; };
@@ -207,7 +207,7 @@
 		F8A5C25429507DE5008AB0E5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A632FF294B88070080DAE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../FoodTaskerMobileApp/FoodTaskerMobileApp/Assets.xcassets; sourceTree = "<group>"; };
-		F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileApp.swift; sourceTree = "<group>"; };
+		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		F8A63305294B88400080DAE8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F8A6330B294B88480080DAE8 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -506,7 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				F8A0921C294F5C95008960B1 /* Info.plist */,
-				F8A63301294B881C0080DAE8 /* FoodTaskerMobileApp.swift */,
+				F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */,
 				F8A63303294B88400080DAE8 /* Extensions */,
 				F8A2F9EC295DB51E00B37C4A /* Utillities */,
 				F8A5C25329507DCF008AB0E5 /* Services */,
@@ -956,7 +956,7 @@
 				F8A8581F2A35ED8400AC518C /* IngredientsService.swift in Sources */,
 				F8A6CCA82A6E4FAC00C8AD55 /* CDeliveryCell.swift in Sources */,
 				F8A0653C2967261100ECF9C0 /* OrderDetails.swift in Sources */,
-				F8A63302294B881C0080DAE8 /* FoodTaskerMobileApp.swift in Sources */,
+				F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */,
 				F84AB7B32B9DFD1300F3761B /* DeliveryAnimationView.swift in Sources */,
 				F8A63307294B88400080DAE8 /* Color.swift in Sources */,
 				F8A706352A1F77F700B9EE51 /* CompositionViewModel.swift in Sources */,
@@ -1121,6 +1121,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StreetFood;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1157,6 +1158,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StreetFood;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

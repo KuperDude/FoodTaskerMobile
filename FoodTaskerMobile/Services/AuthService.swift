@@ -53,15 +53,96 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
                 default: break
                 }
             } receiveValue: { [weak self] response in
-                self?.user = response.users.first
+                self?.user = response.users.first?.convertToUser()
             }
     }
     
-    func login(mail: String) {
-        APIManager.instance.login(mail: mail) { result in
+    func sendCode(mail: String, completion: @escaping (_ code: Int?, _ error: String?) -> Void) {
+        APIManager.instance.sendCode(mail: mail) { result in
             switch result {
-            case .success(let code): print("---\(code)---")
+            case .success(let code): completion(code, nil)
+            case .failure(let error): completion(nil, (error as? StringError)?.description)
+            }
+        }
+    }
+    
+    func resetPasswordSendCode(mail: String, completion: @escaping (_ code: Int?, _ error: String?) -> Void) {
+        APIManager.instance.sendCode(mail: mail, isResetPassword: true) { result in
+            switch result {
+            case .success(let code): completion(code, nil)
+            case .failure(let error): completion(nil, (error as? StringError)?.description)
+            }
+        }
+    }
+    
+    func register(username: String, mail: String, password: String, completion: @escaping (_ error: String?) -> Void) {
+        APIManager.instance.register(username: username, mail: mail, password: password) { [weak self] result in
+            switch result {
+            case .success(let bool): 
+                if bool {
+                    self?.login(mail: mail, password: password, completion: completion)
+                }
             case .failure(_): break
+            }
+        }
+    }
+    func login(mail: String, password: String, completion: @escaping (_ error: String?) -> Void) {
+        APIManager.instance.login(mail: mail, password: password) { [weak self] result in
+            switch result {
+            case .success(let resUser): 
+                self?.user = resUser.convertToUser()
+                completion(nil)
+            case .failure(let error): completion((error as? StringError)?.description)
+            }
+        }
+    }
+    
+    func resetPassword(mail: String, password: String, completion: @escaping (Bool, _ error: String?) -> Void) {
+        APIManager.instance.resetPassword(mail: mail, password: password) { result in
+            switch result {
+            case .success(let bool): completion(bool, nil)
+            case .failure(let error): completion(false, (error as? StringError)?.description)
+            }
+        }
+    }
+    
+    func alreadyLoginSession(method: RegistrationMethod) {
+        switch method {
+        case .vk:
+            let scope = ["wall", "photos"]
+            
+            VKSdk.wakeUpSession(scope) { (state, error) in
+                if state == .authorized {
+                    print("VKAuthorizationState.authorized")
+                    APIManager.instance.login(method: .vk, userType: USERTYPE_CUSTOMER) { [weak self] error in
+                        if error == nil {
+                            self?.addSubscriber()
+                        } else {
+                            print(error)
+                        }
+                    }
+                } else {
+                    print("Error with auth")
+                    //                delegate?.authServiceDidSignInFail()
+                }
+            }
+            
+        case.google:
+            GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                if error == nil && user != nil {
+                    print("GoogleAuthorizationState.authorized")
+                    APIManager.instance.login(method: .google, userType: USERTYPE_CUSTOMER) { [weak self] error in
+                        guard
+                            let id = user?.userID,
+                            let profile = user?.profile,
+                            let imageURL = profile.imageURL(withDimension: 50)?.absoluteString
+                        else {
+                            return
+                        }
+                        
+                        self?.user = User(id: id, firstName: profile.name, lastName: "", imageURL: imageURL)
+                    }
+                }
             }
         }
     }
@@ -112,7 +193,7 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
                                     return
                                 }
                                 
-                                self?.user = User(id: 123, firstName: profile.name, lastName: "", imageURL: imageURL)
+                                self?.user = User(id: id, firstName: profile.name, lastName: "", imageURL: imageURL)
                                 
                             } else {
                                 print(error)
@@ -127,10 +208,11 @@ final class AuthService: NSObject, VKSdkDelegate, ObservableObject {
                                 let id = user?.userID,
                                 let profile = user?.profile,
                                 let imageURL = profile.imageURL(withDimension: 50)?.absoluteString
-                            else {
+                            else {                                     
                                 return
                             }
-                            self?.user = User(id: 123, firstName: profile.name, lastName: "", imageURL: imageURL)
+                            
+                            self?.user = User(id: id, firstName: profile.name, lastName: "", imageURL: imageURL)
                             
                         } else {
                             print(error)

@@ -38,7 +38,7 @@ struct ForgotPasswordSegment: View {
             guard let _ = status else { return }
             isShowAlert = true
         })
-        .alert(vm.alertStatus?.rawValue ?? "", isPresented: $isShowAlert) {
+        .alert(vm.errorText(vm.alertStatus) ?? "", isPresented: $isShowAlert) {
             Button("OK", role: .cancel) {
                 vm.alertStatus = nil
             }
@@ -62,12 +62,11 @@ extension ForgotPasswordSegment {
             }
             TextField("Почта", text: $vm.mail)
                 .textFieldStyle(text: $vm.mail)
-                .keyboardType(.emailAddress)
             
             Spacer()
             
             ForgotPasswordBottomButton(title: "Отправить код") {
-                vm.mailButtonAction()
+                vm.sendCode()
             }
         }
     }
@@ -80,9 +79,9 @@ extension ForgotPasswordSegment {
                     .padding(.leading)
                 Spacer()
             }
-            CodeTextFields(code: $vm.code)
+            CodeTextFields(code: $vm.internalCode)
             
-            TimerView(action: {})
+            TimerView(action: { vm.sendCode() })
             
             Spacer()
             

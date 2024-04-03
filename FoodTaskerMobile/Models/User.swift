@@ -8,15 +8,33 @@
 import SwiftUI
 
 struct ResponseUser: Codable {
-    var users: [User]
+    var users: [ResUser]
     
     private enum CodingKeys: String, CodingKey {
         case users = "response"
     }
 }
 
-struct User: Codable, Identifiable, Equatable {
+struct ResUser: Codable, Identifiable, Equatable {
     var id: Int
+    var firstName: String
+    var lastName: String
+    var imageURL: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case imageURL = "photo_50"
+    }
+    
+    func convertToUser() -> User {
+        User(id: String(self.id), firstName: self.firstName, lastName: self.lastName, imageURL: self.imageURL)
+    }
+}
+
+struct User: Codable, Identifiable, Equatable {
+    var id: String
     var firstName: String
     var lastName: String
     var imageURL: String
@@ -30,6 +48,23 @@ struct User: Codable, Identifiable, Equatable {
     
     var fullName: String {
         return firstName + " " + lastName
+    }
+}
+
+struct MailResponseUser: Codable, Equatable {
+    var user: MailUser
+    
+    private enum CodingKeys: String, CodingKey {
+        case user = "user"
+    }
+}
+
+struct MailUser: Codable, Identifiable, Equatable {
+    var id: Int
+    var username: String
+
+    func convertToUser() -> User {
+        User(id: String(self.id), firstName: self.username, lastName: "", imageURL: "")
     }
 }
 

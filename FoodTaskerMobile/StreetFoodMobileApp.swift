@@ -13,7 +13,7 @@ import CoreLocation
 import GoogleSignIn
 
 @main
-struct FoodTaskerMobileApp: App {
+struct StreetFoodMobileApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var mainVM = MainViewModel()
     

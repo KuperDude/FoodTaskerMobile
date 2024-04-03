@@ -125,8 +125,8 @@ struct CustomTextField: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.theme.accent)
+            .keyboardType(.default)
             .disableAutocorrection(true)
-            .keyboardType(.alphabet)
             .focused($focusedState)
             .overlay(
                 Image(systemName: "xmark.circle.fill")
@@ -136,7 +136,6 @@ struct CustomTextField: ViewModifier {
                     .opacity(text.isEmpty ? 0.0 : 1.0)
                     .onTapGesture {
                         focusedState = false
-//                            UIApplication.shared.endEditing()
                         text = ""
                     }
                 , alignment: .trailing

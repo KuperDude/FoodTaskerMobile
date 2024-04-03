@@ -8,17 +8,24 @@
 import Foundation
 
 class ForgotPasswordViewModel: ObservableObject {
+    var authService: AuthService
     
     @Published var mail: String = ""
     
-    @Published var code: String = ""
+    @Published var code: Int?
+    @Published var internalCode: String = ""
     
     @Published var password1: String = ""
     @Published var password2: String = ""
     
     @Published var alertStatus: AlertStatus?
+    @Published var customErrorDescription: String?
     
     @Published var state: State = .mail
+    
+    init() {
+        self.authService = AuthService.instance
+    }
     
     enum State: Int {
         case closed = 0
@@ -40,7 +47,19 @@ class ForgotPasswordViewModel: ObservableObject {
     
     enum AlertStatus: String {
         case noEqualPassword = "Пароли не совпадают!"
-        case smallPassword   = "Пароль должен содержать не менее 8 символов"
+        case smallPassword   = "Пароль должен содержать не менее 8 символов!"
+        case noEqualCode     = "Код не совпадает!"
+        case noExistCode     = "Проблемы с приходом кода!"
+        case noExistMail     = "Данной почты не существует!"
+        case custom = ""
+    }
+    
+    func errorText(_ status: AlertStatus?) -> String? {
+        guard let status = status else { return nil }
+        switch status {
+        case .custom: return customErrorDescription
+        default: return status.rawValue
+        }
     }
     
     //MARK: - USER INTENT(S)
@@ -49,19 +68,47 @@ class ForgotPasswordViewModel: ObservableObject {
     }
     func close() {
         mail = ""
-        code = ""
+        code = nil
+        internalCode = ""
         password1 = ""
         password2 = ""
         state = .closed
     }
     
     
-    func mailButtonAction() {
-        changeState()
+    func sendCode() {
+        authService.resetPasswordSendCode(mail: mail) { [weak self] code, error in
+            if error != nil {
+                self?.customErrorDescription = error
+                self?.alertStatus = .custom
+                return
+            } else {
+                guard let code = code else {
+                    return
+                }
+                self?.code = code
+            }
+            self?.changeState()
+        }
     }
     
     func codeButtonAction() {
-        changeState()
+        
+        guard
+            let code = code,
+            let internalCode = Int(internalCode)
+        else {
+            alertStatus = .noExistCode
+            return
+        }
+        
+        if code == internalCode {
+            self.internalCode = ""
+            self.code = nil
+            self.changeState()
+        } else {
+            alertStatus = .noEqualCode
+        }
     }
     
     func resetButtonAction() {
@@ -73,8 +120,11 @@ class ForgotPasswordViewModel: ObservableObject {
             alertStatus = .noEqualPassword
             return
         }
-        
-        changeState()
+        authService.resetPassword(mail: mail, password: password1) { [weak self] bool, error in
+            if bool {
+                self?.changeState()
+            }
+        }
     }
     
     func readyButtonAction() {

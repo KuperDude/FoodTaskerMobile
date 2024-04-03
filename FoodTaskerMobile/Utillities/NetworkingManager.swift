@@ -34,6 +34,7 @@ actor NetworkingManager {
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap({ try handleURLResponse(output: $0, url: url) })
             .retry(3)
+            .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
     

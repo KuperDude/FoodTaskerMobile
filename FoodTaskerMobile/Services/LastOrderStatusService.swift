@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class LastOrderStatusService {
     
-    @Published var status: DeliveryViewModel.Status = .processing
+    @Published var status: DeliveryViewModel.Status = .unknown
     
     private var lastOrderSubscription: AnyCancellable?
     

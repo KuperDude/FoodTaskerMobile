@@ -15,6 +15,7 @@ struct LoginView: View {
     @ObservedObject var vm: LoginViewModel
     
     @State var isRegistration = false
+    @State var isShowAlert = false
     
     @State var pressedForgotPassword = false
     @State var pressedRegistration = false
@@ -67,7 +68,12 @@ struct LoginView: View {
             
             
             ForgotPasswordView(isOpen: $pressedForgotPassword)
-            SendCodeOnMailView(isOpen: $pressedRegistration, code: $vm.login)
+            SendCodeOnMailView(isOpen: $pressedRegistration, code: $vm.code) {
+                vm.sendCode()
+            } completion: {
+                vm.register()
+                pressedRegistration = false
+            }
             
         }
         .onChange(of: vm.user, perform: { user in
@@ -75,6 +81,23 @@ struct LoginView: View {
         })
         .fullScreenCover(item: $vm.user, content: { user in
             HomeView(mainVM: mainVM)
+        })
+        .onAppear {
+            vm.alreadyLoginSession(.vk)
+            vm.alreadyLoginSession(.google)
+        }
+        .onChange(of: vm.alertStatus, perform: { status in
+            guard let _ = status else { return }
+            isShowAlert = true
+        })
+        .alert(vm.errorText(vm.alertStatus) ?? "", isPresented: $isShowAlert) {
+            Button("OK", role: .cancel) {
+                vm.alertStatus = nil
+            }
+        }
+        .onReceive(vm.$code, perform: { code in
+            guard let _ = code else { return }
+            pressedRegistration = true
         })
     }
 }
@@ -87,14 +110,14 @@ struct LoginView_Previews: PreviewProvider {
 
 extension LoginView {
     var nameApp: some View {
-        Text("FoodTasker")
+        Text("StreetFood")
             .font(.custom("Avenir Next", size: 49))
             .fontWeight(.bold)
             .foregroundColor(.white)
     }
     
     var createdBy: some View {
-        Text("created by Greg Fields")
+        Text("Автор: Григорий Поляков")
             .foregroundColor(Color.init(uiColor: .lightGray))
     }
     
@@ -102,12 +125,13 @@ extension LoginView {
     var textFieldsSegment: some View {
         VStack(spacing: 0) {
             if isRegistration {
-                TextField("Логин", text: $vm.login)
-                    .textFieldStyle(text: $vm.login)
+                TextField("Имя", text: $vm.username)
+                    .textFieldStyle(text: $vm.username)
             }
                
             TextField("Почта", text: $vm.mail)
                 .textFieldStyle(text: $vm.mail)
+            
             SecureField("Пароль", text: $vm.password1)
                 .textFieldStyle(text: $vm.password1)
             
@@ -121,7 +145,9 @@ extension LoginView {
     var loginButton: some View {
         Button {
             if isRegistration {
-                pressedRegistration = true
+                if vm.checkPasswords() {
+                    vm.sendCode()
+                }
             } else {
                 vm.loginOnMail()
             }

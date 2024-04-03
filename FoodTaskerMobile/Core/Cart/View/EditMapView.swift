@@ -14,6 +14,9 @@ struct EditMapView: View {
     @State var address = Address()
     @State var bundleStatus: MapViewModel.BundleStatus = .scrolled
     @State var refresh = true
+    @State private var isOpenKeyboard = false
+    
+    @FocusState var focusedField: AddressView.Field?
     
     var onTapReady: (Address)->Void
     
@@ -39,17 +42,7 @@ struct EditMapView: View {
     
     var body: some View {
         ZStack {
-            
-            //HPicker(data: $data, selected: $selected)
-             //   .frame(height: 40)
-            
-            
-//            if selected == "Выбрать" {
-//                AddressesView()
-//                    .transition(.move(edge: .leading))
-//            } else {
-                //CartMapView(address: $addres)
-            
+                
             if refresh {
                 MapView(mapVM: vm.mapVM)
                     .ignoresSafeArea()
@@ -57,35 +50,30 @@ struct EditMapView: View {
                 MapView(mapVM: vm.mapVM)
                     .ignoresSafeArea()
             }
-            
-//            pinAndBundle
-            
+                            
             tabBar
             
-//            Text(mainVM.address.convertToString())
-            AddressView(address: $address)
-                .presentAsBottomSheet($presentAddressView, maxHeight: (UIScreen.main.bounds.height) - buttonMinusFrame.minY, offsetY: offsetYAddressView, isAllowPresent: bundleStatus == .allowed || address.isStreetAndHouseFill)
+            AddressView(address: $address, focusedField: $focusedField)
+                .presentAsBottomSheet($presentAddressView, maxHeight: isOpenKeyboard ? (UIScreen.main.bounds.height) - buttonMinusFrame.minY + 150 : (UIScreen.main.bounds.height) - buttonMinusFrame.minY, offsetY: offsetYAddressView, isAllowPresent: bundleStatus == .allowed || address.isStreetAndHouseFill)
                 .offset(y: presentAddressView ? 0 : -offsetYAddressView)
+                .onKeyboardAppear { bool in
+                    withAnimation(.spring) {
+                        isOpenKeyboard = bool
+                    }
+                }
             
-            //if presentAddressView {
-                crossButton
-            //}
+            crossButton
+            
+            if focusedField != nil {
+                Rectangle()
+                    .ignoresSafeArea()
+                    .opacity(0.01)
+                    .onTapGesture {
+                        focusedField = nil
+                    }
+            }
             
             readyBlock
-                
-//                HPicker(data: $data1, selected: $selected1)
-//                    .frame(height: 40)
-                
-//                VStack {
-//                    addressSection
-//
-//                    AddNewAddressButton(onTap: {})
-//                }
-//                .padding()
-//                .transition(.move(edge: .trailing))
-//            }
-            
-            
             
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
@@ -172,6 +160,7 @@ extension EditMapView {
                     ButtonMenuStaticView(status: .plus, height: 50) {
                         vm.plusZoom()
                     }
+                    .opacity(presentAddressView ? 0 : 1)
 //                    ButtonWithImage(imageNamed: "plus", height: 50, action: {
 //                        vm.plusZoom()
 //                    })
@@ -231,6 +220,7 @@ extension EditMapView {
                 })
                 //.animation(.spring(), value: presentAddressesView)
                 .offset(x: buttonMinusFrame.minX, y: buttonMinusFrame.minY - buttonMinusFrame.height - 5)
+                .offset(y: isOpenKeyboard ? -150 : 0)
                 Spacer()
             }
             Spacer()
@@ -262,7 +252,7 @@ extension EditMapView {
                 .opacity(vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill ? 1 : 0.7)
             }
             .onTapGesture {
-                if vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill {
+                if (vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill) && presentAddressView {
 //                    guard let address = address else {
 //                        dismiss()
 //                        return
@@ -270,6 +260,8 @@ extension EditMapView {
                     vm.addAddress(address)
                     onTapReady(address)
                     dismiss()
+                } else if !presentAddressView {
+                    presentAddressView = true
                 }
             }
         }
