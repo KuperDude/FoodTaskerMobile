@@ -20,6 +20,7 @@ extension String {
         return String(self[start..<end])
     }
     
+    /// Convert "yyyy-MM-dd'T'HH:mm:ssZ" to "dd.MM.yyyy, HH:mm"
     func dateFromWebtoApp() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

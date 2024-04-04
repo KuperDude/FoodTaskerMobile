@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// Расширение для преобразования HEX-значения цвета в UIColor
 extension UIColor {
     convenience init(hex: String) {
         var hexString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

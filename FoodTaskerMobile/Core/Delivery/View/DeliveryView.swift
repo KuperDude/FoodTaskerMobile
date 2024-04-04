@@ -21,7 +21,7 @@ struct DeliveryView: View {
             //content
             VStack {
                 HStack {
-                    MenuButtonView(mainVM: mainVM) {}
+                    MenuButtonView(mainVM: mainVM) 
 
                     Spacer()
                 }
@@ -48,7 +48,6 @@ struct DeliveryView: View {
                         .frame(width: 300, height: 200)
                         .padding(.top, -100)
                 }
-                    //.background(.red)
                 
                 Divider()
                 
@@ -78,7 +77,7 @@ struct DeliveryView: View {
                                 Text(orderInfo.date.dateFromWebtoApp())
                                 Text(orderInfo.status)
                                     .foregroundStyle(vm.statusColor(orderInfo.status))
-                                Text("\(orderInfo.total.asNumberString())₽")
+                                Text(orderInfo.total.asCurrencyWith2Decimals())
                             }
                             .padding(.vertical, 5)
                             .font(.callout)

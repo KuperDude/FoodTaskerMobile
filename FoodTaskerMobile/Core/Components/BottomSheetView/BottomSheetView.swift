@@ -55,7 +55,6 @@ struct BottomSheetView<Content: View>: View {
             .cornerRadius(10)
             .frame(height: geometry.size.height, alignment: .bottom)
             .offset(y: max(self.offset + self.translation, isOpen ? 0 : offsetY))
-//            .offset(y: isOpen ? 0 : 180)
             .animation(.interactiveSpring(), value: isOpen)
             .animation(.interactiveSpring(), value: translation)
             .gesture(
@@ -64,10 +63,10 @@ struct BottomSheetView<Content: View>: View {
                         state = value.translation.height
                         
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "OffsetYChange"), object:
-                                                            CGFloat(isOpen ?
-                                                                    min(2*(maxHeight - offsetY), max(self.translation + maxHeight - offsetY, maxHeight - offsetY)) :
-                                                                        min(0, max(offsetY - maxHeight, self.translation))
-                                                                   )
+                            CGFloat(isOpen ?
+                                min(2*(maxHeight - offsetY), max(self.translation + maxHeight - offsetY, maxHeight - offsetY)) :
+                                min(0, max(offsetY - maxHeight, self.translation))
+                            )
                         )
                     }
                 }.onEnded { value in

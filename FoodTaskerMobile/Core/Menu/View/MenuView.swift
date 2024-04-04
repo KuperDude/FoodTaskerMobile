@@ -37,7 +37,6 @@ struct MenuView_Previews: PreviewProvider {
     @StateObject static var mainVM: MainViewModel = MainViewModel()
     static var previews: some View {
         MenuView(mainVM: mainVM)
-//            .environmentObject(mainVM)
     }
 }
 

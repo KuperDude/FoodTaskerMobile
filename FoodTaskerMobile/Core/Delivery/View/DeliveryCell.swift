@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DeliveryCell: View {
-    var text: String = "<<EMPTY TEXT>>"
+    var text: String = ""
     var check: Bool
     var body: some View {
         HStack(spacing: 20) {

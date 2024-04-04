@@ -15,20 +15,6 @@ struct CDeliveryCell: View {
 
         HStack {
             
-//            Image(uiImage: UIImage(named: "map")!)
-//                    .resizable()
-//                    .overlay(content: {
-//                        if vm.isLoading {
-//                            ProgressView()
-//                        }
-//                    })
-//                    .frame(width: 100, height: 100)
-//                    .scaledToFill()
-//                    .padding(.trailing, 10)
-//                    .onTapGesture {
-//                        onTapOnMap()
-//                    }
-            
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {
                     Text("Доставка")
@@ -54,7 +40,7 @@ struct CDeliveryCell: View {
                         
                         Spacer()
                         
-                        Text("\(mainVM.order.deliveryPrice.asNumberString())₽")
+                        Text(mainVM.order.deliveryPrice.asCurrencyWith2Decimals())
                             .font(.system(size: 18))
                             .foregroundColor(.theme.green)
                     }

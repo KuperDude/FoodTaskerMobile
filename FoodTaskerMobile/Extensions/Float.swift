@@ -15,4 +15,12 @@ extension Float {
     func asNumberString() -> String {
         return String(format: "%.2f", self)
     }
+    
+    /// Convertes a Double into a String representation with percent symbol
+    /// ```
+    /// Convert 1.23456 to "1.23₽"
+    /// ```
+    func asCurrencyWith2Decimals() -> String {
+        return asNumberString() + "₽"
+    }
 }

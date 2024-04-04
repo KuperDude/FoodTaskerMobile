@@ -33,7 +33,6 @@ class TransactionManager {
     
     func placeOrder(on vc: UIViewController, result: @escaping (Result<PaymentStatusResponse, any Error>) -> Void) {
         let paymentData: PaymentInitData = PaymentInitData(amount: 10.0, orderId: "1090", customerKey: "1")
-        //print(acquiringSDK)
         let configuration = AcquiringViewConfiguration()
         configuration.popupStyle = .bottomSheet
         if let startViewHeight = vc.view.window?.windowScene?.screen.bounds.height {

@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct ResponseMeal: Codable {
-    var meals: [Meal]
-}
-
 struct Meal: Codable, Identifiable {
     var id: Int
     var name: String
@@ -27,4 +23,8 @@ struct Meal: Codable, Identifiable {
         case price
         case category
     }
+}
+
+struct ResponseMeal: Codable {
+    var meals: [Meal]
 }

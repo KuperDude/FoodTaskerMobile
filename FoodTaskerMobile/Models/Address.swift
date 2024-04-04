@@ -45,7 +45,6 @@ struct Address: Equatable, Identifiable {
     }
     
     init(id: UUID = UUID(), street: String, house: String, floor: String, apartmentNumber: String, intercom: String, entrance: String, comment: String, lastUpdateDate: Date = Date.now) {
-//        self.id = id
         self.street = street
         self.house = house
         self.floor = floor

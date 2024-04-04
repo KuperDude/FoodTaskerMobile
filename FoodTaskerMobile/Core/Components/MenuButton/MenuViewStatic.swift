@@ -17,7 +17,6 @@ struct MenuViewStatic: View {
                 .frame(width: 64, height: 10)
                 .cornerRadius(4)
                 .rotationEffect(status.topDegrees, anchor: .trailing)
-//                .rotationEffect(.degrees(animateStatus ? 48 : 0), anchor: .leading)
                 .foregroundColor(.theme.accent)
                 .opacity(status == .chevron ? 1 : 0)
             ZStack {
@@ -43,7 +42,6 @@ struct MenuViewStatic: View {
                 .frame(width: 64, height: 10)
                 .cornerRadius(4)
                 .rotationEffect(status.bottomDegrees, anchor: .trailing)
-//                .rotationEffect(.degrees(animateStatus ? -48 : 0), anchor: .leading)
                 .foregroundColor(.theme.accent)
                 .opacity(status == .chevron ? 1 : 0)
         }

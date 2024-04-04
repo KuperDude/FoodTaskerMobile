@@ -34,7 +34,6 @@ struct SearchBarView: View {
                         .opacity(searchText.isEmpty ? 0.0 : 1.0)
                         .onTapGesture {
                             focusedState = false
-//                            UIApplication.shared.endEditing()
                             searchText = ""
                         }
                     , alignment: .trailing

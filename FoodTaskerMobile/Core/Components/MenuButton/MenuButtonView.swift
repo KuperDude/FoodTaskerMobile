@@ -10,8 +10,6 @@ import SwiftUI
 struct MenuButtonView: View {
     @ObservedObject var mainVM: MainViewModel
     
-    var action: () -> Void
-    
     var body: some View {
         VStack(alignment: .center, spacing: 14) {
             
@@ -19,7 +17,6 @@ struct MenuButtonView: View {
                 .frame(width: 64, height: 10)
                 .cornerRadius(4)
                 .rotationEffect(mainVM.animateStatus.topDegrees, anchor: mainVM.animateStatus == .cross ? .leading : .trailing)
-//                .rotationEffect(.degrees(animateStatus ? 48 : 0), anchor: .leading)
                 .foregroundColor(.theme.accent)
             
             Rectangle() // middle
@@ -33,12 +30,10 @@ struct MenuButtonView: View {
                 .frame(width: 64, height: 10)
                 .cornerRadius(4)
                 .rotationEffect(mainVM.animateStatus.bottomDegrees, anchor: mainVM.animateStatus == .cross ? .leading : .trailing)
-//                .rotationEffect(.degrees(animateStatus ? -48 : 0), anchor: .leading)
                 .foregroundColor(.theme.accent)
         }
         .animation(Animation.interpolatingSpring(stiffness: 300, damping: 15), value: mainVM.animateStatus)
         .onTapGesture {
-            action()
             withAnimation {
                 mainVM.animateStatus.newStatusOnTap()
             }
@@ -51,6 +46,6 @@ struct MenuButtonView: View {
 struct MenuButtonView_Previews: PreviewProvider {
     @StateObject static var mainVM = MainViewModel()
     static var previews: some View {
-        MenuButtonView(mainVM: mainVM) { }
+        MenuButtonView(mainVM: mainVM) 
     }
 }

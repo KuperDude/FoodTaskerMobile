@@ -7,9 +7,7 @@
 
 import SwiftUI
 import vk_ios_sdk
-//import Stripe
 import YandexMapsMobile
-import CoreLocation
 import GoogleSignIn
 
 @main
@@ -34,9 +32,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            
-//        }
         return true
     }
     
@@ -45,7 +40,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 
           handled = GIDSignIn.sharedInstance.handle(url)
           if handled {
-            return true
+              return true
           }
 
           // Handle other custom URL types.
@@ -67,9 +62,8 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        YMKMapKit.setApiKey("14332f24-df7e-4ed9-8ed3-71ff988cf777")
+        YMKMapKit.setApiKey(YANDEX_MAP_API_KEY)
         YMKMapKit.sharedInstance()
-        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

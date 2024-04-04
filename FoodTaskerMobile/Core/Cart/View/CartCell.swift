@@ -32,22 +32,6 @@ struct CartCell: View {
                     .frame(width: 100, height: 100)
                     .scaledToFill()
             
-//            if let image = vm.image {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .frame(width: 100, height: 100)
-//                    .scaledToFill()
-//                
-//            } else if vm.isLoading {
-//                ProgressView()
-//                    .frame(width: 100, height: 100)
-//            } else {
-//                Image("blank_food")
-//                    .resizable()
-//                    .frame(width: 100, height: 100)
-//                    .scaledToFill()
-//            }
-            
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {
                     Text("\(orderDetails.meal.name)")
@@ -82,7 +66,7 @@ struct CartCell: View {
                         
                         Spacer()
                         
-                        Text("\(orderDetails.subTotal.asNumberString())₽")
+                        Text(orderDetails.subTotal.asCurrencyWith2Decimals())
                             .font(.system(size: 18))
                             .foregroundColor(.theme.green)
                     }

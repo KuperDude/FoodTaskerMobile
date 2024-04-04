@@ -16,33 +16,22 @@ struct HomeView: View {
         ZStack {
             MenuView(mainVM: mainVM)
             
-            switch mainVM.currentCategory {
-            case .menu:
-                RestaurantView(mainVM: mainVM)
-                    .shadow(
-                        color: Color.theme.accent.opacity(0.15),
-                        radius: 10, x: 0, y: 0)
-                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
-            case .cart:
-                CartView(mainVM: mainVM)
-                    .shadow(
-                        color: Color.theme.accent.opacity(0.15),
-                        radius: 10, x: 0, y: 0)
-                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
-            case .delivery:
-                DeliveryView(mainVM: mainVM)
-                    .shadow(
-                        color: Color.theme.accent.opacity(0.15),
-                        radius: 10, x: 0, y: 0)
-                    .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
-            case .logout:
-                EmptyView()
-//                    .onAppear {
-//                        mainVM.user = nil
-//                        
-//                    }
-//                LoginView(mainVM: mainVM)
+            Group {
+                switch mainVM.currentCategory {
+                case .menu:
+                    MealView(mainVM: mainVM)
+                case .cart:
+                    CartView(mainVM: mainVM)
+                case .delivery:
+                    DeliveryView(mainVM: mainVM)
+                case .logout:
+                    EmptyView()
+                }
             }
+            .shadow(
+                color: Color.theme.accent.opacity(0.15),
+                radius: 10, x: 0, y: 0)
+            .offset(x: mainVM.animateStatus == .cross ? (UIScreen.main.bounds.width / 1.5) : 0)
         }
     }
 }
@@ -51,6 +40,5 @@ struct HomeView_Previews: PreviewProvider {
     @StateObject static var mainVM = MainViewModel()
     static var previews: some View {
         HomeView(mainVM: mainVM)
-//            .environmentObject(mainVM)
     }
 }

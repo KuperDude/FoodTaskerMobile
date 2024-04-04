@@ -7,6 +7,24 @@
 
 import SwiftUI
 
+struct User: Codable, Identifiable, Equatable {
+    var id: String
+    var firstName: String
+    var lastName: String
+    var imageURL: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case imageURL = "photo_50"
+    }
+    
+    var fullName: String {
+        return firstName + " " + lastName
+    }
+}
+
 struct ResponseUser: Codable {
     var users: [ResUser]
     
@@ -30,24 +48,6 @@ struct ResUser: Codable, Identifiable, Equatable {
     
     func convertToUser() -> User {
         User(id: String(self.id), firstName: self.firstName, lastName: self.lastName, imageURL: self.imageURL)
-    }
-}
-
-struct User: Codable, Identifiable, Equatable {
-    var id: String
-    var firstName: String
-    var lastName: String
-    var imageURL: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case imageURL = "photo_50"
-    }
-    
-    var fullName: String {
-        return firstName + " " + lastName
     }
 }
 

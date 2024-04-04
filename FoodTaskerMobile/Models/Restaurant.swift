@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ResponseRestaurant: Codable {
-    var restaurants: [Restaurant]
-}
-
 struct Restaurant: Codable, Identifiable {
     var id: Int
     var name: String
     var address: String
     var logo: String
+}
+
+struct ResponseRestaurant: Codable {
+    var restaurants: [Restaurant]
 }

@@ -10,7 +10,6 @@ import TinkoffASDKCore
 
 struct BankCardsView: UIViewControllerRepresentable {
     
-//    @ObservedObject var vm: PaymentViewModel
     @ObservedObject var vm: PaymentViewModel
     @Environment(\.dismiss) var dismiss
     @Binding var isShow: Bool

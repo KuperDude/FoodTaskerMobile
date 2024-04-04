@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-struct RoundedCorner: Shape {
-
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners) )
-    }
-}
-
 struct BottomSheet: ViewModifier {
     
     @Binding var bottomSheetShown: Bool
@@ -38,24 +21,19 @@ struct BottomSheet: ViewModifier {
             Color.black
                 .opacity(bottomSheetShown ? 0.5 : 0)
                 .ignoresSafeArea()
-//            GeometryReader { geometry in
-//                content
-//                    .onAppear {
-//                        print(geometry.size.height)
-//                    }
-//            }
             
             GeometryReader { geometry in
                 BottomSheetView(
                     isOpen: self.$bottomSheetShown,
-                    maxHeight: (maxHeight == nil ? geometry.size.height * 0.8 : maxHeight)!,
+                    maxHeight: maxHeight == nil ? geometry.size.height * 0.8 : maxHeight!,
                     minHeight: minHeight,
                     offsetY: offsetY,
                     isAllowPresent: isAllowPresent
                 ) {
                     content
                 }
-            }.edgesIgnoringSafeArea(.all)
+            }
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }
@@ -74,18 +52,6 @@ struct SizePreferenceKey: PreferenceKey {
     }
 }
 
-//struct SizeModifier: ViewModifier {
-//    private var sizeView: some View {
-//        GeometryReader { geometry in
-//            Color.clear.preference(key: SizePreferenceKey.self, value: geometry.size)
-//        }
-//    }
-//
-//    func body(content: Content) -> some View {
-//        content.background(sizeView)
-//    }
-//}
-
 struct FramePreferenceKey: PreferenceKey {
     static var defaultValue: CGRect = .zero
 
@@ -93,30 +59,7 @@ struct FramePreferenceKey: PreferenceKey {
         value = nextValue()
     }
 }
-//struct Badge: ViewModifier {
-//    var count: Int
-//    func body(content: Content) -> some View {
-//        content
-//            .overlay(alignment: .bottomTrailing) {
-//                GeometryReader { geometry in
-//                    ZStack {
-//                        Circle()
-//                            .fill(Color.theme.red)
-//                        
-//                        Text("\(count)")
-//                            .foregroundColor(.theme.accent)
-//                    }
-//                    .frame(width: min(geometry.size.width, geometry.size.height) / 3, height: min(geometry.size.width, geometry.size.height) / 3, alignment: .bottomTrailing)
-//                }
-//            }
-//    }
-//}
-//
-//extension View {
-//    func badge(count: Int) -> some View {
-//        modifier(Badge(count: count))
-//    }
-//}
+
 struct CustomTextField: ViewModifier {
 
     @Binding var text: String

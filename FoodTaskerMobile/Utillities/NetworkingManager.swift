@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-//import Alamofire
 
 actor NetworkingManager {
     
@@ -24,12 +23,6 @@ actor NetworkingManager {
     }
     
     static func download(url: URL) -> AnyPublisher<Data, Error> {
-//        do {
-//            let (data, response) = try await URLSession.shared.data(from: url)
-//            return .success(data)
-//        } catch {
-//            return .failure(NetworkingError.badURLResponse(url: url))
-//        }
         
         return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap({ try handleURLResponse(output: $0, url: url) })
@@ -43,19 +36,6 @@ actor NetworkingManager {
         
         request.httpMethod = "POST"
         request.httpBody = data
-        
-//        let str = "{\"order_details\":[{\"meal_id\":6,\"quantity\":1}],\"restaurant_id\":1,\"access_token\":\"FUJMNpU77OyuLiohOl5wzRQkGpHleV\",\"address\":\"13\"}"
-//        
-//
-//        let json: [String: Any] = [
-//            "order_details": ["meal_id":"6", "quantity":"1"],
-//            "restaurant_id": "1",
-//            "access_token": "FUJMNpU77OyuLiohOl5wzRQkGpHleV",
-//            "address": "13"
-//        ]
-//
-//        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-//        print(String(data: jsonData ?? Data(), encoding: .utf8))
         
         do {
             let (_, response) = try await URLSession.shared.data(for: request)

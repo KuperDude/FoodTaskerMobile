@@ -30,7 +30,7 @@ struct CartView: View {
             //content
             VStack {
                 HStack {
-                    MenuButtonView(mainVM: mainVM) {}
+                    MenuButtonView(mainVM: mainVM) 
                     
                     Spacer()
                 }
@@ -124,46 +124,53 @@ extension CartView {
                 }
                 Divider()
                 
-                HStack {
-                    Text("Итог:")
-                        .foregroundColor(.theme.accent)
-                        .font(.system(size: 18, weight: .semibold))
-                    Spacer()
-                    Text("\(mainVM.order.total.asNumberString())₽")
-                        .font(.system(size: 18))
-                        .foregroundColor(.theme.green)
-                        .padding()
-                }
+                price
                 
-                Button {
-                    if mainVM.address.isEmpty() {
-                        showAddressAlert = true
-                    } else if vm.getStatus() != .delivered && vm.getStatus() != .unknown && vm.getStatus() != .cancelled {
-                        showOrderAlert = true
-                    } else {
-                        withAnimation(.spring()) {
-                            showPayment = true
-                        }
-                    }
-                } label: {
-                    Text("Оплатить")
-                        .minimumScaleFactor(0.5)
-                        .font(.system(size: 25))
-                        .fontWidth(.compressed)
-                        .foregroundColor(.theme.accent)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(Color.theme.green)
-                        }
-                        .opacity(mainVM.address.isEmpty() ? 0.5 : 1.0)
-                }
+                payButton
 
-                
             }
             .padding()
         }
         .transition(.move(edge: .leading))
+    }
+    
+    var price: some View {
+        HStack {
+            Text("Итог:")
+                .foregroundColor(.theme.accent)
+                .font(.system(size: 18, weight: .semibold))
+            Spacer()
+            Text(mainVM.order.total.asCurrencyWith2Decimals())
+                .font(.system(size: 18))
+                .foregroundColor(.theme.green)
+                .padding()
+        }
+    }
+    
+    var payButton: some View {
+        Button {
+            if mainVM.address.isEmpty() {
+                showAddressAlert = true
+            } else if vm.getStatus() != .delivered && vm.getStatus() != .unknown && vm.getStatus() != .cancelled {
+                showOrderAlert = true
+            } else {
+                withAnimation(.spring()) {
+                    showPayment = true
+                }
+            }
+        } label: {
+            Text("Оплатить")
+                .minimumScaleFactor(0.5)
+                .font(.system(size: 25))
+                .fontWidth(.compressed)
+                .foregroundColor(.theme.accent)
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundStyle(Color.theme.green)
+                }
+                .opacity(mainVM.address.isEmpty() ? 0.5 : 1.0)
+        }
     }
 }

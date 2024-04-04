@@ -58,12 +58,6 @@ class AddressesDataService {
         } catch let error {
             print("Error fetching Address Entities. \(error)")
         }
-        
-//        do {
-//            try container.viewContext.execute(NSBatchDeleteRequest(fetchRequest: NSFetchRequest(entityName: "AddressEntity")))
-//            try container.viewContext.save()
-//        } catch {
-//        }
     }
     
     private func add(address: Address) {

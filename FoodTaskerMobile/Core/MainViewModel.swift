@@ -126,10 +126,6 @@ extension MainViewModel {
             case none
         }
         
-//        enum CrossStatus: Equatable {
-//            case leftMenu
-//        }
-        
         var getChevronIdOrMinusOne: Int {
             switch self {
             case .chevron(.mealDetails(id: let id)): return id
@@ -140,8 +136,6 @@ extension MainViewModel {
         mutating func newStatusOnTap() {
             switch self {
             case .burger:                     self = .cross
-//            case .cross(.mealDetails(id: _)): self = .chevron
-//            case .chevron:                    self = .burger
             case .chevron(.mealDetails(id: _)): self = .burger
             case .cross:                        self = .burger
             case .chevron(.none):               self = .burger
