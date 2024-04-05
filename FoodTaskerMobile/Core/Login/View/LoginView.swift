@@ -87,6 +87,7 @@ struct LoginView: View {
         }
         .onReceive(vm.$code, perform: { code in
             guard let _ = code else { return }
+            UIApplication.shared.endEditing()
             pressedRegistration = true
         })
     }
@@ -195,6 +196,7 @@ extension LoginView {
             .foregroundColor(Color.init(uiColor: .lightGray))
             .underline()
             .onTapGesture {
+                UIApplication.shared.endEditing()
                 pressedForgotPassword = true
             }
     }

@@ -86,6 +86,7 @@ struct EditMapView: View {
             if newValue {
                 vm.addAddress(address)
             } else {
+                offsetOfAddressView = .zero
                 vm.mapVM = MapViewModel(address: address)
                 refresh.toggle()
             }
@@ -170,7 +171,6 @@ extension EditMapView {
                 AnimatedCrossView(offsetY: $offsetOfAddressView, maxOffsetY: (UIScreen.main.bounds.height) - buttonMinusFrame.minY - offsetYAddressView, height: 50, action: {
                     if presentAddressView {
                         presentAddressView = false
-                        offsetOfAddressView = .zero
                     } else {
                         vm.plusZoom()
                     }
