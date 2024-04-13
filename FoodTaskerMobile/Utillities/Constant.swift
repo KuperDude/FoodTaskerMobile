@@ -7,7 +7,7 @@
 
 import Foundation
 
-let BASE_URL = "http://172.20.10.2:8000/"
+let BASE_URL = "http://fieldsqs.beget.tech/"
 
 let USERTYPE_CUSTOMER = "customer"
 

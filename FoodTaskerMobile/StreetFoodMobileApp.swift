@@ -11,7 +11,7 @@ import YandexMapsMobile
 import GoogleSignIn
 
 @main
-struct StreetFoodMobileApp: App {
+struct FoodTaskerMobileApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var mainVM = MainViewModel()
     
