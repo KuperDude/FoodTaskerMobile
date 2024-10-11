@@ -19,7 +19,7 @@ jobs:
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '15.2'
 
       - uses: ruby/setup-ruby@v1
 
@@ -39,12 +39,6 @@ jobs:
           key: ${{ runner.os }}-deps-v1-${{ hashFiles('BILDsolid.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-deps-v1-
       
-      - name: Remove Corrupted Package.resolved
-        run: rm -f /Users/runner/work/FoodTaskerMobile/FoodTaskerMobile/FoodTaskerMobile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-
-      - name: Resolve Swift Package Dependencies
-        run: xcodebuild -resolvePackageDependencies
-
       - name: Run Tests (No Cache)
         if: steps.setup.outputs.cache-hit != 'true'
         run: bundle exec fastlane unit_test
@@ -52,4 +46,3 @@ jobs:
       - name: Run Tests (Cache)
         if: steps.setup.outputs.cache-hit == 'true'
         run: bundle exec fastlane unit_test --skip_package_dependencies_resolution true
-
