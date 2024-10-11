@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
-    var authService: AuthService
+    var authService: AuthManager
     @Published var user: User?
     var cancellables = Set<AnyCancellable>()
     
@@ -29,6 +29,7 @@ class LoginViewModel: ObservableObject {
         case smallPassword   = "Пароль должен содержать не менее 8 символов!"
         case usernameIsEmpty = "Введите имя пользователя!"
         case noExistMail     = "Данной почты не существует!"
+        case noCurrectMailOrPassword   = "Введите почту и пароль!"
         case custom = ""
     }
     
@@ -42,7 +43,7 @@ class LoginViewModel: ObservableObject {
     
     init(user: User?) {
         self.user = user
-        self.authService = AuthService.instance
+        self.authService = AuthManager.instance
         
         addPublishers()
     }
@@ -51,7 +52,7 @@ class LoginViewModel: ObservableObject {
         authService.$user
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                if let user = data {                    
+                if let user = data, APIManager.instance.accessToken != "" {                    
                     self?.user = user                    
                 }
             }
@@ -59,12 +60,18 @@ class LoginViewModel: ObservableObject {
     }
     
     // MARK: - User Intents
-    func wakeUpSession(_ method: AuthService.RegistrationMethod) {
-        authService.wakeUpSession(method: method)
-    }
-    
-    func alreadyLoginSession(_ method: AuthService.RegistrationMethod) {
-        authService.alreadyLoginSession(method: method)
+    func wakeUpSession(_ method: AuthManager.RegistrationMethod, isAlreadyLogin: Bool = false) async {
+        //do {
+            
+        try? await authService.wakeUpSession(method: method, isAlreadyLogin: isAlreadyLogin)
+            
+        if isAlreadyLogin {
+            try? await authService.handleAuthorization(method: method)
+            
+            if method == .google {
+                self.user = authService.user
+            }
+        }
     }
     
     func loginOnMail() {
@@ -76,19 +83,18 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func sendCode() {
-        authService.sendCode(mail: mail) { [weak self] code, error in
-            if error != nil {
-                self?.customErrorDescription = error
-                self?.alertStatus = .custom
-            } else {
-                guard let code = code else {
-                    return
-                }
-                self?.code = code
+    func sendCode() async {
+        do {
+            let code = try await authService.sendCodeOn(mail: mail)
+            await MainActor.run {
+                self.code = code
             }
+        } catch {
+            customErrorDescription = error.localizedDescription
+            alertStatus = .custom
         }
     }
+    
     func register() {
         authService.register(username: username, mail: mail, password: password1) { [weak self] error in
             if error != nil {
@@ -112,6 +118,14 @@ class LoginViewModel: ObservableObject {
             return false
         }
         
+        return true
+    }
+    
+    func checkCurrectDataOnLogin() -> Bool {
+        if password1.count < 8 || mail.count == 0 {
+            alertStatus = .noCurrectMailOrPassword
+            return false
+        }
         return true
     }
     

@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F80D19682B7C0940004B80D3 /* CodeTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D19672B7C0940004B80D3 /* CodeTextFields.swift */; };
-		F80D196A2B7C0B69004B80D3 /* SegmentCodeTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D19692B7C0B69004B80D3 /* SegmentCodeTextFields.swift */; };
 		F80D196C2B7C136C004B80D3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D196B2B7C136C004B80D3 /* String.swift */; };
-		F80D196E2B7E985B004B80D3 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D196D2B7E985B004B80D3 /* ForgotPasswordViewModel.swift */; };
-		F80D19702B7E9B8F004B80D3 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D196F2B7E9B8F004B80D3 /* ForgotPasswordView.swift */; };
-		F80D19752B7EA596004B80D3 /* ResetPasswordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D19742B7EA596004B80D3 /* ResetPasswordAnimationView.swift */; };
 		F80DA5BB2BBF38420044E81B /* StringError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DA5BA2BBF38420044E81B /* StringError.swift */; };
 		F80DA5CA2BBF5E360044E81B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80DA5C62BBF5E360044E81B /* LaunchScreen.storyboard */; };
 		F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81328E2294E1762002E9A66 /* DeliveryView.swift */; };
@@ -30,7 +25,7 @@
 		F84AB7BE2BA3A09100F3761B /* MapTrackingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7BD2BA3A09100F3761B /* MapTrackingAnimationView.swift */; };
 		F84AB7C62BACDDFA00F3761B /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7C52BACDDFA00F3761B /* CartViewModel.swift */; };
 		F84AB7C82BACF33A00F3761B /* SuccessPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7C72BACF33A00F3761B /* SuccessPaymentView.swift */; };
-		F8662C492B7AC957009657A3 /* ForgotPasswordSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8662C482B7AC957009657A3 /* ForgotPasswordSegment.swift */; };
+		F86712EA2BCC020B00D643B8 /* YandexMapsMobile in Frameworks */ = {isa = PBXBuildFile; productRef = F86712E92BCC020B00D643B8 /* YandexMapsMobile */; };
 		F88E499D2B3D8E490099939A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F88E499C2B3D8E490099939A /* GoogleSignIn */; };
 		F88E499F2B3D8E490099939A /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F88E499E2B3D8E490099939A /* GoogleSignInSwift */; };
 		F8904090297194BC009AFF99 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F890408F297194BC009AFF99 /* PaymentViewModel.swift */; };
@@ -38,14 +33,12 @@
 		F8A0653C2967261100ECF9C0 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0653B2967261100ECF9C0 /* OrderDetails.swift */; };
 		F8A0653F29672FE500ECF9C0 /* CartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0653E29672FE500ECF9C0 /* CartCellViewModel.swift */; };
 		F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */; };
-		F8A1678A2962DD380007E522 /* MealImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A167892962DD380007E522 /* MealImageService.swift */; };
 		F8A1678C2962F9850007E522 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1678B2962F9850007E522 /* Float.swift */; };
 		F8A1C99C2ACDFA43000A279F /* EditMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */; };
 		F8A285AE2AD2DCEC00F8FE93 /* AddressInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */; };
 		F8A2F9E8295DB33700B37C4A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F8A2F9E7295DB33700B37C4A /* Alamofire */; };
 		F8A2F9EB295DB3C500B37C4A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F8A2F9EA295DB3C500B37C4A /* SwiftyJSON */; };
 		F8A333612961F38A0073521A /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A333602961F38A0073521A /* Meal.swift */; };
-		F8A333662961F66B0073521A /* MealCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A333652961F66B0073521A /* MealCellViewModel.swift */; };
 		F8A333682961F8160073521A /* MealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A333672961F8160073521A /* MealService.swift */; };
 		F8A348412B14F9D5009BC60D /* ButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A348402B14F9D5009BC60D /* ButtonWithImage.swift */; };
 		F8A348442B150BFE009BC60D /* AddressContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8A348422B150BFE009BC60D /* AddressContainer.xcdatamodeld */; };
@@ -57,8 +50,23 @@
 		F8A5033A2A6A756D00A6EC51 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A503392A6A756D00A6EC51 /* UIColor.swift */; };
 		F8A5AA5C297FF74F007FBD0F /* BankCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5AA5B297FF74F007FBD0F /* BankCardsView.swift */; };
 		F8A5AA5F2980316B007FBD0F /* DeliveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5AA5E2980316B007FBD0F /* DeliveryViewModel.swift */; };
-		F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25429507DE5008AB0E5 /* AuthService.swift */; };
-		F8A62AD72A640D930038375E /* YandexMapPackageWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = F8A62AD62A640D930038375E /* YandexMapPackageWrapper */; };
+		F8A5C25529507DE5008AB0E5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5C25429507DE5008AB0E5 /* AuthManager.swift */; };
+		F8A5CDA02C8E10650030A24D /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CD9F2C8E10650030A24D /* ImageLoaderView.swift */; };
+		F8A5CDA32C8E10870030A24D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F8A5CDA22C8E10870030A24D /* SDWebImageSwiftUI */; };
+		F8A5CDB42C8E48550030A24D /* 1708031048469-open-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDA42C8E48550030A24D /* 1708031048469-open-lock.json */; };
+		F8A5CDB52C8E48550030A24D /* ResetPasswordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDA52C8E48550030A24D /* ResetPasswordAnimationView.swift */; };
+		F8A5CDB62C8E48550030A24D /* FPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDA72C8E48550030A24D /* FPView.swift */; };
+		F8A5CDB72C8E48550030A24D /* CodeTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDA92C8E48550030A24D /* CodeTextFields.swift */; };
+		F8A5CDB82C8E48550030A24D /* SegmentCodeTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDAA2C8E48550030A24D /* SegmentCodeTextFields.swift */; };
+		F8A5CDB92C8E48550030A24D /* ForgotPasswordBottonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDAC2C8E48550030A24D /* ForgotPasswordBottonButton.swift */; };
+		F8A5CDBA2C8E48550030A24D /* ForgotPasswordSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDAD2C8E48550030A24D /* ForgotPasswordSegment.swift */; };
+		F8A5CDBB2C8E48550030A24D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDAE2C8E48550030A24D /* ForgotPasswordView.swift */; };
+		F8A5CDBC2C8E48550030A24D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDAF2C8E48550030A24D /* TimerView.swift */; };
+		F8A5CDBD2C8E48550030A24D /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDB12C8E48550030A24D /* ForgotPasswordViewModel.swift */; };
+		F8A5CDD32C8E48E90030A24D /* SendCodeOnMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDCE2C8E48E90030A24D /* SendCodeOnMailView.swift */; };
+		F8A5CDD42C8E48E90030A24D /* SendCodeOnMailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */; };
+		F8A5CDD72C8E4D1C0030A24D /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = F8A5CDD62C8E4D1C0030A24D /* SwiftfulUI */; };
+		F8A5CDE22CB983B40030A24D /* FoodTaskerMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */; };
 		F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63304294B88400080DAE8 /* UIApplication.swift */; };
@@ -93,11 +101,9 @@
 		F8A8581F2A35ED8400AC518C /* IngredientsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A8581E2A35ED8400AC518C /* IngredientsService.swift */; };
 		F8A9E6BD2B0E200100660145 /* MenuViewStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9E6BC2B0E200100660145 /* MenuViewStatic.swift */; };
 		F8AA7DAE2A0EA321009917ED /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AA7DAD2A0EA321009917ED /* MapView.swift */; };
-		F8ABE33D2A3871A7003A0F13 /* IngredientImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8ABE33C2A3871A7003A0F13 /* IngredientImageService.swift */; };
-		F8ABE33F2A3872A6003A0F13 /* CompositionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8ABE33E2A3872A6003A0F13 /* CompositionCellViewModel.swift */; };
 		F8B058C1295C84CC002F071A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B058C0295C84CC002F071A /* User.swift */; };
 		F8B21AD32B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B21AD22B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift */; };
-		F8B34EB1296C675B0066CC42 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB0296C675B0066CC42 /* Constant.swift */; };
+		F8B34EB1296C675B0066CC42 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB0296C675B0066CC42 /* Constants.swift */; };
 		F8B34EB3296C69AD0066CC42 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */; };
 		F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BB40772A5ECC3F0016D5B6 /* map.json */; };
 		F8C4CFBD29855E7D00D3D225 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFBC29855E7D00D3D225 /* Badge.swift */; };
@@ -106,25 +112,33 @@
 		F8C4CFC329856FEC00D3D225 /* DeliveryMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFC229856FEC00D3D225 /* DeliveryMapViewModel.swift */; };
 		F8C7A6B9297D3EE400718CBF /* TinkoffASDKCore in Frameworks */ = {isa = PBXBuildFile; productRef = F8C7A6B8297D3EE400718CBF /* TinkoffASDKCore */; };
 		F8C7A6BB297D3EE400718CBF /* TinkoffASDKUI in Frameworks */ = {isa = PBXBuildFile; productRef = F8C7A6BA297D3EE400718CBF /* TinkoffASDKUI */; };
-		F8C7DD0F2B825B61009E2BE5 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7DD0E2B825B61009E2BE5 /* TimerView.swift */; };
-		F8C7DD112B825DDB009E2BE5 /* ForgotPasswordBottonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C7DD102B825DDB009E2BE5 /* ForgotPasswordBottonButton.swift */; };
 		F8CA8ACB29E16ADA00515637 /* HPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA8ACA29E16ADA00515637 /* HPicker.swift */; };
 		F8CA8AD029E19C8E00515637 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA8ACF29E19C8E00515637 /* Category.swift */; };
 		F8CF07C42958BB0F009424F6 /* vk-ios-sdk in Frameworks */ = {isa = PBXBuildFile; productRef = F8CF07C32958BB0F009424F6 /* vk-ios-sdk */; };
-		F8D1C1712960532D00ED18DA /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1C1702960532D00ED18DA /* LocalFileManager.swift */; };
 		F8D1C173296053B600ED18DA /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D1C172296053B600ED18DA /* NetworkingManager.swift */; };
 		F8DAC5B72B83EFF200D7654A /* LoginPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DAC5B62B83EFF200D7654A /* LoginPickerView.swift */; };
-		F8DAC5B92B83F73700D7654A /* SendCodeOnMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DAC5B82B83F73700D7654A /* SendCodeOnMailView.swift */; };
+		F8EAF31F2BD702590056A3B9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF31E2BD702590056A3B9 /* ProfileView.swift */; };
+		F8EAF3212BD706D70056A3B9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF3202BD706D70056A3B9 /* ProfileViewModel.swift */; };
 		F8EF2C5B2993A7FC009C45D1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF2C5A2993A7FC009C45D1 /* MainViewModel.swift */; };
 		F8F0D5E52BC9EE4100771292 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0D5E42BC9EE4100771292 /* APIManager.swift */; };
 		F8F0D5E82BC9F37C00771292 /* 1710081107528-delivery-driver.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5E72BC9F37C00771292 /* 1710081107528-delivery-driver.json */; };
 		F8F0D5EA2BC9F38500771292 /* 1710081289927-cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */; };
 		F8F0D5EC2BC9F38C00771292 /* 1710097343220-sad-smile.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */; };
 		F8F0D5EE2BC9F39300771292 /* 1710451613546-map-tracking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5ED2BC9F39300771292 /* 1710451613546-map-tracking.json */; };
-		F8F0D5F02BC9F39D00771292 /* 1708031048469-open-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5EF2BC9F39D00771292 /* 1708031048469-open-lock.json */; };
 		F8F0D5F12BC9F4C600771292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5D82BC9E9EE00771292 /* Assets.xcassets */; };
 		F8F0D5F22BCA4FAF00771292 /* AddressesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DA5C52BBF5A1F0044E81B /* AddressesViewModel.swift */; };
+		F8F0D5FB2BCB022100771292 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0D5FA2BCB022000771292 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8A5CDE32CB983B40030A24D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8A632E6294B87E70080DAE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8A632ED294B87E70080DAE8;
+			remoteInfo = FoodTaskerMobile;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F8CF07BE2958A34F009424F6 /* Embed Frameworks */ = {
@@ -137,15 +151,19 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8F0D5F92BCB01AC00771292 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F80D19672B7C0940004B80D3 /* CodeTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFields.swift; sourceTree = "<group>"; };
-		F80D19692B7C0B69004B80D3 /* SegmentCodeTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCodeTextFields.swift; sourceTree = "<group>"; };
 		F80D196B2B7C136C004B80D3 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F80D196D2B7E985B004B80D3 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		F80D196F2B7E9B8F004B80D3 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		F80D19742B7EA596004B80D3 /* ResetPasswordAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordAnimationView.swift; sourceTree = "<group>"; };
 		F80DA5BA2BBF38420044E81B /* StringError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringError.swift; sourceTree = "<group>"; };
 		F80DA5C52BBF5A1F0044E81B /* AddressesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewModel.swift; sourceTree = "<group>"; };
 		F80DA5C62BBF5E360044E81B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -165,18 +183,15 @@
 		F84AB7BD2BA3A09100F3761B /* MapTrackingAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTrackingAnimationView.swift; sourceTree = "<group>"; };
 		F84AB7C52BACDDFA00F3761B /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		F84AB7C72BACF33A00F3761B /* SuccessPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentView.swift; sourceTree = "<group>"; };
-		F8662C482B7AC957009657A3 /* ForgotPasswordSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordSegment.swift; sourceTree = "<group>"; };
 		F890408F297194BC009AFF99 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		F8A0653B2967261100ECF9C0 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
 		F8A0653E29672FE500ECF9C0 /* CartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCellViewModel.swift; sourceTree = "<group>"; };
 		F8A0921C294F5C95008960B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		F8A167892962DD380007E522 /* MealImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImageService.swift; sourceTree = "<group>"; };
 		F8A1678B2962F9850007E522 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapViewModel.swift; sourceTree = "<group>"; };
 		F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputCell.swift; sourceTree = "<group>"; };
 		F8A333602961F38A0073521A /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		F8A333652961F66B0073521A /* MealCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCellViewModel.swift; sourceTree = "<group>"; };
 		F8A333672961F8160073521A /* MealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealService.swift; sourceTree = "<group>"; };
 		F8A348402B14F9D5009BC60D /* ButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImage.swift; sourceTree = "<group>"; };
 		F8A348432B150BFE009BC60D /* AddressContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AddressContainer.xcdatamodel; sourceTree = "<group>"; };
@@ -188,7 +203,22 @@
 		F8A503392A6A756D00A6EC51 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		F8A5AA5B297FF74F007FBD0F /* BankCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCardsView.swift; sourceTree = "<group>"; };
 		F8A5AA5E2980316B007FBD0F /* DeliveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewModel.swift; sourceTree = "<group>"; };
-		F8A5C25429507DE5008AB0E5 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		F8A5C25429507DE5008AB0E5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		F8A5CD9F2C8E10650030A24D /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
+		F8A5CDA42C8E48550030A24D /* 1708031048469-open-lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1708031048469-open-lock.json"; sourceTree = "<group>"; };
+		F8A5CDA52C8E48550030A24D /* ResetPasswordAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordAnimationView.swift; sourceTree = "<group>"; };
+		F8A5CDA72C8E48550030A24D /* FPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FPView.swift; sourceTree = "<group>"; };
+		F8A5CDA92C8E48550030A24D /* CodeTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeTextFields.swift; sourceTree = "<group>"; };
+		F8A5CDAA2C8E48550030A24D /* SegmentCodeTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentCodeTextFields.swift; sourceTree = "<group>"; };
+		F8A5CDAC2C8E48550030A24D /* ForgotPasswordBottonButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordBottonButton.swift; sourceTree = "<group>"; };
+		F8A5CDAD2C8E48550030A24D /* ForgotPasswordSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordSegment.swift; sourceTree = "<group>"; };
+		F8A5CDAE2C8E48550030A24D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		F8A5CDAF2C8E48550030A24D /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		F8A5CDB12C8E48550030A24D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		F8A5CDCE2C8E48E90030A24D /* SendCodeOnMailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailView.swift; sourceTree = "<group>"; };
+		F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailViewModel.swift; sourceTree = "<group>"; };
+		F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileTests.swift; sourceTree = "<group>"; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -224,25 +254,21 @@
 		F8A8581E2A35ED8400AC518C /* IngredientsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsService.swift; sourceTree = "<group>"; };
 		F8A9E6BC2B0E200100660145 /* MenuViewStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewStatic.swift; sourceTree = "<group>"; };
 		F8AA7DAD2A0EA321009917ED /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		F8ABE33C2A3871A7003A0F13 /* IngredientImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientImageService.swift; sourceTree = "<group>"; };
-		F8ABE33E2A3872A6003A0F13 /* CompositionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionCellViewModel.swift; sourceTree = "<group>"; };
 		F8B058C0295C84CC002F071A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F8B21AD22B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryProgressAnimatedView.swift; sourceTree = "<group>"; };
-		F8B34EB0296C675B0066CC42 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F8B34EB0296C675B0066CC42 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		F8BB40772A5ECC3F0016D5B6 /* map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		F8C4CFBC29855E7D00D3D225 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderStatusService.swift; sourceTree = "<group>"; };
 		F8C4CFC029856F5900D3D225 /* LastOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderService.swift; sourceTree = "<group>"; };
 		F8C4CFC229856FEC00D3D225 /* DeliveryMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMapViewModel.swift; sourceTree = "<group>"; };
-		F8C7DD0E2B825B61009E2BE5 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		F8C7DD102B825DDB009E2BE5 /* ForgotPasswordBottonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordBottonButton.swift; sourceTree = "<group>"; };
 		F8CA8ACA29E16ADA00515637 /* HPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPicker.swift; sourceTree = "<group>"; };
 		F8CA8ACF29E19C8E00515637 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		F8D1C1702960532D00ED18DA /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		F8D1C172296053B600ED18DA /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		F8DAC5B62B83EFF200D7654A /* LoginPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPickerView.swift; sourceTree = "<group>"; };
-		F8DAC5B82B83F73700D7654A /* SendCodeOnMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailView.swift; sourceTree = "<group>"; };
+		F8EAF31E2BD702590056A3B9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F8EAF3202BD706D70056A3B9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F8EF2C5A2993A7FC009C45D1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		F8F0D5D82BC9E9EE00771292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8F0D5E42BC9EE4100771292 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -250,14 +276,25 @@
 		F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710081289927-cooking.json"; path = "../../../../Downloads/1710081289927-cooking.json"; sourceTree = "<group>"; };
 		F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710097343220-sad-smile.json"; path = "../../../../Downloads/1710097343220-sad-smile.json"; sourceTree = "<group>"; };
 		F8F0D5ED2BC9F39300771292 /* 1710451613546-map-tracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710451613546-map-tracking.json"; path = "../../../../Downloads/1710451613546-map-tracking.json"; sourceTree = "<group>"; };
-		F8F0D5EF2BC9F39D00771292 /* 1708031048469-open-lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1708031048469-open-lock.json"; path = "../../../../Downloads/1708031048469-open-lock.json"; sourceTree = "<group>"; };
+		F8F0D5FA2BCB022000771292 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F8F0D5FC2BCBD58F00771292 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F8F0D5FE2BCBD5C100771292 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F8A5CDDC2CB983B40030A24D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8A632EB294B87E70080DAE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A5CDD72C8E4D1C0030A24D /* SwiftfulUI in Frameworks */,
+				F8F0D5FB2BCB022100771292 /* CoreMotion.framework in Frameworks */,
 				F88E499F2B3D8E490099939A /* GoogleSignInSwift in Frameworks */,
 				F8C7A6BB297D3EE400718CBF /* TinkoffASDKUI in Frameworks */,
 				F88E499D2B3D8E490099939A /* GoogleSignIn in Frameworks */,
@@ -265,7 +302,8 @@
 				F8C7A6B9297D3EE400718CBF /* TinkoffASDKCore in Frameworks */,
 				F8A2F9E8295DB33700B37C4A /* Alamofire in Frameworks */,
 				F8A2F9EB295DB3C500B37C4A /* SwiftyJSON in Frameworks */,
-				F8A62AD72A640D930038375E /* YandexMapPackageWrapper in Frameworks */,
+				F8A5CDA32C8E10870030A24D /* SDWebImageSwiftUI in Frameworks */,
+				F86712EA2BCC020B00D643B8 /* YandexMapsMobile in Frameworks */,
 				F89EB139294DB36900D34B09 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,51 +311,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F80D19662B7C0904004B80D3 /* CodeTextFields */ = {
-			isa = PBXGroup;
-			children = (
-				F80D19672B7C0940004B80D3 /* CodeTextFields.swift */,
-				F80D19692B7C0B69004B80D3 /* SegmentCodeTextFields.swift */,
-			);
-			path = CodeTextFields;
-			sourceTree = "<group>";
-		};
-		F80D19732B7EA55F004B80D3 /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				F80D19742B7EA596004B80D3 /* ResetPasswordAnimationView.swift */,
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
-		F80DA5BC2BBF550D0044E81B /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				F80DA5BD2BBF551F0044E81B /* ViewModel */,
-				F80DA5BE2BBF552B0044E81B /* View */,
-				F80D19732B7EA55F004B80D3 /* Animation */,
-			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
-		F80DA5BD2BBF551F0044E81B /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				F80D196D2B7E985B004B80D3 /* ForgotPasswordViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		F80DA5BE2BBF552B0044E81B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				F80D196F2B7E9B8F004B80D3 /* ForgotPasswordView.swift */,
-				F8662C482B7AC957009657A3 /* ForgotPasswordSegment.swift */,
-				F8C7DD102B825DDB009E2BE5 /* ForgotPasswordBottonButton.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		F80DA5BF2BBF59A70044E81B /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,10 +478,10 @@
 			isa = PBXGroup;
 			children = (
 				F8F0D5E42BC9EE4100771292 /* APIManager.swift */,
-				F8D1C1702960532D00ED18DA /* LocalFileManager.swift */,
+				F8A5C25429507DE5008AB0E5 /* AuthManager.swift */,
 				F8D1C172296053B600ED18DA /* NetworkingManager.swift */,
 				F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */,
-				F8B34EB0296C675B0066CC42 /* Constant.swift */,
+				F8B34EB0296C675B0066CC42 /* Constants.swift */,
 			);
 			path = Utillities;
 			sourceTree = "<group>";
@@ -505,9 +498,7 @@
 		F8A333632961F5D10073521A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F8A333652961F66B0073521A /* MealCellViewModel.swift */,
 				F8A706342A1F77F700B9EE51 /* CompositionViewModel.swift */,
-				F8ABE33E2A3872A6003A0F13 /* CompositionCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -532,14 +523,6 @@
 			path = Serializers;
 			sourceTree = "<group>";
 		};
-		F8A3FD5E2AD1CF1600BF6FC5 /* ButtonWithImage */ = {
-			isa = PBXGroup;
-			children = (
-				F8A348402B14F9D5009BC60D /* ButtonWithImage.swift */,
-			);
-			path = ButtonWithImage;
-			sourceTree = "<group>";
-		};
 		F8A5AA5D2980314E007FBD0F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,10 +535,7 @@
 		F8A5C25329507DCF008AB0E5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F8A5C25429507DE5008AB0E5 /* AuthService.swift */,
-				F8A167892962DD380007E522 /* MealImageService.swift */,
 				F8A333672961F8160073521A /* MealService.swift */,
-				F8ABE33C2A3871A7003A0F13 /* IngredientImageService.swift */,
 				F8A8581E2A35ED8400AC518C /* IngredientsService.swift */,
 				F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */,
 				F8C4CFC029856F5900D3D225 /* LastOrderService.swift */,
@@ -565,12 +545,104 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F8A5CDA62C8E48550030A24D /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDA42C8E48550030A24D /* 1708031048469-open-lock.json */,
+				F8A5CDA52C8E48550030A24D /* ResetPasswordAnimationView.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		F8A5CDA82C8E48550030A24D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDA72C8E48550030A24D /* FPView.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		F8A5CDAB2C8E48550030A24D /* CodeTextFields */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDA92C8E48550030A24D /* CodeTextFields.swift */,
+				F8A5CDAA2C8E48550030A24D /* SegmentCodeTextFields.swift */,
+			);
+			path = CodeTextFields;
+			sourceTree = "<group>";
+		};
+		F8A5CDB02C8E48550030A24D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDAB2C8E48550030A24D /* CodeTextFields */,
+				F8A5CDAC2C8E48550030A24D /* ForgotPasswordBottonButton.swift */,
+				F8A5CDAD2C8E48550030A24D /* ForgotPasswordSegment.swift */,
+				F8A5CDAE2C8E48550030A24D /* ForgotPasswordView.swift */,
+				F8A5CDAF2C8E48550030A24D /* TimerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8A5CDB22C8E48550030A24D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDB12C8E48550030A24D /* ForgotPasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F8A5CDB32C8E48550030A24D /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDA62C8E48550030A24D /* Animation */,
+				F8A5CDA82C8E48550030A24D /* Extension */,
+				F8A5CDB02C8E48550030A24D /* View */,
+				F8A5CDB22C8E48550030A24D /* ViewModel */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		F8A5CDCF2C8E48E90030A24D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDCE2C8E48E90030A24D /* SendCodeOnMailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8A5CDD12C8E48E90030A24D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F8A5CDD22C8E48E90030A24D /* SendCodeOnMail */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDCF2C8E48E90030A24D /* View */,
+				F8A5CDD12C8E48E90030A24D /* ViewModel */,
+			);
+			path = SendCodeOnMail;
+			sourceTree = "<group>";
+		};
+		F8A5CDE02CB983B40030A24D /* FoodTaskerMobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */,
+			);
+			path = FoodTaskerMobileTests;
+			sourceTree = "<group>";
+		};
 		F8A632E5294B87E70080DAE8 = {
 			isa = PBXGroup;
 			children = (
 				F8A632F0294B87E70080DAE8 /* FoodTaskerMobile */,
 				F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */,
+				F8A5CDE02CB983B40030A24D /* FoodTaskerMobileTests */,
 				F8A6CCAB2A6E69F400C8AD55 /* Frameworks */,
+				F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -584,6 +656,7 @@
 				F8A5C25329507DCF008AB0E5 /* Services */,
 				F8B058BF295C84B9002F071A /* Models */,
 				F8A3ACEA29A22572009886FB /* Serializers */,
+				F8A63312294B88480080DAE8 /* Components */,
 				F8A63308294B88480080DAE8 /* Core */,
 				F8F0D5E62BC9F35900771292 /* Animation */,
 				F8F0D5D82BC9E9EE00771292 /* Assets.xcassets */,
@@ -620,12 +693,11 @@
 			children = (
 				F8EF2C5A2993A7FC009C45D1 /* MainViewModel.swift */,
 				F80DA5C92BBF5E360044E81B /* Launch */,
-				F8A63312294B88480080DAE8 /* Components */,
 				F8A63309294B88480080DAE8 /* Home */,
+				F8EAF31B2BD702280056A3B9 /* Profile */,
 				F8A6330C294B88480080DAE8 /* Meal */,
 				F8A333622961F5C60073521A /* MealDescription */,
 				F8A63319294B88480080DAE8 /* Login */,
-				F80DA5BC2BBF550D0044E81B /* ForgotPassword */,
 				F8A6331C294B88480080DAE8 /* Menu */,
 				F8A1A0AE297193D2001B0C4B /* Payment */,
 				F8A63320294B88480080DAE8 /* Cart */,
@@ -672,24 +744,18 @@
 		F8A63312294B88480080DAE8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F80D19662B7C0904004B80D3 /* CodeTextFields */,
-				F8A3FD5E2AD1CF1600BF6FC5 /* ButtonWithImage */,
-				F8A6BC652A34C48600BF74AD /* CheckButton */,
-				F8A8424E2A1A20880097828A /* BottomSheetView */,
-				F8CA8AC929E16ABB00515637 /* HorizontalPicker */,
-				F8C4CFBB29855E6300D3D225 /* Badge */,
-				F8A63313294B88480080DAE8 /* SearchBar */,
 				F8A63317294B88480080DAE8 /* MenuButton */,
+				F8A5CD9F2C8E10650030A24D /* ImageLoaderView.swift */,
+				F8A348402B14F9D5009BC60D /* ButtonWithImage.swift */,
+				F8A6BC662A34C4A400BF74AD /* CheckButton.swift */,
+				F8A8424F2A1A209B0097828A /* BottomSheetView.swift */,
+				F8CA8ACA29E16ADA00515637 /* HPicker.swift */,
+				F8C4CFBC29855E7D00D3D225 /* Badge.swift */,
+				F8A63314294B88480080DAE8 /* SearchBarView.swift */,
+				F8A5CDD22C8E48E90030A24D /* SendCodeOnMail */,
+				F8A5CDB32C8E48550030A24D /* ForgotPassword */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		F8A63313294B88480080DAE8 /* SearchBar */ = {
-			isa = PBXGroup;
-			children = (
-				F8A63314294B88480080DAE8 /* SearchBarView.swift */,
-			);
-			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		F8A63317294B88480080DAE8 /* MenuButton */ = {
@@ -717,8 +783,6 @@
 			children = (
 				F8A6331B294B88480080DAE8 /* LoginView.swift */,
 				F8DAC5B62B83EFF200D7654A /* LoginPickerView.swift */,
-				F8DAC5B82B83F73700D7654A /* SendCodeOnMailView.swift */,
-				F8C7DD0E2B825B61009E2BE5 /* TimerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -759,28 +823,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F8A6BC652A34C48600BF74AD /* CheckButton */ = {
-			isa = PBXGroup;
-			children = (
-				F8A6BC662A34C4A400BF74AD /* CheckButton.swift */,
-			);
-			path = CheckButton;
-			sourceTree = "<group>";
-		};
 		F8A6CCAB2A6E69F400C8AD55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8F0D5FE2BCBD5C100771292 /* CoreTelephony.framework */,
+				F8F0D5FC2BCBD58F00771292 /* SystemConfiguration.framework */,
+				F8F0D5FA2BCB022000771292 /* CoreMotion.framework */,
 				F8A6CCAC2A6E69F400C8AD55 /* libc++.tbd */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F8A8424E2A1A20880097828A /* BottomSheetView */ = {
-			isa = PBXGroup;
-			children = (
-				F8A8424F2A1A209B0097828A /* BottomSheetView.swift */,
-			);
-			path = BottomSheetView;
 			sourceTree = "<group>";
 		};
 		F8B058BF295C84B9002F071A /* Models */ = {
@@ -802,26 +853,34 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F8C4CFBB29855E6300D3D225 /* Badge */ = {
+		F8EAF31B2BD702280056A3B9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F8C4CFBC29855E7D00D3D225 /* Badge.swift */,
+				F8EAF31D2BD702430056A3B9 /* ViewModel */,
+				F8EAF31C2BD7023E0056A3B9 /* View */,
 			);
-			path = Badge;
+			path = Profile;
 			sourceTree = "<group>";
 		};
-		F8CA8AC929E16ABB00515637 /* HorizontalPicker */ = {
+		F8EAF31C2BD7023E0056A3B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F8CA8ACA29E16ADA00515637 /* HPicker.swift */,
+				F8EAF31E2BD702590056A3B9 /* ProfileView.swift */,
 			);
-			path = HorizontalPicker;
+			path = View;
+			sourceTree = "<group>";
+		};
+		F8EAF31D2BD702430056A3B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAF3202BD706D70056A3B9 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F8F0D5E62BC9F35900771292 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				F8F0D5EF2BC9F39D00771292 /* 1708031048469-open-lock.json */,
 				F8F0D5E72BC9F37C00771292 /* 1710081107528-delivery-driver.json */,
 				F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */,
 				F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */,
@@ -833,6 +892,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F8A5CDDE2CB983B40030A24D /* FoodTaskerMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8A5CDE52CB983B40030A24D /* Build configuration list for PBXNativeTarget "FoodTaskerMobileTests" */;
+			buildPhases = (
+				F8A5CDDB2CB983B40030A24D /* Sources */,
+				F8A5CDDC2CB983B40030A24D /* Frameworks */,
+				F8A5CDDD2CB983B40030A24D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8A5CDE42CB983B40030A24D /* PBXTargetDependency */,
+			);
+			name = FoodTaskerMobileTests;
+			productName = FoodTaskerMobileTests;
+			productReference = F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F8A632ED294B87E70080DAE8 /* FoodTaskerMobile */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8A632FC294B87E80080DAE8 /* Build configuration list for PBXNativeTarget "FoodTaskerMobile" */;
@@ -841,6 +918,7 @@
 				F8A632EB294B87E70080DAE8 /* Frameworks */,
 				F8A632EC294B87E70080DAE8 /* Resources */,
 				F8CF07BE2958A34F009424F6 /* Embed Frameworks */,
+				F8F0D5F92BCB01AC00771292 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -854,9 +932,11 @@
 				F8A2F9EA295DB3C500B37C4A /* SwiftyJSON */,
 				F8C7A6B8297D3EE400718CBF /* TinkoffASDKCore */,
 				F8C7A6BA297D3EE400718CBF /* TinkoffASDKUI */,
-				F8A62AD62A640D930038375E /* YandexMapPackageWrapper */,
 				F88E499C2B3D8E490099939A /* GoogleSignIn */,
 				F88E499E2B3D8E490099939A /* GoogleSignInSwift */,
+				F86712E92BCC020B00D643B8 /* YandexMapsMobile */,
+				F8A5CDA22C8E10870030A24D /* SDWebImageSwiftUI */,
+				F8A5CDD62C8E4D1C0030A24D /* SwiftfulUI */,
 			);
 			productName = FoodTaskerMobile;
 			productReference = F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */;
@@ -869,9 +949,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					F8A5CDDE2CB983B40030A24D = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = F8A632ED294B87E70080DAE8;
+					};
 					F8A632ED294B87E70080DAE8 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -892,19 +976,30 @@
 				F8A2F9E6295DB33600B37C4A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F8A2F9E9295DB3C500B37C4A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				F8C7A6B7297D3EE400718CBF /* XCRemoteSwiftPackageReference "AcquiringSdk_IOS" */,
-				F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */,
 				F88E499B2B3D8E490099939A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				F86712E82BCC020B00D643B8 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */,
+				F8A5CDA12C8E10870030A24D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				F8A5CDD52C8E4D1C0030A24D /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
+				F8A5CDD82C8E504D0030A24D /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
 			);
 			productRefGroup = F8A632E5294B87E70080DAE8;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F8A632ED294B87E70080DAE8 /* FoodTaskerMobile */,
+				F8A5CDDE2CB983B40030A24D /* FoodTaskerMobileTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F8A5CDDD2CB983B40030A24D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8A632EC294B87E70080DAE8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -912,9 +1007,9 @@
 				F80DA5CA2BBF5E360044E81B /* LaunchScreen.storyboard in Resources */,
 				F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */,
 				F8F0D5EE2BC9F39300771292 /* 1710451613546-map-tracking.json in Resources */,
-				F8F0D5F02BC9F39D00771292 /* 1708031048469-open-lock.json in Resources */,
 				F8F0D5EA2BC9F38500771292 /* 1710081289927-cooking.json in Resources */,
 				F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */,
+				F8A5CDB42C8E48550030A24D /* 1708031048469-open-lock.json in Resources */,
 				F8F0D5EC2BC9F38C00771292 /* 1710097343220-sad-smile.json in Resources */,
 				F8F0D5F12BC9F4C600771292 /* Assets.xcassets in Resources */,
 				F8F0D5E82BC9F37C00771292 /* 1710081107528-delivery-driver.json in Resources */,
@@ -924,25 +1019,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F8A5CDDB2CB983B40030A24D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8A5CDE22CB983B40030A24D /* FoodTaskerMobileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8A632EA294B87E70080DAE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A5CDBC2C8E48550030A24D /* TimerView.swift in Sources */,
 				F838FF75295F56AE00E87420 /* View.swift in Sources */,
 				F8A74C2C2A614C0D0041BA74 /* MKPolygon.swift in Sources */,
 				F80D196C2B7C136C004B80D3 /* String.swift in Sources */,
 				F8C4CFBD29855E7D00D3D225 /* Badge.swift in Sources */,
+				F8A5CDB92C8E48550030A24D /* ForgotPasswordBottonButton.swift in Sources */,
 				F838FF6E295DFA3500E87420 /* Restaurant.swift in Sources */,
-				F8B34EB1296C675B0066CC42 /* Constant.swift in Sources */,
-				F8C7DD0F2B825B61009E2BE5 /* TimerView.swift in Sources */,
+				F8B34EB1296C675B0066CC42 /* Constants.swift in Sources */,
+				F8A5CDD42C8E48E90030A24D /* SendCodeOnMailViewModel.swift in Sources */,
 				F8A6332F294B88480080DAE8 /* CartView.swift in Sources */,
 				F8A6332B294B88480080DAE8 /* MenuButtonView.swift in Sources */,
 				F8A333612961F38A0073521A /* Meal.swift in Sources */,
+				F8A5CDB82C8E48550030A24D /* SegmentCodeTextFields.swift in Sources */,
 				F8A6F4B529E451BE0085031F /* CompositionCell.swift in Sources */,
 				F8A285AE2AD2DCEC00F8FE93 /* AddressInputCell.swift in Sources */,
-				F80D19702B7E9B8F004B80D3 /* ForgotPasswordView.swift in Sources */,
-				F8A333662961F66B0073521A /* MealCellViewModel.swift in Sources */,
 				F8A1C99C2ACDFA43000A279F /* EditMapViewModel.swift in Sources */,
+				F8A5CDA02C8E10650030A24D /* ImageLoaderView.swift in Sources */,
 				F8A5033A2A6A756D00A6EC51 /* UIColor.swift in Sources */,
 				F8A0653F29672FE500ECF9C0 /* CartCellViewModel.swift in Sources */,
 				F84AB7AC2B9DDAB300F3761B /* OrderInfo.swift in Sources */,
@@ -950,7 +1055,6 @@
 				F8A706332A1F755700B9EE51 /* Ingredient.swift in Sources */,
 				F8B058C1295C84CC002F071A /* User.swift in Sources */,
 				F84AB7C62BACDDFA00F3761B /* CartViewModel.swift in Sources */,
-				F80D196E2B7E985B004B80D3 /* ForgotPasswordViewModel.swift in Sources */,
 				F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */,
 				F8D1C173296053B600ED18DA /* NetworkingManager.swift in Sources */,
 				F8A63330294B88480080DAE8 /* CartCell.swift in Sources */,
@@ -960,7 +1064,8 @@
 				F84AB7B52B9E043900F3761B /* CookingAnimationView.swift in Sources */,
 				F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */,
 				F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */,
-				F8DAC5B92B83F73700D7654A /* SendCodeOnMailView.swift in Sources */,
+				F8A5CDBB2C8E48550030A24D /* ForgotPasswordView.swift in Sources */,
+				F8EAF31F2BD702590056A3B9 /* ProfileView.swift in Sources */,
 				F8A63325294B88480080DAE8 /* MealDescription.swift in Sources */,
 				F81328E7294E198B002E9A66 /* DeliveryCell.swift in Sources */,
 				F8C4CFC129856F5900D3D225 /* LastOrderService.swift in Sources */,
@@ -968,12 +1073,11 @@
 				F8A743B22A62DDBF00361D8E /* YandexMapView.swift in Sources */,
 				F8A6F4B929E458480085031F /* MealDetail.swift in Sources */,
 				F8B21AD32B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift in Sources */,
-				F8ABE33F2A3872A6003A0F13 /* CompositionCellViewModel.swift in Sources */,
 				F8A6BC672A34C4A400BF74AD /* CheckButton.swift in Sources */,
-				F80D196A2B7C0B69004B80D3 /* SegmentCodeTextFields.swift in Sources */,
-				F8D1C1712960532D00ED18DA /* LocalFileManager.swift in Sources */,
+				F8EAF3212BD706D70056A3B9 /* ProfileViewModel.swift in Sources */,
 				F8A9E6BD2B0E200100660145 /* MenuViewStatic.swift in Sources */,
-				F8A5C25529507DE5008AB0E5 /* AuthService.swift in Sources */,
+				F8A5CDBA2C8E48550030A24D /* ForgotPasswordSegment.swift in Sources */,
+				F8A5C25529507DE5008AB0E5 /* AuthManager.swift in Sources */,
 				F8A7EC472A6C1D22007ED275 /* AddressesView.swift in Sources */,
 				F8EF2C5B2993A7FC009C45D1 /* MainViewModel.swift in Sources */,
 				F8F0D5E52BC9EE4100771292 /* APIManager.swift in Sources */,
@@ -982,16 +1086,16 @@
 				F8C4CFBF2985687C00D3D225 /* LastOrderStatusService.swift in Sources */,
 				F8A6F4B729E4557D0085031F /* CompositionView.swift in Sources */,
 				F8AA7DAE2A0EA321009917ED /* MapView.swift in Sources */,
+				F8A5CDD32C8E48E90030A24D /* SendCodeOnMailView.swift in Sources */,
 				F8A842502A1A209B0097828A /* BottomSheetView.swift in Sources */,
-				F80D19752B7EA596004B80D3 /* ResetPasswordAnimationView.swift in Sources */,
-				F8662C492B7AC957009657A3 /* ForgotPasswordSegment.swift in Sources */,
 				F8A348462B150D12009BC60D /* AddressesDataService.swift in Sources */,
+				F8A5CDB52C8E48550030A24D /* ResetPasswordAnimationView.swift in Sources */,
 				F8A333682961F8160073521A /* MealService.swift in Sources */,
 				F8A6332C294B88480080DAE8 /* LoginView.swift in Sources */,
+				F8A5CDBD2C8E48550030A24D /* ForgotPasswordViewModel.swift in Sources */,
 				F8A743B02A62DCD300361D8E /* MapViewModel.swift in Sources */,
 				F8DAC5B72B83EFF200D7654A /* LoginPickerView.swift in Sources */,
 				F8A3ACEC29A2259A009886FB /* OrderDetailsSerializer.swift in Sources */,
-				F8A1678A2962DD380007E522 /* MealImageService.swift in Sources */,
 				F8A5AA5C297FF74F007FBD0F /* BankCardsView.swift in Sources */,
 				F814A84D2A77BA9900F81BB9 /* Address.swift in Sources */,
 				F8A6332E294B88480080DAE8 /* MenuView.swift in Sources */,
@@ -1002,13 +1106,14 @@
 				F8A0653C2967261100ECF9C0 /* OrderDetails.swift in Sources */,
 				F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */,
 				F84AB7B32B9DFD1300F3761B /* DeliveryAnimationView.swift in Sources */,
+				F8A5CDB62C8E48550030A24D /* FPView.swift in Sources */,
 				F8A63307294B88400080DAE8 /* Color.swift in Sources */,
 				F80DA5BB2BBF38420044E81B /* StringError.swift in Sources */,
 				F8A706352A1F77F700B9EE51 /* CompositionViewModel.swift in Sources */,
 				F84AB7B92B9E3B8C00F3761B /* SadSmileAnimationView.swift in Sources */,
-				F80D19682B7C0940004B80D3 /* CodeTextFields.swift in Sources */,
 				F8F0D5F22BCA4FAF00771292 /* AddressesViewModel.swift in Sources */,
 				F8A63326294B88480080DAE8 /* MealCell.swift in Sources */,
+				F8A5CDB72C8E48550030A24D /* CodeTextFields.swift in Sources */,
 				F8A6332D294B88480080DAE8 /* MenuCell.swift in Sources */,
 				F8CA8ACB29E16ADA00515637 /* HPicker.swift in Sources */,
 				F8A348412B14F9D5009BC60D /* ButtonWithImage.swift in Sources */,
@@ -1017,9 +1122,7 @@
 				F8A63327294B88480080DAE8 /* MealView.swift in Sources */,
 				F8904090297194BC009AFF99 /* PaymentViewModel.swift in Sources */,
 				F84AB7C82BACF33A00F3761B /* SuccessPaymentView.swift in Sources */,
-				F8C7DD112B825DDB009E2BE5 /* ForgotPasswordBottonButton.swift in Sources */,
 				F84AB7BE2BA3A09100F3761B /* MapTrackingAnimationView.swift in Sources */,
-				F8ABE33D2A3871A7003A0F13 /* IngredientImageService.swift in Sources */,
 				F838FF72295E077B00E87420 /* MealViewModel.swift in Sources */,
 				F8A3FD622AD2129F00BF6FC5 /* AddressView.swift in Sources */,
 				F84AB7AA2B9CE23600F3761B /* OrdersService.swift in Sources */,
@@ -1032,7 +1135,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F8A5CDE42CB983B40030A24D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8A632ED294B87E70080DAE8 /* FoodTaskerMobile */;
+			targetProxy = F8A5CDE32CB983B40030A24D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F8A5CDE62CB983B40030A24D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GLVZ4657KM;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTaskerMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FoodTaskerMobile";
+			};
+			name = Debug;
+		};
+		F8A5CDE72CB983B40030A24D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GLVZ4657KM;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTaskerMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FoodTaskerMobile";
+			};
+			name = Release;
+		};
 		F8A632FA294B87E80080DAE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1083,7 +1241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1138,7 +1296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1155,7 +1313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodTaskerMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = GLVZ4657KM;
 				ENABLE_PREVIEWS = YES;
@@ -1166,19 +1324,22 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StreetFood;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Это приложение хочет использовать ваше местоположение";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это приложение хочет использовать ваше местоположение";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Это приложение должно иметь доступ к вашей геолокации";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1193,7 +1354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodTaskerMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = GLVZ4657KM;
 				ENABLE_PREVIEWS = YES;
@@ -1204,19 +1365,22 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodTaskerMobile/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StreetFood;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app would like use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app would like use your location";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Это приложение хочет использовать ваше местоположение";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Это приложение хочет использовать ваше местоположение";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Это приложение должно иметь доступ к вашей геолокации";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1228,6 +1392,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F8A5CDE52CB983B40030A24D /* Build configuration list for PBXNativeTarget "FoodTaskerMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8A5CDE62CB983B40030A24D /* Debug */,
+				F8A5CDE72CB983B40030A24D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F8A632E9294B87E70080DAE8 /* Build configuration list for PBXProject "FoodTaskerMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1249,6 +1422,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F86712E82BCC020B00D643B8 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/c-villain/YandexMapsMobile.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 		F88E499B2B3D8E490099939A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1281,12 +1462,28 @@
 				version = 5.0.1;
 			};
 		};
-		F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */ = {
+		F8A5CDA12C8E10870030A24D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vladimirgoncharov/YandexMapPackageWrapper";
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
+		F8A5CDD52C8E4D1C0030A24D /* XCRemoteSwiftPackageReference "SwiftfulUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		F8A5CDD82C8E504D0030A24D /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.6;
 			};
 		};
 		F8C7A6B7297D3EE400718CBF /* XCRemoteSwiftPackageReference "AcquiringSdk_IOS" */ = {
@@ -1308,6 +1505,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F86712E92BCC020B00D643B8 /* YandexMapsMobile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F86712E82BCC020B00D643B8 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */;
+			productName = YandexMapsMobile;
+		};
 		F88E499C2B3D8E490099939A /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F88E499B2B3D8E490099939A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -1333,10 +1535,15 @@
 			package = F8A2F9E9295DB3C500B37C4A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		F8A62AD62A640D930038375E /* YandexMapPackageWrapper */ = {
+		F8A5CDA22C8E10870030A24D /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F8A62AD52A640D930038375E /* XCRemoteSwiftPackageReference "YandexMapPackageWrapper" */;
-			productName = YandexMapPackageWrapper;
+			package = F8A5CDA12C8E10870030A24D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		F8A5CDD62C8E4D1C0030A24D /* SwiftfulUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8A5CDD52C8E4D1C0030A24D /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
+			productName = SwiftfulUI;
 		};
 		F8C7A6B8297D3EE400718CBF /* TinkoffASDKCore */ = {
 			isa = XCSwiftPackageProductDependency;

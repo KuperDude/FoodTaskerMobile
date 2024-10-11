@@ -24,6 +24,17 @@ class MainViewModel: ObservableObject {
         self.address = address
         self.selectedRestaurantId = selectedRestaurantId
     }
+    
+    func isUserAnonymous() -> Bool {
+        user?.id == "Anonymous"
+    }
+    
+    func moveToLoginView() {
+        AuthManager.instance.user = nil
+        user = nil
+        currentCategory = .menu
+        animateStatus = .burger
+    }
 }
 
 // MARK: - User Intents
@@ -67,6 +78,7 @@ extension MainViewModel {
 // MARK: - Category
 extension MainViewModel {
     enum Category: Int, CaseIterable, Identifiable {
+        case profile
         case menu
         case cart
         case delivery
@@ -78,6 +90,7 @@ extension MainViewModel {
         
         var iconName: String {
             switch self {
+            case .profile: return "icon_restaurants"
             case .menu: return "icon_restaurants"
             case .cart: return "icon_cart"
             case .delivery: return "icon_delivery"
@@ -88,6 +101,7 @@ extension MainViewModel {
         
         var text: String {
             switch self {
+            case .profile: return ""
             case .menu: return "МЕНЮ"
             case .cart: return "КОРЗИНА"
             case .delivery: return "ДОСТАВКА"

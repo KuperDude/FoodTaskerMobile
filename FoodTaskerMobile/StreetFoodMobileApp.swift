@@ -32,6 +32,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        YMKMapKit.setApiKey(Constants.YANDEX_MAP_API_KEY)
+        YMKMapKit.setLocale("ru_RU")
+        YMKMapKit.sharedInstance()
+        
         return true
     }
     
@@ -58,10 +62,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        YMKMapKit.setApiKey(YANDEX_MAP_API_KEY)
-        YMKMapKit.sharedInstance()
-    }
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {}
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {

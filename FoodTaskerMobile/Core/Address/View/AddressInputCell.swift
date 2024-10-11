@@ -18,6 +18,7 @@ struct AddressInputCell: View {
         self.lineLimit = lineLimit
         self._text = text
     }
+    
     var body: some View {
         ZStack {
             //background

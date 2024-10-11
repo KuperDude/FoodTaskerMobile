@@ -67,34 +67,47 @@ extension MenuView {
         .padding(.leading, 20)
         .padding(.trailing, 5)
         .padding(.bottom, 50)
+        .onTapGesture {
+            
+            mainVM.currentCategory = .profile
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation {
+                    mainVM.animateStatus.newStatusOnTap()
+                }
+            }
+        }
     }
     
     var menuItems: some View {
         ForEach(MainViewModel.Category.allCases) { category in
-            Divider()
-            MenuCell(category: category)
-                .onTapGesture {
-                    if category == .logout {
-                        VKSdk.forceLogout()
-                        GIDSignIn.sharedInstance.signOut()
-                        AuthService.instance.user = nil
-                        APIManager.instance.logout(.vk) { _ in }
-                        APIManager.instance.logout(.google) { _ in }
-                        mainVM.user = nil
-                        mainVM.currentCategory = .menu
-                        mainVM.animateStatus = .burger
-                        mainVM.order = []
-                        return
-                    }
-                    
-                    mainVM.currentCategory = category
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            mainVM.animateStatus.newStatusOnTap()
+            if category != .profile {
+                Divider()
+                MenuCell(category: category)
+                    .onTapGesture {
+                        if category == .logout {
+                            VKSdk.forceLogout()
+                            GIDSignIn.sharedInstance.signOut()
+                            AuthManager.instance.user = nil
+                            APIManager.instance.logout(.vk) { _ in }
+                            APIManager.instance.logout(.google) { _ in }
+                            mainVM.user = nil
+                            mainVM.currentCategory = .menu
+                            mainVM.animateStatus = .burger
+                            mainVM.order = []
+                            mainVM.address = Address()
+                            return
+                        }
+                        
+                        mainVM.currentCategory = category
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                mainVM.animateStatus.newStatusOnTap()
+                            }
                         }
                     }
-                }
+            }
         }
     }
 }

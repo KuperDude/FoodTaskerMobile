@@ -13,7 +13,7 @@ import Combine
 class APIManager {
     static let instance = APIManager()
     
-    let baseURL = URL(string: BASE_URL)
+    let baseURL = URL(string: Constants.baseURL)
     var accessToken = ""
     var refreshToken = ""
     var expired = Date()
@@ -27,6 +27,11 @@ class APIManager {
     
     // API - Refresh Token
     func refreshTokenIfNeed(completionHandler: @escaping () -> Void) {
+        
+        if AuthManager.instance.user?.id == "Anonymous" {
+            completionHandler()
+            return
+        }
         if accessToken.contains("@") {
             completionHandler()
             return
@@ -93,7 +98,8 @@ extension APIManager {
         NetworkingManager.download(url: url)
             .sink(receiveCompletion: { status in
                 switch status {
-                case .failure(let error): completionHandler(.failure(StringError("Данной почты не существует!")))
+                case .failure(_):                    
+                    completionHandler(.failure(StringError("Данной почты не существует!")))
                 case .finished: break
                 }
             }, receiveValue: { data in
@@ -140,6 +146,23 @@ extension APIManager {
         
     }
     
+    func deleteAccount(completionHandler: @escaping (Result<Bool, Error>) -> Void) {
+        
+        guard let url = deleteAccountURL() else { return }
+        
+        NetworkingManager.download(url: url)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .finished: break
+                case .failure(let error): completionHandler(.failure(error))
+                }
+            }, receiveValue: { result in
+                
+                completionHandler(.success(true))
+            })
+            .store(in: &self.cancellables)
+    }
+    
     func login(mail: String, password: String, completionHandler: @escaping (Result<MailUser, Error>) -> Void) {
         let path = "api/customer/login/\(mail)/\(password)/"
         
@@ -184,42 +207,43 @@ extension APIManager {
                 
     }
 
-    func login(method: AuthService.RegistrationMethod, userType: String, completionHandler: @escaping (Error?) -> Void) {
+    func login(method: AuthManager.RegistrationMethod, userType: String) async throws -> Void {
         let path = "api/social/convert-token/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
             "grant_type": "convert_token",
-            "client_id": method == .vk ? CLIENT_ID_VK : CLIENT_ID_GOOGLE,
+            "client_id": method == .vk ? Constants.CLIENT_ID_VK : Constants.CLIENT_ID_GOOGLE,
             "backend": method == .vk ? "vk-oauth2" : "google-oauth2",
-            "token": AuthService.instance.token(method: method) ?? "",
+            "token": AuthManager.instance.token(method: method) ?? "",
             "user_type": userType
         ]
         guard let url = url else { return }
         
-        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { [self] response in
-            switch response.result {
-            case .success(let value):
-                let jsonData = JSON(value)
-                
-                self.accessToken = jsonData["access_token"].string ?? ""
-                self.refreshToken = jsonData["refresh_token"].string ?? ""
-                self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int ?? 0))
-                
-                completionHandler(nil)
-                
-            case .failure(let error):
-                completionHandler(error as Error?)
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { [self] response in                
+                switch response.result {
+                case .success(let value):
+                    let jsonData = JSON(value)
+                    
+                    self.accessToken = jsonData["access_token"].string ?? ""
+                    self.refreshToken = jsonData["refresh_token"].string ?? ""
+                    self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int ?? 0))
+                    continuation.resume(returning: Void())
+                    
+                case .failure(let error):                    
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }
     
     // API - Logout
-    func logout(_ method: AuthService.RegistrationMethod, completionHandler: @escaping (Error?) -> Void) {
+    func logout(_ method: AuthManager.RegistrationMethod, completionHandler: @escaping (Error?) -> Void) {
         let path = "api/social/revoke-token/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
-            "client_id": method == .vk ? CLIENT_ID_VK : CLIENT_ID_GOOGLE,
-            "token": AuthService.instance.token(method: method) ?? "",
+            "client_id": method == .vk ? Constants.CLIENT_ID_VK : Constants.CLIENT_ID_GOOGLE,
+            "token": AuthManager.instance.token(method: method) ?? "",
         ]
         guard let url = url else { return }
         
@@ -235,7 +259,7 @@ extension APIManager {
     }
     
     func resetPassword(mail: String, password: String, completionHandler: @escaping (Result<Bool, Error>) -> Void) {
-        var path = "api/customer/resetPassword/\(mail)/\(password)/"
+        let path = "api/customer/resetPassword/\(mail)/\(password)/"
         
         guard let url = baseURL?.appendingPathComponent(path) else { return }
         
@@ -344,6 +368,12 @@ extension APIManager {
     // API to get the latest order's status (Customer)
     func getLatestOrderStatus() -> URL? {
         let path = "api/customer/order/latest_status/"
+        
+        return onlyOneAccessToken(at: path)
+    }
+    
+    func deleteAccountURL() -> URL? {
+        let path = "api/customer/deleteAccount/"
         
         return onlyOneAccessToken(at: path)
     }
