@@ -217,12 +217,12 @@
 		F8A5CDB12C8E48550030A24D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		F8A5CDCE2C8E48E90030A24D /* SendCodeOnMailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailView.swift; sourceTree = "<group>"; };
 		F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailViewModel.swift; sourceTree = "<group>"; };
-		F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodTaskerMobileTests.xctest; path = "/Users/MyBook/Documents/FoodTaskerMobile/build/Debug-iphoneos/FoodTaskerMobile.app/PlugIns/FoodTaskerMobileTests.xctest"; sourceTree = "<absolute>"; };
 		F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileTests.swift; sourceTree = "<group>"; };
 		F8A5CDEA2CB9B2500030A24D /* 1710081289927-cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081289927-cooking.json"; sourceTree = "<group>"; };
 		F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710451613546-map-tracking.json"; sourceTree = "<group>"; };
 		F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081107528-delivery-driver.json"; sourceTree = "<group>"; };
 		F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710097343220-sad-smile.json"; sourceTree = "<group>"; };
+		F8A5CDF22CB9D3220030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -642,6 +642,7 @@
 				F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */,
 				F8A5CDE02CB983B40030A24D /* FoodTaskerMobileTests */,
 				F8A6CCAB2A6E69F400C8AD55 /* Frameworks */,
+				F8A5CDF22CB9D3220030A24D /* FoodTaskerMobileTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -906,7 +907,7 @@
 			);
 			name = FoodTaskerMobileTests;
 			productName = FoodTaskerMobileTests;
-			productReference = F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */;
+			productReference = F8A5CDF22CB9D3220030A24D /* FoodTaskerMobileTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F8A632ED294B87E70080DAE8 /* FoodTaskerMobile */ = {
@@ -1154,7 +1155,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobileTests;
@@ -1178,7 +1179,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregfields.FoodTaskerMobileTests;
