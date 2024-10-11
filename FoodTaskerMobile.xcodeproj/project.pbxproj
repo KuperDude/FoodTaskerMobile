@@ -67,6 +67,10 @@
 		F8A5CDD42C8E48E90030A24D /* SendCodeOnMailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */; };
 		F8A5CDD72C8E4D1C0030A24D /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = F8A5CDD62C8E4D1C0030A24D /* SwiftfulUI */; };
 		F8A5CDE22CB983B40030A24D /* FoodTaskerMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */; };
+		F8A5CDEE2CB9B2500030A24D /* 1710081289927-cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEA2CB9B2500030A24D /* 1710081289927-cooking.json */; };
+		F8A5CDEF2CB9B2500030A24D /* 1710451613546-map-tracking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */; };
+		F8A5CDF02CB9B2500030A24D /* 1710081107528-delivery-driver.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */; };
+		F8A5CDF12CB9B2500030A24D /* 1710097343220-sad-smile.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */; };
 		F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63304294B88400080DAE8 /* UIApplication.swift */; };
@@ -121,10 +125,6 @@
 		F8EAF3212BD706D70056A3B9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF3202BD706D70056A3B9 /* ProfileViewModel.swift */; };
 		F8EF2C5B2993A7FC009C45D1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EF2C5A2993A7FC009C45D1 /* MainViewModel.swift */; };
 		F8F0D5E52BC9EE4100771292 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F0D5E42BC9EE4100771292 /* APIManager.swift */; };
-		F8F0D5E82BC9F37C00771292 /* 1710081107528-delivery-driver.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5E72BC9F37C00771292 /* 1710081107528-delivery-driver.json */; };
-		F8F0D5EA2BC9F38500771292 /* 1710081289927-cooking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */; };
-		F8F0D5EC2BC9F38C00771292 /* 1710097343220-sad-smile.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */; };
-		F8F0D5EE2BC9F39300771292 /* 1710451613546-map-tracking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5ED2BC9F39300771292 /* 1710451613546-map-tracking.json */; };
 		F8F0D5F12BC9F4C600771292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8F0D5D82BC9E9EE00771292 /* Assets.xcassets */; };
 		F8F0D5F22BCA4FAF00771292 /* AddressesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DA5C52BBF5A1F0044E81B /* AddressesViewModel.swift */; };
 		F8F0D5FB2BCB022100771292 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F0D5FA2BCB022000771292 /* CoreMotion.framework */; };
@@ -219,6 +219,10 @@
 		F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailViewModel.swift; sourceTree = "<group>"; };
 		F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileTests.swift; sourceTree = "<group>"; };
+		F8A5CDEA2CB9B2500030A24D /* 1710081289927-cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081289927-cooking.json"; sourceTree = "<group>"; };
+		F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710451613546-map-tracking.json"; sourceTree = "<group>"; };
+		F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081107528-delivery-driver.json"; sourceTree = "<group>"; };
+		F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710097343220-sad-smile.json"; sourceTree = "<group>"; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -272,10 +276,6 @@
 		F8EF2C5A2993A7FC009C45D1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		F8F0D5D82BC9E9EE00771292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8F0D5E42BC9EE4100771292 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		F8F0D5E72BC9F37C00771292 /* 1710081107528-delivery-driver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710081107528-delivery-driver.json"; path = "../../../../Downloads/1710081107528-delivery-driver.json"; sourceTree = "<group>"; };
-		F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710081289927-cooking.json"; path = "../../../../Downloads/1710081289927-cooking.json"; sourceTree = "<group>"; };
-		F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710097343220-sad-smile.json"; path = "../../../../Downloads/1710097343220-sad-smile.json"; sourceTree = "<group>"; };
-		F8F0D5ED2BC9F39300771292 /* 1710451613546-map-tracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "1710451613546-map-tracking.json"; path = "../../../../Downloads/1710451613546-map-tracking.json"; sourceTree = "<group>"; };
 		F8F0D5FA2BCB022000771292 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F8F0D5FC2BCBD58F00771292 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F8F0D5FE2BCBD5C100771292 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -881,10 +881,10 @@
 		F8F0D5E62BC9F35900771292 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				F8F0D5E72BC9F37C00771292 /* 1710081107528-delivery-driver.json */,
-				F8F0D5E92BC9F38500771292 /* 1710081289927-cooking.json */,
-				F8F0D5EB2BC9F38C00771292 /* 1710097343220-sad-smile.json */,
-				F8F0D5ED2BC9F39300771292 /* 1710451613546-map-tracking.json */,
+				F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */,
+				F8A5CDEA2CB9B2500030A24D /* 1710081289927-cooking.json */,
+				F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */,
+				F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -1006,13 +1006,13 @@
 			files = (
 				F80DA5CA2BBF5E360044E81B /* LaunchScreen.storyboard in Resources */,
 				F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */,
-				F8F0D5EE2BC9F39300771292 /* 1710451613546-map-tracking.json in Resources */,
-				F8F0D5EA2BC9F38500771292 /* 1710081289927-cooking.json in Resources */,
+				F8A5CDEF2CB9B2500030A24D /* 1710451613546-map-tracking.json in Resources */,
+				F8A5CDF02CB9B2500030A24D /* 1710081107528-delivery-driver.json in Resources */,
+				F8A5CDEE2CB9B2500030A24D /* 1710081289927-cooking.json in Resources */,
+				F8A5CDF12CB9B2500030A24D /* 1710097343220-sad-smile.json in Resources */,
 				F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */,
 				F8A5CDB42C8E48550030A24D /* 1708031048469-open-lock.json in Resources */,
-				F8F0D5EC2BC9F38C00771292 /* 1710097343220-sad-smile.json in Resources */,
 				F8F0D5F12BC9F4C600771292 /* Assets.xcassets in Resources */,
-				F8F0D5E82BC9F37C00771292 /* 1710081107528-delivery-driver.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
