@@ -21,16 +21,9 @@ struct CartCell: View {
     var body: some View {
 
         HStack {
-            
-            Image(uiImage: vm.image ?? UIImage())
-                    .resizable()
-                    .overlay(content: {
-                        if vm.isLoading {
-                            ProgressView()
-                        }
-                    })
-                    .frame(width: 100, height: 100)
-                    .scaledToFill()
+            ImageLoaderView(urlString: orderDetails.meal.image, resizingMode: .fit)
+                .frame(width: 100, height: 100)
+                .scaledToFill()
             
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {

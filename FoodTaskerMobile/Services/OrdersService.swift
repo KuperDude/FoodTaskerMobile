@@ -32,7 +32,6 @@ class OrdersService {
                 }
             }, receiveValue: { orders in
                 self.orders = orders
-                print(orders)
             })
     }
 }

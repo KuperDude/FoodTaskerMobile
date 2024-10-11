@@ -189,19 +189,17 @@ extension MapViewModel: YMKLayersGeoObjectTapListener {
 
             let metadata = geoObj.metadataContainer.getItemOf(YMKGeoObjectSelectionMetadata.self)
             if let selectionMetadata = metadata as? YMKGeoObjectSelectionMetadata {
-                print(selectionMetadata.id)
-                print(selectionMetadata.layerId)
-                if selectionMetadata.id.count > 6 {
+                //if selectionMetadata.id.count > 6 {
                     mapView.mapWindow.map.move(
                         with: YMKCameraPosition(
                             target: point,
                             zoom: mapView.mapWindow.map.cameraPosition.zoom,
                             azimuth: mapView.mapWindow.map.cameraPosition.azimuth,
                             tilt: mapView.mapWindow.map.cameraPosition.tilt
-                        ), animationType: YMKAnimation(type: .linear, duration: 0.3)
+                        ), animation: YMKAnimation(type: .linear, duration: 0.3)
                     )
-                    mapView.mapWindow.map.selectGeoObject(withObjectId: selectionMetadata.id, layerId: selectionMetadata.layerId)
-                }
+                    mapView.mapWindow.map.selectGeoObject(withSelectionMetaData: selectionMetadata)
+                //}
                 convertCoordinateToAdress(point) { [weak self] address in
                     guard let address = address else { return }
                     
@@ -272,7 +270,7 @@ extension MapViewModel {
                 zoom: mapView.mapWindow.map.cameraPosition.zoom + 1,
                 azimuth: mapView.mapWindow.map.cameraPosition.azimuth,
                 tilt: mapView.mapWindow.map.cameraPosition.tilt
-            ), animationType: YMKAnimation(type: .linear, duration: 0.3)
+            ), animation: YMKAnimation(type: .linear, duration: 0.3)
         )
     }
     
@@ -283,7 +281,7 @@ extension MapViewModel {
                 zoom: mapView.mapWindow.map.cameraPosition.zoom - 1,
                 azimuth: mapView.mapWindow.map.cameraPosition.azimuth,
                 tilt: mapView.mapWindow.map.cameraPosition.tilt
-            ), animationType: YMKAnimation(type: .linear, duration: 0.3)
+            ), animation: YMKAnimation(type: .linear, duration: 0.3)
         )
     }
     
@@ -295,7 +293,7 @@ extension MapViewModel {
                 zoom: 17,
                 azimuth: 0,
                 tilt: 0
-            ), animationType: YMKAnimation(type: .linear, duration: 0.3)
+            ), animation: YMKAnimation(type: .linear, duration: 0.3)
         )
     }
 }

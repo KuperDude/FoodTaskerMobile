@@ -145,8 +145,10 @@ extension EditMapView {
             
             HStack {
                 ButtonMenuStaticView(status: .chevron, height: 50) {
-                    vm.addAddress(address)
-                    onTapReady(address)
+                    if address.isStreetAndHouseFill {
+                        vm.addAddress(address)
+                        onTapReady(address)
+                    }
                     dismiss()
                 }
                 

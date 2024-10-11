@@ -14,6 +14,8 @@ struct CartView: View {
     
     @State private var showAddressAlert = false
     @State private var showOrderAlert = false
+    @State private var showLoginAlert = false
+    
     @State var showPayment = false
     @State var showSuccessPayment = false
     
@@ -29,11 +31,8 @@ struct CartView: View {
             
             //content
             VStack {
-                HStack {
-                    MenuButtonView(mainVM: mainVM) 
-                    
-                    Spacer()
-                }
+                
+                topSector
                 
                 if mainVM.order.isEmpty {
                     Text("Ваша корзина пуста")
@@ -83,6 +82,13 @@ struct CartView: View {
                 mainVM.removeDublicateOrderDetails(at: orderDetailsIdToCompositionView)
             }
         }
+        .alert("Регистрация", isPresented: $showLoginAlert) {
+            Button("OK") {
+                mainVM.moveToLoginView()
+            }
+        } message: {
+            Text("Войдите в аккаунт или пройдите регистрацию")
+        }
         
         GeometryReader { geometry in
             CompositionView(mainVM: mainVM, mealId: mainVM.order.first(where: { $0.id == orderDetailsIdToCompositionView})?.meal.id ?? -1, orderDetailsId: orderDetailsIdToCompositionView)
@@ -101,6 +107,14 @@ struct CartView_Previews: PreviewProvider {
 }
 
 extension CartView {
+    
+    var topSector: some View {
+        HStack {
+            MenuButtonView(mainVM: mainVM)
+            
+            Spacer()
+        }
+    }
     
     var content: some View {
         VStack {
@@ -149,7 +163,9 @@ extension CartView {
     
     var payButton: some View {
         Button {
-            if mainVM.address.isEmpty() {
+            if mainVM.isUserAnonymous() {
+                showLoginAlert = true
+            } else if mainVM.address.isEmpty() {
                 showAddressAlert = true
             } else if vm.getStatus() != .delivered && vm.getStatus() != .unknown && vm.getStatus() != .cancelled {
                 showOrderAlert = true

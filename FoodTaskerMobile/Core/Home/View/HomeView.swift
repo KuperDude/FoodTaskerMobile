@@ -16,8 +16,16 @@ struct HomeView: View {
         ZStack {
             MenuView(mainVM: mainVM)
             
+            if mainVM.isUserAnonymous() {
+                
+                anonymousSection
+                
+            }
+            
             Group {
                 switch mainVM.currentCategory {
+                case .profile:
+                    ProfileView(mainVM: mainVM)
                 case .menu:
                     MealView(mainVM: mainVM)
                 case .cart:
@@ -40,5 +48,38 @@ struct HomeView_Previews: PreviewProvider {
     @StateObject static var mainVM = MainViewModel()
     static var previews: some View {
         HomeView(mainVM: mainVM)
+    }
+}
+
+extension HomeView {
+    var anonymousSection: some View {
+        ZStack {
+            Rectangle()
+                .foregroundStyle(Color.theme.background)
+                .opacity(0.9)
+                .ignoresSafeArea()
+                .blur(radius: 70)
+            
+            HStack {
+                Button {
+                    mainVM.moveToLoginView()
+                } label: {
+                    Text("Регистрация")
+                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .foregroundStyle(Color.theme.accent)
+                        .underline()
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundStyle(Color.theme.green)
+                        }
+                }
+                .padding(.leading, 30)
+                .buttonStyle(NoAnim())
+                
+                Spacer()
+            }
+        }
     }
 }

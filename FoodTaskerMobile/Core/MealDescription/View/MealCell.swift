@@ -10,16 +10,13 @@ import SwiftUI
 struct MealCell: View {
     var namespace: Namespace.ID
     var meal: Meal
-    
-    @ObservedObject var vm: MealCellViewModel
-    
+        
     @ObservedObject var mainVM: MainViewModel
     @State private var orderDetails: OrderDetails
     
     init(namespace: Namespace.ID, meal: Meal, mainVM: MainViewModel) {
         self.namespace = namespace
         self.meal = meal
-        self._vm = ObservedObject(initialValue: MealCellViewModel(meal: meal))
         self.mainVM = mainVM
         self._orderDetails = State(initialValue: mainVM.order.first(where: { $0.meal.id == meal.id }) ?? OrderDetails(meal: meal, ingredients: [], quantity: 0, id: UUID())) 
     }
@@ -76,14 +73,8 @@ extension MealCell {
 extension MealCell {
     var mainContent: some View {
         VStack(alignment: .center) {
-            Image(uiImage: vm.image ?? UIImage())
-                .resizable()
+            ImageLoaderView(urlString: meal.image, resizingMode: .fit)
                 .padding()
-                .overlay(content: {
-                    if vm.isLoading {
-                        ProgressView()
-                    }
-                })
                 .frame(maxWidth: .infinity)
                 .aspectRatio(1/1, contentMode: .fit)
                 .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)

@@ -28,7 +28,6 @@ struct BankCardsView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         if isShow {
             TransactionManager.instance.placeOrder(on: uiViewController) { result in
-                print(result)
                 UIApplication.shared.endEditing()
                 dismiss()
                 

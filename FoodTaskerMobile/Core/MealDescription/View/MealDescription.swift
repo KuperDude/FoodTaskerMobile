@@ -12,14 +12,12 @@ struct MealDescription: View {
     var namespace: Namespace.ID
     var meal: Meal
     @Binding var orderDetails: OrderDetails
-    @ObservedObject var vm: MealCellViewModel
     
     init(mainVM: MainViewModel, orderDetails: Binding<OrderDetails>, namespace: Namespace.ID) {
         self._mainVM = ObservedObject(initialValue: mainVM)
         self.meal = orderDetails.meal.wrappedValue
         self._orderDetails = orderDetails
         self.namespace = namespace
-        self._vm = ObservedObject(initialValue: MealCellViewModel(meal: meal))
     }
     
     @State private var showDescription = false
@@ -58,8 +56,7 @@ struct MealDescription_Previews: PreviewProvider {
 
 extension MealDescription {
     var mealImage: some View {
-        Image(uiImage: vm.image ?? UIImage())
-            .resizable()
+        ImageLoaderView(urlString: meal.image, resizingMode: .fit)
             .frame(maxWidth: .infinity)
             .aspectRatio(1/1, contentMode: .fill)
             .padding()
@@ -70,11 +67,6 @@ extension MealDescription {
                         color: Color.theme.accent.opacity(0.15),
                         radius: 5, x: 0, y: 0)
             }
-            .overlay(content: {
-                if vm.isLoading {
-                    ProgressView()
-                }
-            })
             .padding(.bottom, 5)
             .matchedGeometryEffect(id: MatchedGeometryId.image.rawValue + String(meal.id), in: namespace)
     }

@@ -10,14 +10,10 @@ import SwiftUI
 struct CompositionCell: View {
     @Binding var ingredient: Ingredient
     @Binding var isCheck: Bool
-    
-    @ObservedObject var vm: CompositionCellViewModel
-    
+        
     init(ingredient: Binding<Ingredient>) {
         self._ingredient = ingredient
         self._isCheck = ingredient.isAdd
-        
-        self._vm = ObservedObject(initialValue: CompositionCellViewModel(ingredient: ingredient.wrappedValue))
     }
     
     var body: some View {
@@ -29,15 +25,9 @@ struct CompositionCell: View {
                     radius: 5, x: 0, y: 0)
             
             HStack {
-                Image(uiImage: vm.image ?? UIImage())
-                        .resizable()
-                        .overlay(content: {
-                            if vm.isLoading {
-                                ProgressView()
-                            }
-                        })
-                        .frame(width: 60, height: 60)
-                        .scaledToFill()
+                ImageLoaderView(urlString: ingredient.image, resizingMode: .fit)
+                    .frame(width: 60, height: 60)
+                    .scaledToFill()
                 
                 
                 Text(ingredient.name)
@@ -47,7 +37,7 @@ struct CompositionCell: View {
                 Spacer()
                 
                 CheckButton(isCheck: $isCheck) {}
-                .scaleEffect(0.4)
+                    .scaleEffect(0.4)
             }
             .padding(.leading)
         }

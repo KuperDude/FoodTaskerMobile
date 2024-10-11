@@ -18,7 +18,7 @@ class TransactionManager {
     let acquiringSDK: AcquiringUISDK?
 
     init() {
-        let credential = AcquiringSdkCredential(terminalKey: TERMINAL_KEY, publicKey: PUBLIC_KEY)
+        let credential = AcquiringSdkCredential(terminalKey: Constants.TERMINAL_KEY, publicKey: Constants.PUBLIC_KEY)
         sdk = AcquiringSdkConfiguration(
             credential: credential,
             server: .test,
