@@ -217,7 +217,7 @@
 		F8A5CDB12C8E48550030A24D /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		F8A5CDCE2C8E48E90030A24D /* SendCodeOnMailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailView.swift; sourceTree = "<group>"; };
 		F8A5CDD02C8E48E90030A24D /* SendCodeOnMailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeOnMailViewModel.swift; sourceTree = "<group>"; };
-		F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FoodTaskerMobileTests.xctest; path = "/Users/MyBook/Documents/FoodTaskerMobile/build/Debug-iphoneos/FoodTaskerMobile.app/PlugIns/FoodTaskerMobileTests.xctest"; sourceTree = "<absolute>"; };
 		F8A5CDE12CB983B40030A24D /* FoodTaskerMobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTaskerMobileTests.swift; sourceTree = "<group>"; };
 		F8A5CDEA2CB9B2500030A24D /* 1710081289927-cooking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081289927-cooking.json"; sourceTree = "<group>"; };
 		F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710451613546-map-tracking.json"; sourceTree = "<group>"; };
@@ -642,7 +642,6 @@
 				F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */,
 				F8A5CDE02CB983B40030A24D /* FoodTaskerMobileTests */,
 				F8A6CCAB2A6E69F400C8AD55 /* Frameworks */,
-				F8A5CDDF2CB983B40030A24D /* FoodTaskerMobileTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
