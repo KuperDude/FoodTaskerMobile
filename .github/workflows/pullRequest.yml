@@ -36,14 +36,8 @@ jobs:
           path: |
             Build/SourcePackages
             Build/Build/Products
-          key: ${{ runner.os }}-deps-v1-${{ hashFiles('BILDsolid.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          key: ${{ runner.os }}-deps-v1-${{ hashFiles('FoodTaskerMobile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-deps-v1-
-      
-      - name: Remove Corrupted Package.resolved
-        run: rm -f /Users/runner/work/FoodTaskerMobile/FoodTaskerMobile/FoodTaskerMobile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-
-      - name: Resolve Swift Package Dependencies
-        run: xcodebuild -resolvePackageDependencies
 
       - name: Run Tests (No Cache)
         if: steps.setup.outputs.cache-hit != 'true'
