@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 struct ImageLoaderView: View {
     
     var urlString = Constants.randomImage
-    var resizingMode: ContentMode = .fill
+    var resizingMode: ContentMode = .fit
     
     var body: some View {
         Rectangle()

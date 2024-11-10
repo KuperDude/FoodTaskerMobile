@@ -17,14 +17,14 @@ struct MealView: View {
     @Namespace var namespace
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             // background
             Color.theme.background
                 .ignoresSafeArea()
             
             // content
             VStack {
-                topSector
+                //topSector
                 
                 if mainVM.animateStatus.getChevronIdOrMinusOne == -1 {
                     SearchBarView(searchText: $vm.searchText)
@@ -47,6 +47,9 @@ struct MealView: View {
                 Spacer()
             }
             .ignoresSafeArea(edges: .bottom)
+            .padding(.top, mainVM.animateStatus.getChevronIdOrMinusOne != -1 ? 0 : 50)
+            
+            topSector
         }
     }
 }
@@ -77,6 +80,7 @@ extension MealView {
                 }
         }
         .frame(height: 50)
+        .background(.clear)
     }
     
     var mealsAndMealDetail: some View {

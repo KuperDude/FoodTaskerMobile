@@ -71,6 +71,7 @@
 		F8A5CDEF2CB9B2500030A24D /* 1710451613546-map-tracking.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEB2CB9B2500030A24D /* 1710451613546-map-tracking.json */; };
 		F8A5CDF02CB9B2500030A24D /* 1710081107528-delivery-driver.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */; };
 		F8A5CDF12CB9B2500030A24D /* 1710097343220-sad-smile.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */; };
+		F8A5CDF42CDFEB1E0030A24D /* MealDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDF32CDFEB1E0030A24D /* MealDetailHeader.swift */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */; };
 		F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63304294B88400080DAE8 /* UIApplication.swift */; };
@@ -223,6 +224,7 @@
 		F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710081107528-delivery-driver.json"; sourceTree = "<group>"; };
 		F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710097343220-sad-smile.json"; sourceTree = "<group>"; };
 		F8A5CDF22CB9D3220030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8A5CDF32CDFEB1E0030A24D /* MealDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailHeader.swift; sourceTree = "<group>"; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				F8A6330E294B88480080DAE8 /* MealDescription.swift */,
 				F8A6F4B429E451BE0085031F /* CompositionCell.swift */,
 				F8A6F4B629E4557D0085031F /* CompositionView.swift */,
+				F8A5CDF32CDFEB1E0030A24D /* MealDetailHeader.swift */,
 				F8A6F4B829E458480085031F /* MealDetail.swift */,
 			);
 			path = View;
@@ -1031,6 +1034,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A5CDF42CDFEB1E0030A24D /* MealDetailHeader.swift in Sources */,
 				F8A5CDBC2C8E48550030A24D /* TimerView.swift in Sources */,
 				F838FF75295F56AE00E87420 /* View.swift in Sources */,
 				F8A74C2C2A614C0D0041BA74 /* MKPolygon.swift in Sources */,

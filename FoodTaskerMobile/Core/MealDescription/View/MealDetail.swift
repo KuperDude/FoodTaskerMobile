@@ -26,38 +26,30 @@ struct MealDetail: View {
     }
     
     var body: some View {
-        VStack {
-            Text(meal.name)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .font(.system(size: 20))
-                .fontWeight(.heavy)
-                .foregroundColor(.theme.accent)
-                .padding(.vertical, 10)
-                .padding()
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.theme.background)
-                        .shadow(
-                            color: Color.theme.accent.opacity(0.15),
-                            radius: 5, x: 0, y: 0)
+        ScrollView(.vertical) {
+            LazyVStack(spacing: 8) {
+                
+                MealDetailHeader(title: meal.name, subtitle: "", imageName: meal.image)
+                    .aspectRatio(1/1, contentMode: .fit)
+                
+                HPicker(data: $data, selected: $selected)
+                    .frame(height: 40)
+                
+                if selected == "Описание" {
+                    MealDescription(mainVM: mainVM, orderDetails: $orderDetails, namespace: namespace)
+                        .transition(.move(edge: .leading))
+                } else {
+                    CompositionView(mainVM: mainVM, mealId: meal.id, ingredients: orderDetails.ingredients)
+                        .transition(.move(edge: .leading))
+                        .onPreferenceChange(IngPreferenceKey.self) { ingredients in
+                            orderDetails.ingredients = ingredients
+                        }
                 }
-                .padding(.bottom, 5)
-            
-            HPicker(data: $data, selected: $selected)
-                .frame(height: 40)
-            
-            if selected == "Описание" {
-                MealDescription(mainVM: mainVM, orderDetails: $orderDetails, namespace: namespace)
-                    .transition(.move(edge: .leading))
-            } else {
-                CompositionView(mainVM: mainVM, mealId: meal.id, ingredients: orderDetails.ingredients)
-                    .transition(.move(edge: .trailing))
-                    .onPreferenceChange(IngPreferenceKey.self) { ingredients in
-                        orderDetails.ingredients = ingredients
-                    }
+                
             }
+            .padding()
         }
-        .padding()
+        .scrollIndicators(.hidden)
     }
 }
 

@@ -23,9 +23,7 @@ class MealViewModel: ObservableObject {
     
     private var mealSubscription: AnyCancellable?
     var cancellables = Set<AnyCancellable>()
-    
-    
-    
+
     init() {
         addPublishers()
     }

@@ -26,8 +26,8 @@ struct MealDescription: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                mealImage
+            VStack {
+                //mealImage
                 
                 shortDescription
                 
@@ -39,7 +39,6 @@ struct MealDescription: View {
                 
             }
             .padding()
-            .scrollIndicators(.hidden)
             
             addInCartButton
         }
