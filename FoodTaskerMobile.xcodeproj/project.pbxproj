@@ -72,6 +72,7 @@
 		F8A5CDF02CB9B2500030A24D /* 1710081107528-delivery-driver.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDEC2CB9B2500030A24D /* 1710081107528-delivery-driver.json */; };
 		F8A5CDF12CB9B2500030A24D /* 1710097343220-sad-smile.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */; };
 		F8A5CDF42CDFEB1E0030A24D /* MealDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5CDF32CDFEB1E0030A24D /* MealDetailHeader.swift */; };
+		F8A5CDF62CE0E3780030A24D /* DeviceCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A5CDF52CE0E3780030A24D /* DeviceCheck.framework */; };
 		F8A632F9294B87E80080DAE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */; };
 		F8A63302294B881C0080DAE8 /* StreetFoodMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */; };
 		F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A63304294B88400080DAE8 /* UIApplication.swift */; };
@@ -225,6 +226,7 @@
 		F8A5CDED2CB9B2500030A24D /* 1710097343220-sad-smile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "1710097343220-sad-smile.json"; sourceTree = "<group>"; };
 		F8A5CDF22CB9D3220030A24D /* FoodTaskerMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTaskerMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8A5CDF32CDFEB1E0030A24D /* MealDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailHeader.swift; sourceTree = "<group>"; };
+		F8A5CDF52CE0E3780030A24D /* DeviceCheck.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceCheck.framework; path = System/Library/Frameworks/DeviceCheck.framework; sourceTree = SDKROOT; };
 		F8A632F8294B87E80080DAE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F8A63301294B881C0080DAE8 /* StreetFoodMobileApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetFoodMobileApp.swift; sourceTree = "<group>"; };
 		F8A63304294B88400080DAE8 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			files = (
 				F8A5CDD72C8E4D1C0030A24D /* SwiftfulUI in Frameworks */,
 				F8F0D5FB2BCB022100771292 /* CoreMotion.framework in Frameworks */,
+				F8A5CDF62CE0E3780030A24D /* DeviceCheck.framework in Frameworks */,
 				F88E499F2B3D8E490099939A /* GoogleSignInSwift in Frameworks */,
 				F8C7A6BB297D3EE400718CBF /* TinkoffASDKUI in Frameworks */,
 				F88E499D2B3D8E490099939A /* GoogleSignIn in Frameworks */,
@@ -829,6 +832,7 @@
 		F8A6CCAB2A6E69F400C8AD55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F8A5CDF52CE0E3780030A24D /* DeviceCheck.framework */,
 				F8F0D5FE2BCBD5C100771292 /* CoreTelephony.framework */,
 				F8F0D5FC2BCBD58F00771292 /* SystemConfiguration.framework */,
 				F8F0D5FA2BCB022000771292 /* CoreMotion.framework */,
