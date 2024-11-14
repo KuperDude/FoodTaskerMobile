@@ -29,11 +29,6 @@ jobs:
       - name: Install gems
         run: bundle install
 
-      - name: Delete and Recreate Package.resolved
-        run: |
-          rm -f FoodTaskerMobile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
-          xcodebuild -resolvePackageDependencies -workspace FoodTaskerMobile.xcodeproj/project.xcworkspace -scheme FoodTaskerMobile -derivedDataPath Build/
-
       - name: Swift Packages Cache
         uses: actions/cache@v3
         id: cache
