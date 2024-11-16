@@ -70,7 +70,7 @@ extension MealView {
             
             iconCart
                 .overlay(content: {
-                    if  mainVM.order.quantity() > 0 {
+                    if mainVM.order.quantity() > 0 {
                         Badge(count: mainVM.order.quantity())
                     }
                 })

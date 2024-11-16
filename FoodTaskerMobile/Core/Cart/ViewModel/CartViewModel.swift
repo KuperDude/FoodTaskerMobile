@@ -22,12 +22,12 @@ class CartViewModel: ObservableObject {
     }
     
     func addPublishers() {
-        Timer.publish(every: 3, on: .main, in: .common)
-            .autoconnect()
-            .sink { _ in                
-                self.lastOrderStatusService.getLastStatus()
-            }
-            .store(in: &cancellables)
+//        Timer.publish(every: 3, on: .main, in: .common)
+//            .autoconnect()
+//            .sink { _ in                
+//                self.lastOrderStatusService.getLastStatus()
+//            }
+//            .store(in: &cancellables)
         
         lastOrderStatusService.$status
             .sink { [weak self] status in

@@ -76,8 +76,12 @@ struct LoginView: View {
             
         }
         .task {
-            await vm.wakeUpSession(.vk, isAlreadyLogin: true)
-            await vm.wakeUpSession(.google, isAlreadyLogin: true)
+            if await vm.wakeUpSession(.vk, isAlreadyLogin: true) {
+                return
+            }
+            if await vm.wakeUpSession(.google, isAlreadyLogin: true) {
+                return
+            }
         }
         .onChange(of: vm.user, perform: { user in
             mainVM.user = user

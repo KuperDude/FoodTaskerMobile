@@ -157,13 +157,16 @@ extension AuthManager: ResetPasswordAllow, SendCodeAllow {
 
 // MARK: - Social Auth
 extension AuthManager {
-    func handleAuthorization(method: RegistrationMethod) async throws {
+    func handleAuthorization(method: RegistrationMethod) async throws -> Bool {
         switch method {
         case .vk:
-            try await APIManager.instance.login(method: .vk, userType: Constants.USERTYPE_CUSTOMER)
-            try await getUserFromData()
+            if try await APIManager.instance.login(method: .vk, userType: Constants.USERTYPE_CUSTOMER) {
+                try await getUserFromData()
+                return true
+            }
+            return false
         case .google:
-            try await APIManager.instance.login(method: .google, userType: Constants.USERTYPE_CUSTOMER)
+            return try await APIManager.instance.login(method: .google, userType: Constants.USERTYPE_CUSTOMER)
         }
     }
     

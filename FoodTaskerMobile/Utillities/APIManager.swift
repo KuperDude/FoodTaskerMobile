@@ -207,7 +207,7 @@ extension APIManager {
                 
     }
 
-    func login(method: AuthManager.RegistrationMethod, userType: String) async throws -> Void {
+    func login(method: AuthManager.RegistrationMethod, userType: String) async throws -> Bool {
         let path = "api/social/convert-token/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
@@ -217,7 +217,7 @@ extension APIManager {
             "token": AuthManager.instance.token(method: method) ?? "",
             "user_type": userType
         ]
-        guard let url = url else { return }
+        guard let url = url else { throw URLError(.badURL) }
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { [self] response in                
@@ -225,10 +225,17 @@ extension APIManager {
                 case .success(let value):
                     let jsonData = JSON(value)
                     
-                    self.accessToken = jsonData["access_token"].string ?? ""
-                    self.refreshToken = jsonData["refresh_token"].string ?? ""
+                    guard
+                        let accessToken = jsonData["access_token"].string,
+                        let refreshToken = jsonData["refresh_token"].string else {
+                        continuation.resume(returning: false)
+                        return
+                    }
+                    
+                    self.accessToken = accessToken
+                    self.refreshToken = refreshToken
                     self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int ?? 0))
-                    continuation.resume(returning: Void())
+                    continuation.resume(returning: true)
                     
                 case .failure(let error):                    
                     continuation.resume(throwing: error)

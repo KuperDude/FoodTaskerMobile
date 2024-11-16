@@ -60,18 +60,22 @@ class LoginViewModel: ObservableObject {
     }
     
     // MARK: - User Intents
-    func wakeUpSession(_ method: AuthManager.RegistrationMethod, isAlreadyLogin: Bool = false) async {
+    func wakeUpSession(_ method: AuthManager.RegistrationMethod, isAlreadyLogin: Bool = false) async -> Bool {
         //do {
             
         try? await authService.wakeUpSession(method: method, isAlreadyLogin: isAlreadyLogin)
             
         if isAlreadyLogin {
-            try? await authService.handleAuthorization(method: method)
+            guard let result: Bool = try? await authService.handleAuthorization(method: method) else {
+                return false
+            }
             
-            if method == .google {
+            if method == .google && result {
                 self.user = authService.user
             }
         }
+        
+        return user != nil
     }
     
     func loginOnMail() {
