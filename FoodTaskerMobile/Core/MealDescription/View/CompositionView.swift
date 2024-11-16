@@ -19,9 +19,9 @@ struct CompositionView: View {
             VStack {
                 ForEach($vm.ingredients) { ingredient in
                     CompositionCell(ingredient: ingredient)
-                        .padding(.horizontal)
                 }
             }
+            .padding()
         }
         .preference(key: IngPreferenceKey.self, value: vm.ingredients)
     }
