@@ -19,7 +19,6 @@ class CompositionViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var ingredients: [Ingredient] = []
-    @Published var ingredientsIsLoading = true
     
     init(mainVM: MainViewModel, mealId: Int, orderDetailsId: UUID?, gotenIngredients: [Ingredient]?) {
         self.mainVM = mainVM
@@ -37,15 +36,12 @@ class CompositionViewModel: ObservableObject {
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] returnedingredients in
                     self?.ingredients = returnedingredients
-                    self?.ingredientsIsLoading = false
                 }
                 .store(in: &cancellables)
         } else if let gotenIngredients = gotenIngredients {
             ingredients = gotenIngredients
-            ingredientsIsLoading = false
         } else if let orderIngredients = mainVM.order.first(where: { $0.id == orderDetailsId })?.ingredients {
             ingredients = orderIngredients
-            ingredientsIsLoading = false
         }
     }
     

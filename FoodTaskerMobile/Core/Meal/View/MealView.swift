@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftfulUI
 
 struct MealView: View {
     @ObservedObject var mainVM: MainViewModel
@@ -15,6 +16,9 @@ struct MealView: View {
     @StateObject var vm = MealViewModel()
 
     @Namespace var namespace
+    
+    @State private var isNeedToScrollToSelectedSection = true
+    @State private var isScrolling = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -93,8 +97,16 @@ extension MealView {
                 }
             }
             .onChange(of: vm.selectedSection) { selected in
-                withAnimation {
-                    proxy.scrollTo(selected, anchor: .top)
+                if isNeedToScrollToSelectedSection {
+                    isScrolling = true
+                    withAnimation {
+                        proxy.scrollTo(selected, anchor: .top)
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        isScrolling = false
+                    }
+                } else {
+                    isNeedToScrollToSelectedSection = true
                 }
             }
             .onAppear {
@@ -137,15 +149,16 @@ extension MealView {
     
     var mealsContent: some View {
         ForEach(vm.sections, id: \.self) { section in
-            Text(section)
-                .frame(maxWidth: .infinity)
-                .fontWidth(.compressed)
-                .font(.title)
-                .fontWidth(.condensed)
-                .id(section)
-            
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 0, content: {
-                ForEach(vm.getMeals(at: section)) { meal in
+            VStack {
+                Text(section)
+                    .frame(maxWidth: .infinity)
+                    .fontWidth(.compressed)
+                    .font(.title)
+                    .fontWidth(.condensed)
+                    .id(section)
+                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 0, content: {
+                    ForEach(vm.getMeals(at: section)) { meal in
                         MealCell(namespace: namespace, meal: meal, mainVM: mainVM)
                             .onTapGesture {
                                 withAnimation(.easeIn) {
@@ -155,9 +168,18 @@ extension MealView {
                             }
                             .padding(.bottom, 5)
                             .id(meal.id)
+                    }
+                })
+                .padding(.horizontal, 5)
+            }
+            .readingFrame(coordinateSpace: .global) { frame in
+                if !isScrolling && section != vm.selectedSection && ((frame.midY >= UIScreen.main.bounds.height/2 - 100 && frame.midY <= UIScreen.main.bounds.height/2 + 100) || (frame.minY >= 220 && frame.minY <= 260)) {
+                    isNeedToScrollToSelectedSection = false
+                    withAnimation {
+                        vm.selectedSection = section
+                    }
                 }
-            })
-            .padding(.horizontal, 5)
+            }
         }
     }
 }

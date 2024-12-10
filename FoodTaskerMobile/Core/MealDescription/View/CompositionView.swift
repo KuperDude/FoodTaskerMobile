@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CompositionView: View {
-    @ObservedObject var vm: CompositionViewModel
+    @StateObject var vm: CompositionViewModel
     
     init(mainVM: MainViewModel, mealId: Int, orderDetailsId: UUID? = nil, ingredients: [Ingredient]? = nil) {
-        self.vm = CompositionViewModel(mainVM: mainVM, mealId: mealId, orderDetailsId: orderDetailsId, gotenIngredients: ingredients)
+        _vm = StateObject(wrappedValue: CompositionViewModel(mainVM: mainVM, mealId: mealId, orderDetailsId: orderDetailsId, gotenIngredients: ingredients))
     }
     
     var body: some View {
@@ -31,7 +31,9 @@ struct IngPreferenceKey: PreferenceKey {
     static var defaultValue: [Ingredient] = []
     
     static func reduce(value: inout [Ingredient], nextValue: () -> [Ingredient]) {
-        value = nextValue()
+        if value != nextValue() {
+            value = nextValue()
+        }
     }
 }
 
