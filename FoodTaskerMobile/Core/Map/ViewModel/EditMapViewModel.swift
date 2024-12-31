@@ -34,8 +34,4 @@ class EditMapViewModel: ObservableObject {
     func moveToUserLocation() {
         mapVM.moveToUserLocation()
     }
-    
-    func addAddress(_ address: Address) {
-        addressesVM.add(address)
-    }
 }

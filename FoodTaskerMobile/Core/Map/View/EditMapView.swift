@@ -13,12 +13,11 @@ struct EditMapView: View {
     @ObservedObject var vm: EditMapViewModel
     @State var address = Address()
     @State var bundleStatus: MapViewModel.BundleStatus = .scrolled
-    @State var refresh = true
     @State private var isOpenKeyboard = false
     
     @FocusState var focusedField: AddressView.Field?
     
-    var onTapReady: (Address)->Void
+    var onTapReady: (Address, Int?)->Void
     
     @State var buttonMinusFrame: CGRect = .zero
     
@@ -28,7 +27,7 @@ struct EditMapView: View {
                 
     @State var offsetOfAddressView: CGFloat = .zero
     
-    init(address: Address, addressesVM: AddressesViewModel, onTapReady: @escaping (Address)->Void) {
+    init(address: Address, addressesVM: AddressesViewModel, onTapReady: @escaping (Address, Int?)->Void) {
         self.onTapReady = onTapReady
         self._vm = ObservedObject(initialValue: EditMapViewModel(address: address, addressesVM: addressesVM))
         self._address = State(initialValue: address)
@@ -38,15 +37,9 @@ struct EditMapView: View {
     
     var body: some View {
         ZStack {
-                
-            if refresh {
-                MapView(mapVM: vm.mapVM)
-                    .ignoresSafeArea()
-            } else {
-                MapView(mapVM: vm.mapVM)
-                    .ignoresSafeArea()
-            }
-                            
+            MapView(mapVM: vm.mapVM)
+                .ignoresSafeArea()
+
             tabBar
             
             AddressView(address: $address, focusedField: $focusedField)
@@ -84,11 +77,11 @@ struct EditMapView: View {
         }
         .onChange(of: presentAddressView, perform: { newValue in
             if newValue {
-                vm.addAddress(address)
+                //vm.addAddress(address)
             } else {
                 offsetOfAddressView = .zero
                 vm.mapVM = MapViewModel(address: address)
-                refresh.toggle()
+                //refresh.toggle()
             }
         })
         .onReceive(vm.mapVM.$address, perform: { newAddress in
@@ -107,7 +100,7 @@ struct EditMapView: View {
 
 struct EditMapView_Previews: PreviewProvider {
     static var previews: some View {
-        EditMapView(address: Address(), addressesVM: AddressesViewModel(mainVM: MainViewModel()), onTapReady: {_ in })
+        EditMapView(address: Address(), addressesVM: AddressesViewModel(mainVM: MainViewModel()), onTapReady: {_, _ in })
     }
 }
 
@@ -146,8 +139,7 @@ extension EditMapView {
             HStack {
                 ButtonMenuStaticView(status: .chevron, height: 50) {
                     if address.isStreetAndHouseFill {
-                        vm.addAddress(address)
-                        onTapReady(address)
+                        onTapReady(address, vm.mapVM.deliveryPrice)
                     }
                     dismiss()
                 }
@@ -211,11 +203,13 @@ extension EditMapView {
             }
             .onTapGesture {
                 if (vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill) && presentAddressView {
-                    vm.addAddress(address)
-                    onTapReady(address)
+                    onTapReady(address, vm.mapVM.deliveryPrice)
                     dismiss()
-                } else if !presentAddressView {
-                    presentAddressView = true
+                } else if (vm.getBundleStatus() == .allowed || address.isStreetAndHouseFill) && !presentAddressView {
+                    withAnimation {
+                        presentAddressView = true
+                        offsetOfAddressView = (UIScreen.main.bounds.height) - buttonMinusFrame.minY - offsetYAddressView 
+                    }
                 }
             }
         }

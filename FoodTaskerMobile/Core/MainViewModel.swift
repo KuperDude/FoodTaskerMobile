@@ -11,6 +11,7 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     @Published var user: User?
     @Published var order = [OrderDetails]()
+    @Published var deliveryPrice: Float = 0
     @Published var animateStatus: Status = .burger
     @Published var currentCategory: Category = .menu
     @Published var address: Address = Address()
@@ -72,6 +73,10 @@ extension MainViewModel {
     
     func removeOrderDetails(at index: Int) {
         order.remove(at: index)
+    }
+    
+    func total() -> Float {
+        order.total + deliveryPrice
     }
 }
 

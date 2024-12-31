@@ -40,7 +40,7 @@ struct CDeliveryCell: View {
                         
                         Spacer()
                         
-                        Text(mainVM.order.deliveryPrice.asCurrencyWith2Decimals())
+                        Text(mainVM.deliveryPrice.asCurrencyWith2Decimals())
                             .font(.system(size: 18))
                             .foregroundColor(.theme.green)
                     }

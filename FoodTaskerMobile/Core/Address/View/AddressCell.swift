@@ -10,6 +10,7 @@ import SwiftUI
 struct AddressCell: View {
     @Binding var mainAddress: Address
     var address: Address
+    var onTap: ()->Void
     var settingsAction: ()->Void
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct AddressCell: View {
                             .fontWidth(.compressed)
                     }
                     .onTapGesture {
-                        mainAddress = address
+                        onTap()
                     }
                     
                     Spacer()
@@ -47,6 +48,6 @@ struct AddressCell: View {
 
 struct AdressCell_Previews: PreviewProvider {
     static var previews: some View {
-        AddressCell(mainAddress: .constant(Address()), address: Address(), settingsAction: {})
+        AddressCell(mainAddress: .constant(Address()), address: Address(), onTap: {}, settingsAction: {})
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct AddressesView: View {
     
     @ObservedObject var vm: AddressesViewModel
+    @StateObject var addressDataService = AddressesDataService()
+    
     @Binding var presentAddressesView: Bool
     
     @State private var isButtonPressed = false
@@ -26,8 +28,14 @@ struct AddressesView: View {
         VStack {
             VStack {
                 ScrollView {
-                    ForEach(vm.addresses) { address in                        
-                        AddressCell(mainAddress: $mainVM.address, address: address, settingsAction: {
+                    ForEach(addressDataService.addresses) { address in                        
+                        AddressCell(mainAddress: $mainVM.address, address: address, onTap: {
+                            vm.getDeliveryPriceOf(address: address, price: { price in
+                                guard let price = price else { return }
+                                mainVM.address = address
+                                mainVM.deliveryPrice = Float(price)
+                            })
+                        }, settingsAction: {
                             self.address = address
                         })
                     }
@@ -42,14 +50,22 @@ struct AddressesView: View {
             .padding(.vertical)
             .padding(.bottom, 15)
             .fullScreenCover(item: $address, content: { address in
-                EditMapView(address: address, addressesVM: vm) { newAddress in
+                EditMapView(address: address, addressesVM: vm) { newAddress, price in
                     mainVM.address = newAddress
+                    mainVM.deliveryPrice = Float(price ?? 300)
+                    Task {
+                        await addressDataService.updateAddress(address: newAddress, status: .update)
+                    }
                     presentAddressesView = false
                 }
             })
             .fullScreenCover(isPresented: $isButtonPressed) {
-                EditMapView(address: Address(), addressesVM: vm) { newAddress in
+                EditMapView(address: Address(), addressesVM: vm) { newAddress, price in
                     mainVM.address = newAddress
+                    mainVM.deliveryPrice = Float(price ?? 300)
+                    Task {
+                        await addressDataService.updateAddress(address: newAddress, status: .add)
+                    }
                     presentAddressesView = false
                 }
             }

@@ -38,10 +38,6 @@ extension [OrderDetails] {
     }
     
     var total: Float {
-        self.map { $0.subTotal }.reduce(0, +) + deliveryPrice
-    }
-    
-    var deliveryPrice: Float {
-        return 150
+        self.map { $0.subTotal }.reduce(0, +)
     }
 }

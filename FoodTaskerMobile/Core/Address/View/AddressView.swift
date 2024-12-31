@@ -84,7 +84,7 @@ struct AddressView: View {
 struct AddressView_Previews: PreviewProvider {
     @FocusState static var focusedField: AddressView.Field?
     static var previews: some View {
-        AddressView(address: .constant(Address(street: "Ул. Ташкенская", house: "32/156 ст. 1", floor: "", apartmentNumber: "", intercom: "", entrance: "", comment: "")), focusedField: $focusedField)
+        AddressView(address: .constant(Address(city: "Moscow", street: "Ул. Ташкенская", house: "32/156 ст. 1", floor: "", apartmentNumber: "", intercom: "", entrance: "", comment: "")), focusedField: $focusedField)
     }
 }
 
@@ -99,7 +99,7 @@ extension AddressView {
                 VStack(alignment: .leading) {
                     Text(address.isStreetAndHouseFill ? address.street + ", " + address.house : "")
                         .foregroundColor(.theme.accent)
-                    Text("Москва")
+                    Text(address.city)
                         .font(.callout)
                         .fontWidth(.compressed)
                         .foregroundColor(.theme.accent)

@@ -36,7 +36,7 @@ struct MapTrackingAnimationView: UIViewRepresentable {
         }
         animationView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         animationView.contentMode = .scaleAspectFit
-        animationView.currentProgress = AnimationProgressTime(isScrolling == .scrolled ? 1.0 : 0.5)
+        animationView.currentProgress = AnimationProgressTime(isScrolling == .scrolled || isScrolling == .limitOut ? 1.0 : 0.5)
         
         uiView.addSubview(animationView)
         

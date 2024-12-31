@@ -17,6 +17,7 @@
 		F838FF6E295DFA3500E87420 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF6D295DFA3500E87420 /* Restaurant.swift */; };
 		F838FF72295E077B00E87420 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF71295E077B00E87420 /* MealViewModel.swift */; };
 		F838FF75295F56AE00E87420 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF74295F56AE00E87420 /* View.swift */; };
+		F842B04C2D0BA993006F5441 /* GeoJSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F842B04B2D0BA993006F5441 /* GeoJSONService.swift */; };
 		F84AB7AA2B9CE23600F3761B /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7A92B9CE23600F3761B /* OrdersService.swift */; };
 		F84AB7AC2B9DDAB300F3761B /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7AB2B9DDAB300F3761B /* OrderInfo.swift */; };
 		F84AB7B32B9DFD1300F3761B /* DeliveryAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7B22B9DFD1300F3761B /* DeliveryAnimationView.swift */; };
@@ -111,7 +112,6 @@
 		F8B21AD32B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B21AD22B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift */; };
 		F8B34EB1296C675B0066CC42 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB0296C675B0066CC42 /* Constants.swift */; };
 		F8B34EB3296C69AD0066CC42 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */; };
-		F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BB40772A5ECC3F0016D5B6 /* map.json */; };
 		F8C4CFBD29855E7D00D3D225 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFBC29855E7D00D3D225 /* Badge.swift */; };
 		F8C4CFBF2985687C00D3D225 /* LastOrderStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */; };
 		F8C4CFC129856F5900D3D225 /* LastOrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C4CFC029856F5900D3D225 /* LastOrderService.swift */; };
@@ -177,6 +177,7 @@
 		F838FF6D295DFA3500E87420 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		F838FF71295E077B00E87420 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		F838FF74295F56AE00E87420 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F842B04B2D0BA993006F5441 /* GeoJSONService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJSONService.swift; sourceTree = "<group>"; };
 		F84AB7A92B9CE23600F3761B /* OrdersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersService.swift; sourceTree = "<group>"; };
 		F84AB7AB2B9DDAB300F3761B /* OrderInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
 		F84AB7B22B9DFD1300F3761B /* DeliveryAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryAnimationView.swift; sourceTree = "<group>"; };
@@ -266,7 +267,6 @@
 		F8B21AD22B9CAECD00E45D03 /* DeliveryProgressAnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryProgressAnimatedView.swift; sourceTree = "<group>"; };
 		F8B34EB0296C675B0066CC42 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8B34EB2296C69AD0066CC42 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
-		F8BB40772A5ECC3F0016D5B6 /* map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		F8C4CFBC29855E7D00D3D225 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8C4CFBE2985687C00D3D225 /* LastOrderStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderStatusService.swift; sourceTree = "<group>"; };
 		F8C4CFC029856F5900D3D225 /* LastOrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderService.swift; sourceTree = "<group>"; };
@@ -547,6 +547,7 @@
 				F8C4CFC029856F5900D3D225 /* LastOrderService.swift */,
 				F84AB7A92B9CE23600F3761B /* OrdersService.swift */,
 				F8A348452B150D12009BC60D /* AddressesDataService.swift */,
+				F842B04B2D0BA993006F5441 /* GeoJSONService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -853,7 +854,6 @@
 				F8CA8ACF29E19C8E00515637 /* Category.swift */,
 				F8A706322A1F755700B9EE51 /* Ingredient.swift */,
 				F80DA5BA2BBF38420044E81B /* StringError.swift */,
-				F8BB40772A5ECC3F0016D5B6 /* map.json */,
 				F814A84C2A77BA9900F81BB9 /* Address.swift */,
 				F8A348422B150BFE009BC60D /* AddressContainer.xcdatamodeld */,
 			);
@@ -1017,7 +1017,6 @@
 				F8A5CDF02CB9B2500030A24D /* 1710081107528-delivery-driver.json in Resources */,
 				F8A5CDEE2CB9B2500030A24D /* 1710081289927-cooking.json in Resources */,
 				F8A5CDF12CB9B2500030A24D /* 1710097343220-sad-smile.json in Resources */,
-				F8BB40782A5ECC3F0016D5B6 /* map.json in Resources */,
 				F8A5CDB42C8E48550030A24D /* 1708031048469-open-lock.json in Resources */,
 				F8F0D5F12BC9F4C600771292 /* Assets.xcassets in Resources */,
 			);
@@ -1072,6 +1071,7 @@
 				F84AB7B52B9E043900F3761B /* CookingAnimationView.swift in Sources */,
 				F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */,
 				F8A63306294B88400080DAE8 /* UIApplication.swift in Sources */,
+				F842B04C2D0BA993006F5441 /* GeoJSONService.swift in Sources */,
 				F8A5CDBB2C8E48550030A24D /* ForgotPasswordView.swift in Sources */,
 				F8EAF31F2BD702590056A3B9 /* ProfileView.swift in Sources */,
 				F8A63325294B88480080DAE8 /* MealDescription.swift in Sources */,

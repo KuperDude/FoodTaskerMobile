@@ -22,6 +22,13 @@ struct FoodTaskerMobileApp: App {
                     .onOpenURL { url in
                         GIDSignIn.sharedInstance.handle(url)
                     }
+                    .task {
+                        if GeoJSONService.instance.jsonData == nil {
+                            await Task.detached(priority: .userInitiated) {
+                                await GeoJSONService.instance.loadGeoJSON()
+                            }.value
+                        }
+                    }
             }
         }
     }

@@ -8,40 +8,49 @@
 import Foundation
 import Combine
 import SwiftUI
+import CoreLocation
+import YandexMapsMobile
 
 class AddressesViewModel: ObservableObject {
     
-    @Published var addresses: [Address] = []
     @ObservedObject var mainVM: MainViewModel
-    private let addressDataService = AddressesDataService()
+    
+    private let geoJSONService = GeoJSONService.instance
+    
     private var cancellables = Set<AnyCancellable>()
     
     init(mainVM: MainViewModel) {
         self._mainVM = ObservedObject(initialValue: mainVM)
-        addSubscribers()
     }
     
-    func addSubscribers() {
-        
-        addressDataService.$savedEntities
-            .map(mapAndSortedAddresses)
-            .sink { [weak self] returnedAddresses in                
-                self?.addresses = returnedAddresses
+    func getDeliveryPriceOf(address: Address, price: @escaping (Int?) -> Void) {
+        convertToPoint(address: address) { [weak self] point in
+            guard 
+                let point = point,
+                let self = self
+            else { return }
+            for obj in self.geoJSONService.polygons {
+                if obj.polygon.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: point.latitude, longitude: point.longitude)) {                    
+                    price(obj.price)
+                    return
+                }
             }
-            .store(in: &cancellables)
+            price(nil)
+        }
     }
     
-    private func mapAndSortedAddresses(addresses: [AddressEntity]) -> [Address] {
-        addresses.map({ Address(entity: $0) }).sorted(by: { $0.lastUpdateDate > $1.lastUpdateDate })
-    }
-    
-    func updateAddress(address: Address, status: AddressesDataService.Status) {
-        addressDataService.updateAddress(address: address, status: status)
-        mainVM.address = address
-    }
-    
-    func add(_ address: Address) {
-        addressDataService.updateAddress(address: address, status: .add)
-        mainVM.address = address
+    private func convertToPoint(address: Address, complition: @escaping (YMKPoint?) -> Void) {
+        let strAddress = address.city + ", " + address.convertToString()
+        if !strAddress.isEmpty {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(strAddress) { placemarks, error in
+                
+                if let placemark = placemarks?.first, let coordinates: CLLocationCoordinate2D = placemark.location?.coordinate {
+                    complition(YMKPoint(latitude: coordinates.latitude, longitude: coordinates.longitude))
+                }
+            }
+        } else {
+            complition(nil)
+        }
     }
 }

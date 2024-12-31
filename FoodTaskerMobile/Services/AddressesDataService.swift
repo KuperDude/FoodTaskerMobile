@@ -6,40 +6,44 @@
 //
 
 import Foundation
-import CoreData
 
-class AddressesDataService {
+@MainActor
+class AddressesDataService: ObservableObject {
+    @Published var addresses: [Address] = []
+    private let baseURL = URL(string: Constants.baseURL)
     
-    private let container: NSPersistentContainer
-    private let containerName: String = "AddressContainer"
-    private let entityName = "AddressEntity"
-    
-    @Published var savedEntities: [AddressEntity] = []
-    
-    init() {
-        container = NSPersistentContainer(name: containerName)
-        container.loadPersistentStores { _, error in
-            if let error = error {
-                print("Error loading Core Data! \(error)")
-            }
-            self.getAddresses()
+    init() {        
+        Task {
+            await fetchAddresses()
         }
     }
     
     //MARK: PUBLIC
     
-    func updateAddress(address: Address, status: Status) {
+    func updateAddress(address: Address, status: Status) async {
         
-        if let entity = savedEntities.first(where: {
-            return $0.addressID == address.id }) {
+        if let index = addresses.firstIndex(where: {
+            return $0.id == address.id }) {
             switch status {
             case .update, .add:
-                update(entity: entity, address: address)
+                addresses[index] = address
+                await update(address)
             case .delete:
-                delete(entity: entity)
+                addresses.remove(at: index)
+                guard let id = address.id else { return }
+                await delete(id)
             }
         } else {
-            add(address: address)
+            addresses.append(address)
+            let result = await add(address)
+            
+            switch result {
+            case .success(let success):
+                guard let index = addresses.firstIndex(where: { $0.id == nil }) else { return }
+                addresses[index] = address.changeID(success.addressId)
+            case .failure(_):
+                break
+            }
         }
     }
     
@@ -51,57 +55,81 @@ class AddressesDataService {
     
     //MARK: PRIVATE
     
-    private func getAddresses() {
-        let request = NSFetchRequest<AddressEntity>(entityName: entityName)
+    func fetchAddresses() async {
+        let path = "customer/addresses/"
+        guard let url = baseURL?.appendingPathComponent(path) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(APIManager.instance.accessToken)", forHTTPHeaderField: "Authorization")
+        
         do {
-            savedEntities = try container.viewContext.fetch(request)
-        } catch let error {
-            print("Error fetching Address Entities. \(error)")
-        }
-    }
-    
-    private func add(address: Address) {
-        let entity = AddressEntity(context: container.viewContext)
-        entity.addressID = address.id
-        entity.street = address.street
-        entity.house = address.house
-        entity.floor = address.floor
-        entity.apartmentNumber = address.apartmentNumber
-        entity.intercom = address.intercom
-        entity.entrance = address.entrance
-        entity.comment = address.comment
-        entity.lastUpdateDate = address.lastUpdateDate
-        applyChanges()
-    }
-    
-    private func update(entity: AddressEntity, address: Address) {
-        entity.street = address.street
-        entity.house = address.house
-        entity.floor = address.floor
-        entity.apartmentNumber = address.apartmentNumber
-        entity.intercom = address.intercom
-        entity.entrance = address.entrance
-        entity.comment = address.comment
-        entity.lastUpdateDate = Date.now
-        applyChanges()
-    }
-    
-    private func delete(entity: AddressEntity) {
-        container.viewContext.delete(entity)
-        applyChanges()
-    }
-    
-    private func save() {
-        do {
-            try container.viewContext.save()
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let decodedData = try JSONDecoder().decode(AddressResponse.self, from: data)
+            addresses = decodedData.addresses
         } catch {
-            print("Error saving to Core Data. \(error)")
+            print("Error fetching addresses: \(error)")
         }
     }
     
-    private func applyChanges() {
-        save()
-        getAddresses()
+    func add(_ address: Address) async -> Result<AddAddressResponse, Error> {
+        let path = "customer/addresses/add/"
+        guard let url = baseURL?.appendingPathComponent(path) else { return .failure(URLError(.badURL)) }
+        
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(APIManager.instance.accessToken)", forHTTPHeaderField: "Authorization")
+            request.httpBody = try JSONEncoder().encode(address)
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Проверка на успешный статус-код
+            guard (response as? HTTPURLResponse)?.statusCode == 201 else {
+                return .failure(NSError(domain: "Invalid response", code: 400, userInfo: nil))
+            }
+            
+            // Декодируем ответ
+            let decoder = JSONDecoder()
+            let responseData = try decoder.decode(AddAddressResponse.self, from: data)
+            return .success(responseData)
+            
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    func update(_ address: Address) async {
+        guard let id = address.id else { return }
+        let path = "customer/address/\(id)/edit/"
+        guard let url = baseURL?.appendingPathComponent(path) else { return }
+        
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(APIManager.instance.accessToken)", forHTTPHeaderField: "Authorization")
+            request.httpBody = try JSONEncoder().encode(address)
+            
+            let (_, _) = try await URLSession.shared.data(for: request)
+        } catch {
+            print("Error updating address: \(error)")
+        }
+    }
+
+    func delete(_ id: Int) async {
+        let path = "customer/address/\(id)/delete/"
+        guard let url = baseURL?.appendingPathComponent(path) else { return }
+        
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            request.addValue("Bearer \(APIManager.instance.accessToken)", forHTTPHeaderField: "Authorization")
+            
+            let (_, _) = try await URLSession.shared.data(for: request)
+        } catch {
+            print("Error deleting address: \(error)")
+        }
     }
 }
-

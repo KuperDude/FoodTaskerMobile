@@ -91,8 +91,11 @@ struct CartView: View {
         }
         
         GeometryReader { geometry in
-            CompositionView(mainVM: mainVM, mealId: mainVM.order.first(where: { $0.id == orderDetailsIdToCompositionView})?.meal.id ?? -1, orderDetailsId: orderDetailsIdToCompositionView)
-                .presentAsBottomSheet($presentCompositionView, maxHeight: geometry.size.height * 0.5)
+            if presentCompositionView {
+                CompositionView(mainVM: mainVM, mealId: mainVM.order.first(where: { $0.id == orderDetailsIdToCompositionView})?.meal.id ?? -1, orderDetailsId: orderDetailsIdToCompositionView)
+                    .presentAsBottomSheet($presentCompositionView, maxHeight: geometry.size.height * 0.5)
+                    .offset(y: presentCompositionView ? 0 : -geometry.size.height * 0.5)
+            }
         
             AddressesView(presentAddressesView: $presentAddressesView, mainVM: mainVM)
                 .presentAsBottomSheet($presentAddressesView, maxHeight: geometry.size.height * 0.5)
@@ -123,7 +126,9 @@ extension CartView {
                     ForEach(mainVM.order) { orderDetails in
                         CartCell(mainVM: mainVM, orderDetails: orderDetails) {
                             orderDetailsIdToCompositionView = orderDetails.id
-                            presentCompositionView = true
+                            withAnimation {
+                                presentCompositionView = true
+                            }
                         }
                         Divider()
                     }
@@ -154,7 +159,7 @@ extension CartView {
                 .foregroundColor(.theme.accent)
                 .font(.system(size: 18, weight: .semibold))
             Spacer()
-            Text(mainVM.order.total.asCurrencyWith2Decimals())
+            Text(mainVM.total().asCurrencyWith2Decimals())
                 .font(.system(size: 18))
                 .foregroundColor(.theme.green)
                 .padding()
