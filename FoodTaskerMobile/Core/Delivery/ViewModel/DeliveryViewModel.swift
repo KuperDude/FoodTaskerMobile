@@ -19,7 +19,7 @@ class DeliveryViewModel: ObservableObject {
     private let lastOrderStatusService: LastOrderStatusService
     
     var cancellables = Set<AnyCancellable>()
-    
+    var timer: AnyCancellable?
     
     init() {
         self.lastOrderStatusService = LastOrderStatusService()
@@ -27,14 +27,19 @@ class DeliveryViewModel: ObservableObject {
         addPublishers()
     }
     
-    func addPublishers() {
-        Timer.publish(every: 3, on: .main, in: .common)
+    func addTimerUpdate() {
+        timer = Timer.publish(every: 3, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
                 self.lastOrderStatusService.getLastStatus()
             }
-            .store(in: &cancellables)
-        
+    }
+    
+    func removeTimerUpdate() {
+        timer = nil
+    }
+    
+    func addPublishers() {
         lastOrderStatusService.$status
             .sink { [weak self] status in
                 self?.status = status

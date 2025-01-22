@@ -24,9 +24,8 @@ struct HPicker: View {
                                     Rectangle()
                                         .opacity(0.01)
                                         .onTapGesture {
-                                            withAnimation {
+                                            withAnimation(.spring) {
                                                 selected = value.wrappedValue
-                                                geometry.scrollTo(value.wrappedValue)
                                             }
                                         }
                                 })
@@ -38,6 +37,11 @@ struct HPicker: View {
                                 Capsule()
                                     .frame(height: 3)
                                     .matchedGeometryEffect(id: "under_line", in: namespace)
+                                    .onAppear {
+                                        withAnimation(.spring) {
+                                            geometry.scrollTo(value.wrappedValue, anchor: .center)
+                                        }
+                                    }
                             } else {
                                 Spacer()
                             }

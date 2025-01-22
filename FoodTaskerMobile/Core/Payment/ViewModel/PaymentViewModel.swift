@@ -14,12 +14,14 @@ class PaymentViewModel: ObservableObject {
     
     var address: Address?
     var items: [OrderDetails]
-    var restaurantId: Int
+    var restaurantTitle: String
+    var deliveryPrice: Float
     
-    init(address: Address?, items: [OrderDetails], restaurantId: Int) {
+    init(address: Address?, items: [OrderDetails], restaurantTitle: String, deliveryPrice: Float) {
         self.address = address
         self.items = items
-        self.restaurantId = restaurantId
+        self.restaurantTitle = restaurantTitle
+        self.deliveryPrice = deliveryPrice
     }
     
     //MARK: - User Intents
@@ -27,7 +29,8 @@ class PaymentViewModel: ObservableObject {
     private var orderSubscription: AnyCancellable?
     
     func createOrder() async {
-        let (url, data) = APIManager.instance.createOrder(address: address?.convertToString() ?? "", restaurantId: restaurantId, items: items)
+        guard let restaurantId = try? await APIManager.instance.getRestaurantID(at: restaurantTitle) else { return }
+        let (url, data) = APIManager.instance.createOrder(address: address?.convertToString() ?? "", restaurantId: restaurantId, deliveryPrice: deliveryPrice, items: items)
         guard let url = url, let data = data else { return }
         await NetworkingManager.send(url: url, data: data)
     }

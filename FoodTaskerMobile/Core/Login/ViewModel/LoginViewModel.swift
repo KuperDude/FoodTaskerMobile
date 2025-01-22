@@ -13,8 +13,6 @@ class LoginViewModel: ObservableObject {
     @Published var user: User?
     var cancellables = Set<AnyCancellable>()
     
-    @Published var code: Int?
-    
     @Published var username: String = ""
     @Published var mail: String = ""
     
@@ -84,18 +82,6 @@ class LoginViewModel: ObservableObject {
                 self?.customErrorDescription = error
                 self?.alertStatus = .custom
             }
-        }
-    }
-    
-    func sendCode() async {
-        do {
-            let code = try await authService.sendCodeOn(mail: mail)
-            await MainActor.run {
-                self.code = code
-            }
-        } catch {
-            customErrorDescription = error.localizedDescription
-            alertStatus = .custom
         }
     }
     

@@ -37,7 +37,7 @@ class MealViewModel: ObservableObject {
             .sink { [weak self] returnedMeals in
                 self?.mealSections = [:]
                 self?.sortMealToSection(returnedMeals)
-                self?.sections = self?.mealSections.keys.sorted() ?? []
+                self?.sections = self?.mealSections.keys.map({ $0 }) ?? []
             }
             .store(in: &cancellables)
         
@@ -46,7 +46,7 @@ class MealViewModel: ObservableObject {
             .sink { [weak self] meals in
                 self?.meals = meals
                 self?.sortMealToSection(meals)
-                self?.sections = self?.mealSections.keys.sorted() ?? []
+                self?.sections = self?.mealSections.keys.map({ $0 }) ?? []
                 self?.mealsIsLoading = false
             }
             .store(in: &cancellables)

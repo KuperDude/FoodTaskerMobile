@@ -79,6 +79,9 @@ class GeoJSONService {
                     if let price = extractDeliveryPrice(from: feature.properties.description ?? "") {
                         self.polygons[c].price = price
                     }
+                    if let restaurantTitle = extractRestaurantID(from: feature.properties.description ?? "") {
+                        self.polygons[c].restaurantTitle = restaurantTitle
+                    }
                     c+=1
 
                 case .lineString(let lineString):
@@ -181,6 +184,7 @@ class GeoJSONService {
     struct MKPolygonObj {
         var polygon: MKPolygon
         var price: Int?
+        var restaurantTitle: String?
     }
     
     private func extractDeliveryPrice(from input: String) -> Int? {
@@ -199,6 +203,17 @@ class GeoJSONService {
             print("Invalid regex: \(error.localizedDescription)")
         }
         
+        return nil
+    }
+    
+    private func extractRestaurantID(from input: String) -> String? {
+        let pattern = "^(.*?)\\s*-"
+        if let match = input.range(of: pattern, options: .regularExpression) {
+            let restaurantName = String(input[match])
+                                    .replacingOccurrences(of: "-", with: "")
+                                    .trimmingCharacters(in: .whitespaces)
+            return restaurantName
+        }
         return nil
     }
 }

@@ -30,10 +30,11 @@ struct AddressesView: View {
                 ScrollView {
                     ForEach(addressDataService.addresses) { address in                        
                         AddressCell(mainAddress: $mainVM.address, address: address, onTap: {
-                            vm.getDeliveryPriceOf(address: address, price: { price in
+                            vm.getDeliveryPriceOf(address: address, price: { price, restaurantTitle in
                                 guard let price = price else { return }
                                 mainVM.address = address
                                 mainVM.deliveryPrice = Float(price)
+                                mainVM.restaurantTitle = restaurantTitle
                             })
                         }, settingsAction: {
                             self.address = address

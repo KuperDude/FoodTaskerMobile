@@ -95,18 +95,6 @@ final class AuthManager: NSObject, ObservableObject {
 extension AuthManager: VKSdkDelegate {
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         if result.token != nil && !result.token.isExpired() {
-            
-            if let email = result.token.email {
-                print("Email пользователя: \(email)")
-            } else {
-                print("Email не был предоставлен")
-            }
-            
-//            if let phone = result.token.localUser.mobile_phone {
-//                print("Номер телефона пользователя: \(phone)")
-//            } else {
-//                print("Номер телефона не был предоставлен")
-//            }
             Task {
                 try await APIManager.instance.login(method: .vk, userType: Constants.USERTYPE_CUSTOMER)
                 try await self.getUserFromData()
@@ -135,8 +123,10 @@ extension AuthManager: ResetPasswordAllow, SendCodeAllow {
         return try await withCheckedThrowingContinuation { continuation in
             APIManager.instance.sendCode(mail: mail) { result in
                 switch result {
-                case .success(let code): continuation.resume(returning: code)
-                case .failure(let error): continuation.resume(throwing: error)
+                case .success(let code):                     
+                    continuation.resume(returning: code)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
                 }
             }
         }
@@ -147,8 +137,7 @@ extension AuthManager: ResetPasswordAllow, SendCodeAllow {
             APIManager.instance.sendCode(mail: mail, isResetPassword: true) { result in
                 switch result {
                 case .success(let code): continuation.resume(returning: code)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
+                case .failure(let error): continuation.resume(throwing: error)
                 }
             }
         }

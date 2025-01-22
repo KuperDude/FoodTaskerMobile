@@ -31,20 +31,22 @@ actor NetworkingManager {
             .eraseToAnyPublisher()
     }
     
-    static func send(url: URL, data: Data) async {
+    static func send(url: URL, data: Data) async -> Result<Data, Error> {
         var request = URLRequest(url: url)
         
         request.httpMethod = "POST"
         request.httpBody = data
         
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<300 ~= statusCode else {                
                 throw URLError(.badURL)
             }
+            
+            return .success(data)
         } catch {
-            print(error)
+            return .failure(error)
         }
     }
     

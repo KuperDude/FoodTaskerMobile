@@ -5,7 +5,7 @@
 //  Created by MyBook on 02.07.2024.
 //
 
-import Foundation
+import SwiftUI
 
 protocol SendCodeAllow {
     func sendCodeOn(mail: String) async throws -> Int
@@ -46,15 +46,19 @@ class SendCodeOnMailViewModel: ObservableObject {
     }
     
     //MARK: - USER INTENT(S)
-    func close() {
+    func close() {        
         code = nil
         internalCode = ""
     }
     
     
     func sendCode() async {
-        do {
+        do {   
+            await UIApplication.shared.endEditing()
             code = try await authService.sendCodeOn(mail: mail)
+        } catch let error as StringError {
+            customErrorDescription = error.description
+            alertStatus = .custom
         } catch {
             customErrorDescription = error.localizedDescription
             alertStatus = .custom
@@ -62,7 +66,6 @@ class SendCodeOnMailViewModel: ObservableObject {
     }
     
     func codeButtonAction() {
-        
         guard let code = code else {
             alertStatus = .noExistCode
             return

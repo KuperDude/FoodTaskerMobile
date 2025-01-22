@@ -68,3 +68,6 @@ struct MailUser: Codable, Identifiable, Equatable {
     }
 }
 
+struct ResponseID: Codable {
+    var id: Int
+}

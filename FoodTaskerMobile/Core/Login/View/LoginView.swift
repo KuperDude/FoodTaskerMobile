@@ -19,7 +19,7 @@ struct LoginView: View {
     @State var isShowAlert = false
     
     @State var pressedForgotPassword = false
-    @State var pressedRegistration = false
+    @State var pressedSendCodeOnMail = false
     
     init(mainVM: MainViewModel) {
         self._mainVM = ObservedObject(initialValue: mainVM)
@@ -53,25 +53,15 @@ struct LoginView: View {
                     
                     loginAsAnonymousButton
                 }
-                Button {
-                    if let url = URL(string: "https://vk.com/app52209597/") {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-//                    "https://oauth.yandex.ru/authorize?response_type=token&client_id=28999056b028449b9797216ab6c53510"
-                } label: {
-                    Text("Take phone")
-                }
             }
             .padding(.horizontal, 20)
             .background {
                 backgroundImage
             }
             
-            
             ForgotPasswordView(isOpen: $pressedForgotPassword)
-            SendCodeOnMailView(code: $vm.code, mail: vm.mail) {
+            SendCodeOnMailView(isOpen: $pressedSendCodeOnMail, mail: $vm.mail) {
                 vm.register()
-                pressedRegistration = false
             }
             
         }
@@ -98,11 +88,6 @@ struct LoginView: View {
                 vm.alertStatus = nil
             }
         }
-        .onReceive(vm.$code, perform: { code in
-            guard let _ = code else { return }
-            UIApplication.shared.endEditing()
-            pressedRegistration = true
-        })
     }
 }
 
@@ -150,7 +135,7 @@ extension LoginView {
         AsyncButton {
             if isRegistration {
                 if vm.checkCurrectData() {
-                    await vm.sendCode()
+                    pressedSendCodeOnMail = true
                 }
             } else {
                 if vm.checkCurrectDataOnLogin() {

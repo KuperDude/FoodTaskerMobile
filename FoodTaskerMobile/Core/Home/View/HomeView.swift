@@ -23,18 +23,21 @@ struct HomeView: View {
             }
             
             Group {
-                switch mainVM.currentCategory {
-                case .profile:
-                    ProfileView(mainVM: mainVM)
-                case .menu:
-                    MealView(mainVM: mainVM)
-                case .cart:
-                    CartView(mainVM: mainVM)
-                case .delivery:
+                ProfileView(mainVM: mainVM)
+                    .opacity(mainVM.currentCategory == .profile ? 1 : 0)
+
+                MealView(mainVM: mainVM)
+                    .opacity(mainVM.currentCategory == .menu ? 1 : 0)
+
+                CartView(mainVM: mainVM)
+                    .opacity(mainVM.currentCategory == .cart ? 1 : 0)
+                
+                if mainVM.currentCategory == .delivery {
                     DeliveryView(mainVM: mainVM)
-                case .logout:
-                    EmptyView()
                 }
+
+                EmptyView()
+                    .opacity(mainVM.currentCategory == .logout ? 1 : 0)
             }
             .shadow(
                 color: Color.theme.accent.opacity(0.15),

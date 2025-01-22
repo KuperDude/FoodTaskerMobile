@@ -107,7 +107,6 @@ class ForgotPasswordViewModel: ObservableObject {
     }
     
     func codeButtonAction() {
-        
         guard let code = code else {
             alertStatus = .noExistCode
             return

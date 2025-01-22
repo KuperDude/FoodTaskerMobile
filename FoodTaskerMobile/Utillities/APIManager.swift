@@ -67,14 +67,25 @@ class APIManager {
     }
     
     // API to create an order
-    func createOrder(address: String, restaurantId: Int, items: [OrderDetails]) -> (URL?, Data?) {
+    func createOrder(address: String, restaurantId: Int, deliveryPrice: Float, items: [OrderDetails]) -> (URL?, Data?) {
         let path = "api/customer/order/add/"
         
         let orderDetails = items.map { item in
             return OrderDetailsSerializer(mealId: item.meal.id, quantity: item.quantity)
         }
         
-        let order = Order(accessToken: self.accessToken, restaurantId: restaurantId, address: address, orderDetails: orderDetails)
+        let order = Order(accessToken: self.accessToken, restaurantId: restaurantId, address: address, orderDetails: orderDetails, deliveryPrice: deliveryPrice)
+        
+        let data = try? JSONEncoder().encode(order)
+        let url = baseURL?.appendingPathComponent(path)
+        return (url, data)
+    }
+    
+    // API to create an order
+    func checkToCreateOrder(address: String) -> (URL?, Data?) {
+        let path = "api/customer/order/check/"
+        
+        let order = Order(accessToken: self.accessToken, restaurantId: 0, address: address, orderDetails: [], deliveryPrice: 0)
         
         let data = try? JSONEncoder().encode(order)
         let url = baseURL?.appendingPathComponent(path)
@@ -98,7 +109,7 @@ extension APIManager {
         NetworkingManager.download(url: url)
             .sink(receiveCompletion: { status in
                 switch status {
-                case .failure(_):                    
+                case .failure(_):
                     completionHandler(.failure(StringError("Данной почты не существует!")))
                 case .finished: break
                 }
@@ -113,10 +124,11 @@ extension APIManager {
                 
                 switch status {
                 case .success:
-                    guard let code = jsonData["code"].int else {
+                    
+                    guard let code = jsonData["code"].int64 else {
                         return
                     }
-                    completionHandler(.success(code))
+                    completionHandler(.success(Int(code)))
                 case .failed:
                     guard let error = jsonData["error"].string else {
                         return
@@ -407,5 +419,21 @@ extension APIManager {
         }
         
         return data
+    }
+    
+    func getRestaurantID(at title: String) async throws -> Int {
+        let path = "api/customer/getRestaurantID/\(title)/"
+        
+        guard let url = baseURL?.appendingPathComponent(path) else { throw URLError(.badURL) }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let id = try JSONDecoder().decode(ResponseID.self, from: data).id
+        
+        return id
     }
 }

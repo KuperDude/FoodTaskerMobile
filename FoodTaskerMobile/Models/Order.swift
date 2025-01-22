@@ -12,11 +12,13 @@ struct Order: Codable {
     var restaurantId: Int
     var address: String
     var orderDetails: [OrderDetailsSerializer]
+    var deliveryPrice: Float
     
     private enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case restaurantId = "restaurant_id"
         case address
         case orderDetails = "order_details"
+        case deliveryPrice = "delivery_price"
     }
 }

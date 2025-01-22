@@ -89,6 +89,12 @@ struct DeliveryView: View {
                 Spacer()
             }
             .ignoresSafeArea(edges: .bottom)
+            .onAppear {
+                vm.addTimerUpdate()
+            }
+            .onDisappear {
+                vm.removeTimerUpdate()
+            }
         }
     }
 }

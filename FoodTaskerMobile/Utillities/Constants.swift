@@ -9,7 +9,8 @@ import Foundation
 
 struct Constants {
     static let randomImage = "https://random-image-pepebigotes.vercel.app/api/random-image"
-    static let baseURL = "http://192.168.1.194:8000/"
+    static let baseURL = "http://192.168.0.107:8000/"
+//    "http://fieldsqs.beget.tech/"
     
     static let USERTYPE_CUSTOMER = "customer"
     

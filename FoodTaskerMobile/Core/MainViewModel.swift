@@ -15,15 +15,15 @@ class MainViewModel: ObservableObject {
     @Published var animateStatus: Status = .burger
     @Published var currentCategory: Category = .menu
     @Published var address: Address = Address()
-    @Published var selectedRestaurantId = 3
+    @Published var restaurantTitle: String?
     
-    init(user: User? = nil, order: [OrderDetails] = [OrderDetails](), animateStatus: Status = .burger, currentCategory: Category = .menu, address: Address = Address(), selectedRestaurantId: Int = 3) {
+    init(user: User? = nil, order: [OrderDetails] = [OrderDetails](), animateStatus: Status = .burger, currentCategory: Category = .menu, address: Address = Address(), restaurantTitle: String? = nil) {
         self.user = user
         self.order = order
         self.animateStatus = animateStatus
         self.currentCategory = currentCategory
         self.address = address
-        self.selectedRestaurantId = selectedRestaurantId
+        self.restaurantTitle = restaurantTitle
     }
     
     func isUserAnonymous() -> Bool {

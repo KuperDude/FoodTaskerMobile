@@ -23,7 +23,7 @@ class AddressesViewModel: ObservableObject {
         self._mainVM = ObservedObject(initialValue: mainVM)
     }
     
-    func getDeliveryPriceOf(address: Address, price: @escaping (Int?) -> Void) {
+    func getDeliveryPriceOf(address: Address, price: @escaping (Int?, _ restaurantTitle: String?) -> Void) {
         convertToPoint(address: address) { [weak self] point in
             guard 
                 let point = point,
@@ -31,11 +31,11 @@ class AddressesViewModel: ObservableObject {
             else { return }
             for obj in self.geoJSONService.polygons {
                 if obj.polygon.isCoordinateInsidePolygon(CLLocationCoordinate2D(latitude: point.latitude, longitude: point.longitude)) {                    
-                    price(obj.price)
+                    price(obj.price, obj.restaurantTitle)
                     return
                 }
             }
-            price(nil)
+            price(nil, nil)
         }
     }
     

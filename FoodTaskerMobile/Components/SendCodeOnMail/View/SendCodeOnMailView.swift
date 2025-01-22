@@ -13,23 +13,23 @@ struct SendCodeOnMailView: View {
     
     @State var isShowAlert = false
     @State private var isOpenKeyboard = false
-    
-    @Binding var code: Int?
-    @State var isOpen: Bool
+
+    @Binding var isOpen: Bool
+    @Binding var mail: String
     
     var completion: () -> Void
     
-    init(code: Binding<Int?>, mail: String, completion: @escaping () -> Void) {
-        self._vm = StateObject(wrappedValue: SendCodeOnMailViewModel(mail: mail, completion: completion))
-        self._code = code
-        self.isOpen = code.wrappedValue != nil
+    init(isOpen: Binding<Bool>, mail: Binding<String>, completion: @escaping () -> Void) {
+        self._vm = StateObject(wrappedValue: SendCodeOnMailViewModel(mail: mail.wrappedValue, completion: completion))
+        self._isOpen = isOpen
+        self._mail = mail
         self.completion = completion
     }
     
     var body: some View {
         VStack(spacing: 0) {
             
-            if code != nil {
+            if vm.code != nil {
                 codeSegment
             }
             
@@ -41,7 +41,7 @@ struct SendCodeOnMailView: View {
                 isOpenKeyboard = bool
             }
         }
-        .onChange(of: code) { internalCode in
+        .onChange(of: vm.code) { internalCode in
             if internalCode != nil {
                 isOpen = true
             } else {
@@ -49,12 +49,20 @@ struct SendCodeOnMailView: View {
             }
         }
         .onChange(of: isOpen) { isOpen in
-            if !isOpen {
-                code = nil
+            if isOpen {
+                Task {
+                    await vm.sendCode()
+                }
+            } else {
+                vm.code = nil
             }
+        }
+        .onChange(of: mail) { mail in
+            vm.mail = mail
         }
         .onChange(of: vm.alertStatus) { status in
             guard let _ = status else { return }
+            isOpen = false
             isShowAlert = true
         }
         .alert(vm.errorText(vm.alertStatus) ?? "", isPresented: $isShowAlert) {
@@ -67,7 +75,7 @@ struct SendCodeOnMailView: View {
 
 #Preview {
     ZStack {
-        SendCodeOnMailView(code: .constant(123), mail: "mail", completion: {
+        SendCodeOnMailView(isOpen: .constant(true), mail: .constant("mail"), completion: {
             
         })
     }

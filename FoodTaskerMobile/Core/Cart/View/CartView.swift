@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SwiftfulUI
 
 struct CartView: View {
     @ObservedObject var mainVM: MainViewModel
@@ -15,6 +16,7 @@ struct CartView: View {
     @State private var showAddressAlert = false
     @State private var showOrderAlert = false
     @State private var showLoginAlert = false
+    @State private var isShowAlert = false
     
     @State var showPayment = false
     @State var showSuccessPayment = false
@@ -88,6 +90,15 @@ struct CartView: View {
             }
         } message: {
             Text("Войдите в аккаунт или пройдите регистрацию")
+        }
+        .onChange(of: vm.errorDescription) { errorDescription in
+            guard let _ = errorDescription else { return }
+            isShowAlert = true
+        }
+        .alert(vm.errorDescription ?? "", isPresented: $isShowAlert) {
+            Button("OK", role: .cancel) {
+                vm.errorDescription = nil
+            }
         }
         
         GeometryReader { geometry in
@@ -167,7 +178,8 @@ extension CartView {
     }
     
     var payButton: some View {
-        Button {
+        AsyncButton {
+            vm.address = mainVM.address
             if mainVM.isUserAnonymous() {
                 showLoginAlert = true
             } else if mainVM.address.isEmpty() {
@@ -175,23 +187,31 @@ extension CartView {
             } else if vm.getStatus() != .delivered && vm.getStatus() != .unknown && vm.getStatus() != .cancelled {
                 showOrderAlert = true
             } else {
-                withAnimation(.spring()) {
-                    showPayment = true
+                if await vm.checkToCreateOrder() {
+                    withAnimation(.spring()) {
+                        showPayment = true
+                    }
                 }
             }
-        } label: {
-            Text("Оплатить")
-                .minimumScaleFactor(0.5)
-                .font(.system(size: 25))
-                .fontWidth(.compressed)
-                .foregroundColor(.theme.accent)
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(Color.theme.green)
+        } label: { isPerformingAction in
+            ZStack {
+                Text("Оплатить")
+                    .minimumScaleFactor(0.5)
+                    .font(.system(size: 25))
+                    .fontWidth(.compressed)
+                    .foregroundColor(.theme.accent)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundStyle(Color.theme.green)
+                    }
+                    .opacity(isPerformingAction || mainVM.address.isEmpty() || mainVM.isUserAnonymous() ? 0.5 : 1)
+                
+                if isPerformingAction {
+                      ProgressView()
                 }
-                .opacity(mainVM.address.isEmpty() ? 0.5 : 1.0)
+            }
         }
     }
 }
