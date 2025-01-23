@@ -78,6 +78,12 @@ struct AddressView: View {
                 .frame(height: 120)
         }
         .padding(.horizontal)
+        .background(
+            Color.gray.opacity(0.01)
+                .onTapGesture {
+                    focusedField.wrappedValue = nil
+                }
+        )
     }
 }
 

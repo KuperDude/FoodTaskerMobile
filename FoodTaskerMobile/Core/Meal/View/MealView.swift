@@ -30,7 +30,7 @@ struct MealView: View {
             VStack {
                 //topSector
                 
-                if mainVM.animateStatus.getChevronIdOrMinusOne == -1 {
+                if mainVM.animateStatus.getChevronIdOrMinusOne == -1 && mainVM.currentCategory == .menu {
                     SearchBarView(searchText: $vm.searchText)
                 }
                 

@@ -44,9 +44,12 @@ struct AddressInputCell: View {
             .padding(.horizontal, 5)
             .padding(.top, 5)
         }
-        .onTapGesture {
-            focusedState.toggle()
-        }
+        .overlay(content: {
+            Color.gray.opacity(0.01)
+                .onTapGesture {
+                    focusedState.toggle()
+                }
+        })
     }
 }
 

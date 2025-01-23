@@ -53,15 +53,6 @@ struct EditMapView: View {
             
             crossButton
             
-            if focusedField != nil {
-                Rectangle()
-                    .ignoresSafeArea()
-                    .opacity(0.01)
-                    .onTapGesture {
-                        focusedField = nil
-                    }
-            }
-            
             readyBlock
             
         }
@@ -163,8 +154,10 @@ extension EditMapView {
         VStack {
             HStack {
                 AnimatedCrossView(offsetY: $offsetOfAddressView, maxOffsetY: (UIScreen.main.bounds.height) - buttonMinusFrame.minY - offsetYAddressView, height: 50, action: {
-                    if presentAddressView {
+                    if presentAddressView && focusedField == nil {
                         presentAddressView = false
+                    } else if presentAddressView && focusedField != nil {
+                        focusedField = nil
                     } else {
                         vm.plusZoom()
                     }
