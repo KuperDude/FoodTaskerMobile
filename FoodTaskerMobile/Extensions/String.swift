@@ -20,13 +20,29 @@ extension String {
         return String(self[start..<end])
     }
     
-    /// Convert "yyyy-MM-dd'T'HH:mm:ssZ" to "dd.MM.yyyy, HH:mm"
+    /// Convert "yyyy-MM-dd'T'HH:mm:ssZ" or "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ" to "dd.MM.yyyy, HH:mm"
     func dateFromWebtoApp() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from: self)
+
+        let formats = [
+            "yyyy-MM-dd'T'HH:mm:ssZ",
+            "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        ]
+
+        var parsedDate: Date?
+
+        for format in formats {
+            dateFormatter.dateFormat = format
+            if let date = dateFormatter.date(from: self) {
+                parsedDate = date
+                break
+            }
+        }
+
+        let finalDate = parsedDate ?? Date()
+
         dateFormatter.dateFormat = "dd.MM.yyyy, HH:mm"
-        return dateFormatter.string(from: date ?? Date())
+        return dateFormatter.string(from: finalDate)
     }
 }

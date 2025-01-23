@@ -11,7 +11,7 @@ import Combine
 class MealViewModel: ObservableObject {
     
     @Published var meals = [Meal]()
-    @Published var mealSections = [String: [Meal]]()
+    @Published var mealSections = [Category: [Meal]]()
     @Published var sections = [String]()
     @Published var selectedSection: String?
     @Published var mealsIsLoading = true
@@ -37,7 +37,7 @@ class MealViewModel: ObservableObject {
             .sink { [weak self] returnedMeals in
                 self?.mealSections = [:]
                 self?.sortMealToSection(returnedMeals)
-                self?.sections = self?.mealSections.keys.map({ $0 }) ?? []
+                self?.sections = self?.mealSections.keys.sorted(by: { $0.order < $1.order }).map({ $0.name }) ?? []
             }
             .store(in: &cancellables)
         
@@ -46,7 +46,7 @@ class MealViewModel: ObservableObject {
             .sink { [weak self] meals in
                 self?.meals = meals
                 self?.sortMealToSection(meals)
-                self?.sections = self?.mealSections.keys.map({ $0 }) ?? []
+                self?.sections = self?.mealSections.keys.sorted(by: { $0.order < $1.order }).map({ $0.name }) ?? []
                 self?.mealsIsLoading = false
             }
             .store(in: &cancellables)
@@ -55,7 +55,7 @@ class MealViewModel: ObservableObject {
     
     private func sortMealToSection(_ meals: [Meal]) {
         for meal in meals {
-            mealSections[meal.category.name] = (mealSections[meal.category.name] ?? []) + [meal]
+            mealSections[meal.category] = (mealSections[meal.category] ?? []) + [meal]
         }
     }
     
@@ -72,7 +72,12 @@ class MealViewModel: ObservableObject {
     }
     
     func getMeals(at category: String) -> [Meal] {
-        return mealSections[category] ?? []
+        guard
+            let cat = mealSections.keys.first(where: { $0.name == category }),
+            let meals = mealSections[cat] else {
+            return []
+        }
+        return meals
     }
     
     func getMeal(at id: Int) -> Meal? {

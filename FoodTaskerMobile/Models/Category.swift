@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Category: Codable, Identifiable {
+struct Category: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
+    var order: Int
 }

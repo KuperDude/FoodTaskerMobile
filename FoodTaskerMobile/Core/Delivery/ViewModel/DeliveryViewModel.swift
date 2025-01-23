@@ -27,11 +27,19 @@ class DeliveryViewModel: ObservableObject {
         addPublishers()
     }
     
+    @MainActor
     func addTimerUpdate() {
         timer = Timer.publish(every: 3, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                self.lastOrderStatusService.getLastStatus()
+                Task { [weak self] in
+                    guard let status = await self?.lastOrderStatusService.getLastStatus() else { return }
+                    self?.status = status
+                    
+                    if self?.ordersInfo.first != nil {
+                        self?.ordersInfo[0].status = status.rawValue
+                    }
+                }
             }
     }
     
@@ -40,16 +48,6 @@ class DeliveryViewModel: ObservableObject {
     }
     
     func addPublishers() {
-        lastOrderStatusService.$status
-            .sink { [weak self] status in
-                self?.status = status
-                
-                if self?.ordersInfo.first != nil {
-                    self?.ordersInfo[0].status = status.rawValue
-                }
-            }
-            .store(in: &cancellables)
-        
         ordersService.$orders
             .sink { [weak self] orders in
                 self?.ordersInfo = orders

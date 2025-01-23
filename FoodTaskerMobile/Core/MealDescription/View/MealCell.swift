@@ -12,13 +12,13 @@ struct MealCell: View {
     var meal: Meal
         
     @ObservedObject var mainVM: MainViewModel
-    @State private var orderDetails: OrderDetails
+    private var orderDetails: OrderDetails
     
     init(namespace: Namespace.ID, meal: Meal, mainVM: MainViewModel) {
         self.namespace = namespace
         self.meal = meal
         self.mainVM = mainVM
-        self._orderDetails = State(initialValue: mainVM.order.first(where: { $0.meal.id == meal.id }) ?? OrderDetails(meal: meal, ingredients: [], quantity: 0, id: UUID())) 
+        self.orderDetails = mainVM.order.first(where: { $0.meal.id == meal.id }) ?? OrderDetails(meal: meal, ingredients: [], quantity: 0, id: UUID())
     }
     
     var body: some View {
@@ -52,7 +52,7 @@ struct MealCell: View {
 struct MealCell_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        MealCell(namespace: namespace, meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: .init(id: 1, name: "")), mainVM: MainViewModel())
+        MealCell(namespace: namespace, meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: .init(id: 1, name: "", order: 0)), mainVM: MainViewModel())
     }
 }
 
@@ -98,8 +98,7 @@ extension MealCell {
             
             Button {
                 withAnimation(.linear) {
-                    orderDetails.quantity += 1
-                    mainVM.order.append(orderDetails)
+                    mainVM.order.append(orderDetails.change(quantity: orderDetails.quantity + 1))
                 }
             } label: {
                 Text("+")
@@ -140,13 +139,11 @@ extension MealCell {
                 withAnimation(.linear) {
                     if orderDetails.quantity >= 2 {
                         
-                        orderDetails.quantity -= 1
-                        
                         if let index = mainVM.order.firstIndex(where: { $0 == orderDetails }) {
-                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity)
+                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity - 1)
                         }
                     } else {
-                        orderDetails.quantity = 0
+                        //orderDetails.quantity = 0
                         
                         guard let index = mainVM.order.firstIndex(where: { $0.id == orderDetails.id }) else { return }
                         
@@ -178,10 +175,9 @@ extension MealCell {
             Button {
                 withAnimation(.linear) {
                     if orderDetails.quantity < 99 {
-                        orderDetails.quantity += 1
                         
                         if let index = mainVM.order.firstIndex(where: { $0 == orderDetails }) {
-                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity)
+                            mainVM.changeQuantity(at: index, quantity: orderDetails.quantity + 1)
                         }
                     }
                 }

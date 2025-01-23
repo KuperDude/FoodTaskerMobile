@@ -73,7 +73,7 @@ struct MealDetail_Previews: PreviewProvider {
     @StateObject static var mainVM = MainViewModel()
     @Namespace static var namespace
     static var previews: some View {
-        MealDetail(meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: Category(id: 1, name: "Lol")), mainVM: mainVM, namespace: namespace)
+        MealDetail(meal: Meal(id: 1, name: "Burger", shortDescription: "Description", image: "", price: 12.0, category: Category(id: 1, name: "Lol", order: 0)), mainVM: mainVM, namespace: namespace)
     }
 }
 

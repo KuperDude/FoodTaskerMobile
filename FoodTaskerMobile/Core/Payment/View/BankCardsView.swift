@@ -34,10 +34,10 @@ struct BankCardsView: UIViewControllerRepresentable {
                 switch result {
                 case .failure(let error):
                     if error.localizedDescription == "Server error: 403" {
-                        isSuccess = true
                         Task {
                             await vm.createOrder()
                         }
+                        isSuccess = true
                     }
                 default: break
                 }

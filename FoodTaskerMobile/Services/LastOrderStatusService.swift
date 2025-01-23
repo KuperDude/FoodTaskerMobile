@@ -6,38 +6,28 @@
 //
 
 import Foundation
-import Combine
 import SwiftyJSON
 
 class LastOrderStatusService {
     
-    @Published var status: DeliveryViewModel.Status = .unknown
-    
-    private var lastOrderSubscription: AnyCancellable?
-    
-    init() {
-        getLastStatus()
+    func getLastStatus() async -> DeliveryViewModel.Status? {
+        guard let url = APIManager.instance.getLatestOrderStatus() else { return nil }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let jsonData = JSON(data)
+            
+            guard
+                let stringStatus = jsonData["last_order_status"]["status"].string,
+                let status = DeliveryViewModel.Status(rawValue: stringStatus)
+            else {
+                return nil
+            }
+            return status
+        } catch {
+            print(error)
+        }
+        return nil
     }
-    
-    func getLastStatus() {
-        guard let url = APIManager.instance.getLatestOrderStatus() else { return }
-        
-        lastOrderSubscription = NetworkingManager.download(url: url)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { status in
-                switch status {
-                case .failure(let error): print(error)
-                case .finished: break
-                }
-            }, receiveValue: { data in
-                let jsonData = JSON(data)
-                guard
-                    let stringStatus = jsonData["last_order_status"]["status"].string,
-                    let status = DeliveryViewModel.Status(rawValue: stringStatus)
-                else {
-                    return
-                }
-                self.status = status
-            })
-    }
+
 }

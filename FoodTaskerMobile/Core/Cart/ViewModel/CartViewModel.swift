@@ -26,25 +26,10 @@ class CartViewModel: ObservableObject {
     
     init() {
         self.lastOrderStatusService = LastOrderStatusService()
-        addPublishers()
     }
     
-    func addPublishers() {
-//        Timer.publish(every: 3, on: .main, in: .common)
-//            .autoconnect()
-//            .sink { _ in                
-//                self.lastOrderStatusService.getLastStatus()
-//            }
-//            .store(in: &cancellables)
-        
-        lastOrderStatusService.$status
-            .sink { [weak self] status in
-                self?.status = status
-            }
-            .store(in: &cancellables)
-    }
-    
-    func getStatus() -> DeliveryViewModel.Status {
+    func getStatus() async -> DeliveryViewModel.Status? {
+        let status = await lastOrderStatusService.getLastStatus()
         return status
     }
     

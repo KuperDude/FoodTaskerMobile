@@ -72,7 +72,7 @@ struct CartCell: View {
 
 struct CartCell_Previews: PreviewProvider {
     static var previews: some View {
-        CartCell(mainVM: MainViewModel(), orderDetails: OrderDetails(meal: Meal(id: 1, name: "Burger", shortDescription: "", image: "", price: 0, category: .init(id: 123, name: "lol")), ingredients: [Ingredient(id: 12, name: "Solt", image: "")], quantity: 99, id: UUID()), onTap: { })
+        CartCell(mainVM: MainViewModel(), orderDetails: OrderDetails(meal: Meal(id: 1, name: "Burger", shortDescription: "", image: "", price: 0, category: .init(id: 123, name: "lol", order: 0)), ingredients: [Ingredient(id: 12, name: "Solt", image: "")], quantity: 99, id: UUID()), onTap: { })
     }
 }
 

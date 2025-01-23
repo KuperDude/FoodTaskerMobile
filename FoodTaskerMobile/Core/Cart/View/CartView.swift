@@ -62,6 +62,16 @@ struct CartView: View {
             SuccessPaymentView()
                 .presentAsBottomSheet($showSuccessPayment, maxHeight: 320)
         }
+        .onChange(of: showSuccessPayment, perform: { showSuccessPayment in
+            if !showSuccessPayment {
+                withAnimation {
+                    mainVM.currentCategory = .delivery
+                    mainVM.animateStatus = .burger
+                }
+                mainVM.order = []
+                mainVM.address = Address()
+            }
+        })
         .alert("Адрес", isPresented: $showAddressAlert) {
             Button("OK") {
                 presentAddressesView = true
@@ -116,7 +126,7 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(mainVM: MainViewModel(order: [OrderDetails(meal: Meal(id: 1, name: "Burger", shortDescription: "", image: "", price: 130.0, category: Category(id: 1, name: "meal")), quantity: 2, id: UUID())]))
+        CartView(mainVM: MainViewModel(order: [OrderDetails(meal: Meal(id: 1, name: "Burger", shortDescription: "", image: "", price: 130.0, category: Category(id: 1, name: "meal", order: 0)), quantity: 2, id: UUID())]))
     }
 }
 
@@ -180,11 +190,12 @@ extension CartView {
     var payButton: some View {
         AsyncButton {
             vm.address = mainVM.address
+            let status = await vm.getStatus()
             if mainVM.isUserAnonymous() {
                 showLoginAlert = true
             } else if mainVM.address.isEmpty() {
                 showAddressAlert = true
-            } else if vm.getStatus() != .delivered && vm.getStatus() != .unknown && vm.getStatus() != .cancelled {
+            } else if status != .delivered && status != .unknown && status != .cancelled {
                 showOrderAlert = true
             } else {
                 if await vm.checkToCreateOrder() {
