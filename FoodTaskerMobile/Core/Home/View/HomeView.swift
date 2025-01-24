@@ -32,6 +32,9 @@ struct HomeView: View {
                 CartView(mainVM: mainVM)
                     .opacity(mainVM.currentCategory == .cart ? 1 : 0)
                 
+                SupportView(mainVM: mainVM)
+                    .opacity(mainVM.currentCategory == .technicalSupport ? 1 : 0)
+                
                 if mainVM.currentCategory == .delivery {
                     DeliveryView(mainVM: mainVM)
                 }

@@ -13,6 +13,8 @@ struct CartView: View {
     @ObservedObject var mainVM: MainViewModel
     @StateObject var vm = CartViewModel()
     
+    @State var restaurantID: Int?
+    
     @State private var showAddressAlert = false
     @State private var showOrderAlert = false
     @State private var showLoginAlert = false
@@ -56,7 +58,7 @@ struct CartView: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .sheet(isPresented: $showPayment, content: {
-                BankCardsView(mainVM: mainVM, isShow: $showPayment, isSuccess: $showSuccessPayment)
+                BankCardsView(mainVM: mainVM, restaurantID: restaurantID, isShow: $showPayment, isSuccess: $showSuccessPayment)
             })
             
             SuccessPaymentView()
@@ -198,7 +200,11 @@ extension CartView {
             } else if status != .delivered && status != .unknown && status != .cancelled {
                 showOrderAlert = true
             } else {
-                if await vm.checkToCreateOrder() {
+                guard let restaurantId = try? await APIManager.instance.getRestaurantID(at: mainVM.restaurantTitle ?? "") else { return }
+                
+                self.restaurantID = restaurantID
+                
+                if await vm.checkToCreateOrder(restaurantId: restaurantId, items: mainVM.order) {
                     withAnimation(.spring()) {
                         showPayment = true
                     }

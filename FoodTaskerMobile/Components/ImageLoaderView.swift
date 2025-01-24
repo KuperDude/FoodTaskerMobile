@@ -5,20 +5,22 @@
 //  Created by MyBook on 08.09.2024.
 //
 import SwiftUI
-import SDWebImageSwiftUI
+import Kingfisher
 
 struct ImageLoaderView: View {
     
     var urlString = Constants.randomImage
-    var resizingMode: ContentMode = .fit
+    var resizingMode: SwiftUI.ContentMode = .fit
     
     var body: some View {
         Rectangle()
             .opacity(0.001)
             .overlay {
-                WebImage(url: URL(string: urlString))
+                KFImage(URL(string: urlString))
+                    .placeholder {
+                        ProgressView()
+                    }
                     .resizable()
-                    .indicator(.activity)
                     .aspectRatio(contentMode: resizingMode)
                     .allowsHitTesting(false)
             }

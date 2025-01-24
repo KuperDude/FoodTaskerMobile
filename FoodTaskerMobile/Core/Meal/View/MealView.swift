@@ -42,6 +42,7 @@ struct MealView: View {
                 } else {
                     HPicker(data: $vm.sections, selected: $vm.selectedSection)
                         .frame(height: 40)
+                        .opacity(mainVM.animateStatus.getChevronIdOrMinusOne != -1 ? 0 : 1)
                 }
                 
                 if mainVM.animateStatus == .burger || mainVM.animateStatus == .cross {
@@ -112,7 +113,13 @@ extension MealView {
             .onAppear {
                 guard let selectedIdMeal = selectedIdMeal else { return }
                 
+                isScrolling = true
+                
                 proxy.scrollTo(selectedIdMeal, anchor: .center)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    isScrolling = false
+                }
                 
                 self.selectedIdMeal = nil
             }

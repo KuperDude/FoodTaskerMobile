@@ -15,8 +15,8 @@ struct BankCardsView: UIViewControllerRepresentable {
     @Binding var isShow: Bool
     @Binding var isSuccess: Bool
     
-    init(mainVM: MainViewModel, isShow: Binding<Bool>, isSuccess: Binding<Bool>) {
-        self._vm = ObservedObject(initialValue: PaymentViewModel(address: mainVM.address, items: mainVM.order, restaurantTitle: mainVM.restaurantTitle ?? "", deliveryPrice: mainVM.deliveryPrice))
+    init(mainVM: MainViewModel, restaurantID: Int?, isShow: Binding<Bool>, isSuccess: Binding<Bool>) {
+        self._vm = ObservedObject(initialValue: PaymentViewModel(address: mainVM.address, items: mainVM.order, restaurantID: restaurantID, deliveryPrice: mainVM.deliveryPrice))
         self._isShow = isShow
         self._isSuccess = isSuccess
     }

@@ -33,8 +33,8 @@ class CartViewModel: ObservableObject {
         return status
     }
     
-    func checkToCreateOrder() async -> Bool {
-        let (url, data) = APIManager.instance.checkToCreateOrder(address: address?.convertToString() ?? "")
+    func checkToCreateOrder(restaurantId: Int, items: [OrderDetails]) async -> Bool {
+        let (url, data) = APIManager.instance.checkToCreateOrder(address: address?.convertToString() ?? "", restaurantId: restaurantId, items: items)
         guard let url = url, let data = data else {
             errorDescription = "Что-то пошло не так..."
             return false

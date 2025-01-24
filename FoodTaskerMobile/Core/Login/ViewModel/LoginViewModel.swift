@@ -50,8 +50,11 @@ class LoginViewModel: ObservableObject {
         authService.$user
             .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
-                if let user = data, APIManager.instance.accessToken != "" {                    
+                guard let user = data else { return }
+                if APIManager.instance.accessToken != "" {
                     self?.user = user                    
+                } else if user.id == "Anonymous" {
+                    self?.user = user
                 }
             }
             .store(in: &cancellables)

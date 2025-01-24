@@ -18,6 +18,7 @@
 		F838FF72295E077B00E87420 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF71295E077B00E87420 /* MealViewModel.swift */; };
 		F838FF75295F56AE00E87420 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838FF74295F56AE00E87420 /* View.swift */; };
 		F842B04C2D0BA993006F5441 /* GeoJSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F842B04B2D0BA993006F5441 /* GeoJSONService.swift */; };
+		F844BEF92D4400B4003FB214 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F844BEF82D4400B4003FB214 /* Kingfisher */; };
 		F84AB7AA2B9CE23600F3761B /* OrdersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7A92B9CE23600F3761B /* OrdersService.swift */; };
 		F84AB7AC2B9DDAB300F3761B /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7AB2B9DDAB300F3761B /* OrderInfo.swift */; };
 		F84AB7B32B9DFD1300F3761B /* DeliveryAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AB7B22B9DFD1300F3761B /* DeliveryAnimationView.swift */; };
@@ -35,6 +36,7 @@
 		F8A0653F29672FE500ECF9C0 /* CartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A0653E29672FE500ECF9C0 /* CartCellViewModel.swift */; };
 		F8A134FB295B2BFB0023D65D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */; };
 		F8A1678C2962F9850007E522 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1678B2962F9850007E522 /* Float.swift */; };
+		F8A194012D43BD03005D44B7 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A194002D43BD03005D44B7 /* SupportView.swift */; };
 		F8A1C99C2ACDFA43000A279F /* EditMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */; };
 		F8A285AE2AD2DCEC00F8FE93 /* AddressInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */; };
 		F8A2F9E8295DB33700B37C4A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F8A2F9E7295DB33700B37C4A /* Alamofire */; };
@@ -192,6 +194,7 @@
 		F8A0921C294F5C95008960B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F8A1678B2962F9850007E522 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		F8A194002D43BD03005D44B7 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 		F8A1C99B2ACDFA42000A279F /* EditMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapViewModel.swift; sourceTree = "<group>"; };
 		F8A285AD2AD2DCEC00F8FE93 /* AddressInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInputCell.swift; sourceTree = "<group>"; };
 		F8A333602961F38A0073521A /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -299,6 +302,7 @@
 			files = (
 				F8A5CDD72C8E4D1C0030A24D /* SwiftfulUI in Frameworks */,
 				F8F0D5FB2BCB022100771292 /* CoreMotion.framework in Frameworks */,
+				F844BEF92D4400B4003FB214 /* Kingfisher in Frameworks */,
 				F8A5CDF62CE0E3780030A24D /* DeviceCheck.framework in Frameworks */,
 				F88E499F2B3D8E490099939A /* GoogleSignInSwift in Frameworks */,
 				F8C7A6BB297D3EE400718CBF /* TinkoffASDKUI in Frameworks */,
@@ -468,6 +472,22 @@
 				F8A134FA295B2BFB0023D65D /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F8A193FE2D43BCDE005D44B7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				F8A193FF2D43BCF1005D44B7 /* View */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		F8A193FF2D43BCF1005D44B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F8A194002D43BD03005D44B7 /* SupportView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F8A1A0AE297193D2001B0C4B /* Payment */ = {
@@ -711,6 +731,7 @@
 				F80DA5BF2BBF59A70044E81B /* Map */,
 				F80DA5C22BBF5A020044E81B /* Address */,
 				F81328E0294E1656002E9A66 /* Delivery */,
+				F8A193FE2D43BCDE005D44B7 /* Support */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -944,6 +965,7 @@
 				F86712E92BCC020B00D643B8 /* YandexMapsMobile */,
 				F8A5CDA22C8E10870030A24D /* SDWebImageSwiftUI */,
 				F8A5CDD62C8E4D1C0030A24D /* SwiftfulUI */,
+				F844BEF82D4400B4003FB214 /* Kingfisher */,
 			);
 			productName = FoodTaskerMobile;
 			productReference = F81328DF294DD486002E9A66 /* FoodTaskerMobile.app */;
@@ -988,6 +1010,7 @@
 				F8A5CDA12C8E10870030A24D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				F8A5CDD52C8E4D1C0030A24D /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
 				F8A5CDD82C8E504D0030A24D /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+				F8A194032D43FDCF005D44B7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = F8A632E5294B87E70080DAE8;
 			projectDirPath = "";
@@ -1067,6 +1090,7 @@
 				F8A63330294B88480080DAE8 /* CartCell.swift in Sources */,
 				F8A63329294B88480080DAE8 /* SearchBarView.swift in Sources */,
 				F8B34EB3296C69AD0066CC42 /* TransactionManager.swift in Sources */,
+				F8A194012D43BD03005D44B7 /* SupportView.swift in Sources */,
 				F8A5AA5F2980316B007FBD0F /* DeliveryViewModel.swift in Sources */,
 				F84AB7B52B9E043900F3761B /* CookingAnimationView.swift in Sources */,
 				F81328E3294E1762002E9A66 /* DeliveryView.swift in Sources */,
@@ -1454,6 +1478,14 @@
 				version = 4.0.1;
 			};
 		};
+		F8A194032D43FDCF005D44B7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 		F8A2F9E6295DB33600B37C4A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1513,6 +1545,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F844BEF82D4400B4003FB214 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8A194032D43FDCF005D44B7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		F86712E92BCC020B00D643B8 /* YandexMapsMobile */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F86712E82BCC020B00D643B8 /* XCRemoteSwiftPackageReference "YandexMapsMobile" */;

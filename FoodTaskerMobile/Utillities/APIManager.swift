@@ -82,10 +82,14 @@ class APIManager {
     }
     
     // API to create an order
-    func checkToCreateOrder(address: String) -> (URL?, Data?) {
+    func checkToCreateOrder(address: String, restaurantId: Int, items: [OrderDetails]) -> (URL?, Data?) {
         let path = "api/customer/order/check/"
         
-        let order = Order(accessToken: self.accessToken, restaurantId: 0, address: address, orderDetails: [], deliveryPrice: 0)
+        let orderDetails = items.map { item in
+            return OrderDetailsSerializer(mealId: item.meal.id, quantity: item.quantity)
+        }
+        
+        let order = Order(accessToken: self.accessToken, restaurantId: restaurantId, address: address, orderDetails: orderDetails, deliveryPrice: 0)
         
         let data = try? JSONEncoder().encode(order)
         let url = baseURL?.appendingPathComponent(path)

@@ -87,6 +87,7 @@ extension MainViewModel {
         case menu
         case cart
         case delivery
+        case technicalSupport
         case logout
         
         var id: Int {
@@ -99,6 +100,7 @@ extension MainViewModel {
             case .menu: return "icon_restaurants"
             case .cart: return "icon_cart"
             case .delivery: return "icon_delivery"
+            case .technicalSupport: return "icon_technicalSupport"
             case .logout: return "icon_logout"
             }
             
@@ -110,6 +112,7 @@ extension MainViewModel {
             case .menu: return "МЕНЮ"
             case .cart: return "КОРЗИНА"
             case .delivery: return "ДОСТАВКА"
+            case .technicalSupport: return "ГОРЯЧАЯ ЛИНИЯ"
             case .logout: return "ВЫЙТИ"
             }
         }
